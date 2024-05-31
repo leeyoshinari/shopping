@@ -1,0 +1,16 @@
+{
+    "name": "一个PWA示例",
+    "short_name": "PWA示例",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#3eaf7c",
+    "icons": [
+      {
+        "src": "/icon.jpg",
+        "sizes": "435x435",
+        "type": "image/jpeg"
+      }
+    ]
+  }
+  
