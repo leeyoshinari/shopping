@@ -9,7 +9,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     const response = await fetch(decodeURIComponent(url));
     const data = await response.json();
-    console.log(data);
     res.status(response.status).json(data);
   } catch (error) {
     console.error(error);

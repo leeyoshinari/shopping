@@ -21,7 +21,7 @@ export default function Home() {
       <div className="row-one">
         <div className="input-box">
             <input className="input" type="text" id="search-id" placeholder="请输入商品名称" />
-            <Image alt="" src="/img/close.png" className="close" width={25} height={25}/>
+            <Image alt="" src="/img/close.png" className="close" width={25} height={25} priority fetchpriority="high" />
         </div>
         <div className="search-box">
             <button className="search">搜索</button>
@@ -37,11 +37,11 @@ export default function Home() {
       </div>
       <div className="row-three"></div>
       <div className="footer">
-        <div className="filter" id="tb"><Image alt="" src="/img/tb.png" width={40} height={40} /><p>淘 宝</p></div>
-        <div className="filter" id="jd"><Image alt="" src="/img/jd.png" width={40} height={40} /><p>京 东</p></div>
-        <div className="filter" id="pdd"><Image alt="" src="/img/pdd.png" width={40} height={40} /><p>拼多多</p></div>
-        <div className="filter" id="wph"><Image alt="" src="/img/wph.png" width={40} height={40} /><p>唯品会</p></div>
-        <div className="filter" id="wm"><Image alt="" src="/img/wm.png" width={40} height={40} /><p>活 动</p></div>
+        <div className="filter" id="tb"><Image alt="" src="/img/tb.png" width={40} height={40} priority fetchpriority="high" /><p>淘 宝</p></div>
+        <div className="filter" id="jd"><Image alt="" src="/img/jd.png" width={40} height={40} priority fetchpriority="high" /><p>京 东</p></div>
+        <div className="filter" id="pdd"><Image alt="" src="/img/pdd.png" width={40} height={40} priority fetchpriority="high" /><p>拼多多</p></div>
+        <div className="filter" id="wph"><Image alt="" src="/img/wph.png" width={40} height={40} priority fetchpriority="high" /><p>唯品会</p></div>
+        <div className="filter" id="wm"><Image alt="" src="/img/wm.png" width={40} height={40} priority fetchpriority="high" /><p>活 动</p></div>
       </div>
     </div>);
 }

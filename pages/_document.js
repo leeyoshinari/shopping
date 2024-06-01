@@ -15,8 +15,8 @@ export default class MyDocument extends Document {
             <link rel="icon" href="/icon.jpg" type="image/x-icon"/>
             <link rel="stylesheet" href="/main.css"></link>
             <link rel="manifest" href="/manifest.json"></link>
-            <Script src="/crypto-js.js" strategy="lazyOnload" />
-            <Script src="/md5.min.js" strategy="lazyOnload" />
+            <Script src="/crypto-js.js" strategy="afterInteractive" />
+            <Script src="/md5.min.js" strategy="afterInteractive" />
         </Head>
         <body>
           <Main />

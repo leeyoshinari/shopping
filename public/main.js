@@ -147,7 +147,7 @@ var generateUrlPathForRecommend = function (pageNo) {
                 break;
         }
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return urlPath;
 }
@@ -215,7 +215,7 @@ var  generateUrlPathForSearch = function(searchKey, sort, sortType, pageNo) {
                 break;
         }
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return urlPath;
 }
@@ -238,7 +238,7 @@ var getGoodList = function (sort, sortType, pageNo, flag) {
                 .catch(error => console.error(error));
         }
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -289,7 +289,7 @@ var parseTbRecommendGoodList = function (goodObj) {
         let goodList = goodObj?.tbk_dg_material_recommend_response?.result_list?.map_data;
         result = getTbGoodList(goodList);
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -300,7 +300,7 @@ var parseTbSearchGoodList = function (goodObj) {
         let goodList = goodObj?.tbk_dg_material_optional_upgrade_response?.result_list?.map_data;
         result = getTbGoodList(goodList);
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -313,7 +313,7 @@ var parseJdRecommendGoodList = function (goodObj) {
         console.log(goodList);
         result = getJdGoodList(goodList);
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -324,7 +324,7 @@ var parseJdSearchGoodList = function (goodObj) {
         let goodList = goodObj?.data?.data;
         result = getJdSearchGoodList(goodList);
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -335,7 +335,7 @@ var parsePddRecommendGoodList = function (goodObj) {
         let goodList = goodObj?.goods_basic_detail_response?.list;
         result = getPddGoodList(goodList);
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -346,7 +346,7 @@ var parseWphRecommendGoodList = function (goodObj) {
         let goodList = goodObj?.data?.goodsInfoList;
         result = getWphGoodList(goodList);
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -378,7 +378,7 @@ var getTbGoodList = function (goodList) {
             result.push(sku);
         })
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -393,7 +393,7 @@ var getJdGoodList = function (goodList) {
             sku.shop = item.shopInfo.shopName
         })
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
 }
 
@@ -425,7 +425,7 @@ var getPddGoodList = function (goodList) {
             result.push(sku);
         })
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -465,7 +465,7 @@ var getWphGoodList = function (goodList) {
             result.push(sku);
         })
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -503,7 +503,7 @@ var getJdSearchGoodList = function (goodList) {
             result.push(sku);
         })
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     return result;
 }
@@ -532,7 +532,7 @@ var showOnPage = function (goodList) {
             observer.observe(item);
         })
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
 }
 
