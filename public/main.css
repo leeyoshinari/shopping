@@ -56,11 +56,13 @@ html, body {
 .row-two {
     height: 21px;
     margin: 3px;
+    display: none;
 }
 
 .sort-by span {
     margin-right: 5%;
-    cursor: pointer;    
+    cursor: pointer;  
+    color: orangered;  
 }
 
 .row-three {
@@ -76,11 +78,11 @@ html, body {
 .row-three .good-img {
     float: left;
     position: absolute;
-    border-radius: 15px;
 }
 .row-three img {
     width: 150px;
     height: 150px;
+    border-radius: 15px;
 }
 .row-three .good-info {
     margin-left: 155px;
@@ -117,6 +119,11 @@ html, body {
     margin-top: 8px;
     right: 3px;
     font-size: small;
+    color: orangered;
+}
+
+.filter {
+    filter: grayscale(1);
 }
 
 .footer {
