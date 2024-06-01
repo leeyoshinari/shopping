@@ -3,7 +3,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     console.log(req.query);
-    const response = await fetch(decodeURIComponent(req.query.url));
+    const url = Array.isArray(req.query.url) ? req.query.url[0] : req.query.url;
+    if (!url) {
+      return res.status(400).json({ error: 'URL 参数是必须的' });
+    }
+    const response = await fetch(decodeURIComponent(url));
     const data = await response.json();
     console.log(data);
     res.status(response.status).json(data);
