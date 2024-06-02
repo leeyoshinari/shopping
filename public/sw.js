@@ -2,12 +2,10 @@ const CACHE_NAME = 'shopping-1.1';
 
 // 要缓存的文件列表
 const urlsToCache = [
-  '/',
   '/manifest.json',
   '/icon.jpg',
   '/main.css',
   '/main.js',
-  '/md5.min.js',
   '/crypto-js.js',
   '/img/close.png',
   '/img/tb.png',
@@ -46,18 +44,11 @@ self.addEventListener('activate', event => {
 // Fetch事件
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
+    caches.match(event.request).then(response => {
         if (response) {
           return response;
         }
-        // return fetch(event.request);
-        return fetch(event.request).then((response) => {
-          return caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, response.clone());
-            return response;
-          });
-        });
+        return fetch(event.request);
       })
   );
 });

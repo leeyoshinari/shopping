@@ -555,7 +555,7 @@ var sign = function (params, app_secret) {
       basestring += k + params[k];
     }
     basestring += app_secret;
-    return md5(basestring).toString(CryptoJS.enc.Hex).toUpperCase();
+    return CryptoJS.MD5(basestring).toString(CryptoJS.enc.Hex).toUpperCase();
   }
 
 var jsonToUrlParams = function (params) {
