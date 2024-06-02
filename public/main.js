@@ -10,9 +10,11 @@ const pddUrl = 'https://gw-api.pinduoduo.com/api/router';   // 多多进宝 url
 const pddSecret = '2440d8f47d626bb837e4ea3f2920d3966ec37726';   // 拼多多应用client_secret
 const pddClientId = 'ed3db9f07b2a4476bddb07a223c6d68e'; // 拼多多应用client_id
 const pddPid = '15084399_190061927';    // 拼多多推广位PID
-const pddCustomParameters = "{\"uid\":\"15084399_190061927\"}";
+const vipPid = 'd619156f131a556c6640229727291160';      // 唯品会推广位PID
 const thirdApiKey = '25ee321ae0f7f9be';  // 好京客的API KEY
-const thirdUrl = 'https://api-gw.haojingke.com/index.php/v1/api';   // 好京客的URL 
+const thirdUrl = 'https://api-gw.haojingke.com/index.php/v1/api';   // 好京客的URL
+const thirdJdUnionId = '1002712393';
+const thirdJdPositionId = '3003427429';
 
 let platform = localStorage.getItem('platform') || 'tb';
 let sortBy = null;
@@ -44,22 +46,22 @@ document.getElementsByClassName("search")[0].addEventListener("click", function 
 })
 
 document.getElementById("zh").addEventListener("click", function (event) {
-    if (platform === 'pdd') {sortBy = '0';} else {sortBy = null;}
-    if (platform === 'jd') {sortType = 'desc';} else {sortType = null;}
+    sortBy = null;
+    sortType = null;
     clickSortChangeColor('zh');
 })
 
 document.getElementById("price").addEventListener("click", function (event) {
-    if (platform === 'tb') {sortBy = 'price_asc';}
-    if (platform === 'pdd') {sortBy = '3';}
+    if (platform === 'tb') {sortBy = 'price_asc'; sortType = null;}
+    if (platform === 'pdd') {sortBy = '3'; sortType = null;}
     if (platform === 'jd') {sortBy = '1'; sortType = 'asc';}
     if (platform === 'wph') {sortBy = 'PRICE'; sortType = '0';}
     clickSortChangeColor('price');
 })
 
 document.getElementById("sale").addEventListener("click", function (event) {
-    if (platform === 'tb') {sortBy = 'total_sales_des';}
-    if (platform === 'pdd') {sortBy = '6';}
+    if (platform === 'tb') {sortBy = 'total_sales_des'; sortType = null;}
+    if (platform === 'pdd') {sortBy = '6'; sortType = null;}
     if (platform === 'jd') {sortBy = '4'; sortType = 'desc';}
     if (platform === 'wph') {sortBy = 'DISCOUNT'; sortType = '0';}
     clickSortChangeColor('sale');
@@ -87,11 +89,11 @@ var switchPlatform = function () {
 }
 
 var clickSortChangeColor = function (eleId) {
-    ['zh', 'price', 'sale'].forEach(item => {
-        if (eleId === item) {
+    document.getElementsByClassName("sort-by")[0].querySelectorAll("span").forEach(item => {
+        if (eleId === item.id) {
             item.classList.contains('filter')? item.classList.remove('filter'): null;
         } else {
-            item.classList.contains('filter')? null: item.classList.add('filte');
+            item.classList.contains('filter')? null: item.classList.add('filter');
         }
     })
     goodsListElement.innerHTML = '';
@@ -147,7 +149,7 @@ var generateUrlPathForRecommend = function (pageNo) {
                 break;
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return urlPath;
 }
@@ -192,11 +194,8 @@ var  generateUrlPathForSearch = function(searchKey, sort, sortType, pageNo) {
                 settings.page = pageNo;
                 settings.keyword = searchKey;
                 settings.timestamp = Math.floor((new Date().getTime())/1000);
-                settings.custom_parameters = pddCustomParameters;
                 if (sort && sort.trim() !== '') {
-                    settings.sort_type = Number(sort);
-                } else {
-                    settings.sort_type = 0;
+                    settings.sort_type = parseInt(sort);
                 }
                 settings.sign = sign(settings, pddSecret);
                 urlPath = pddUrl + "?" + jsonToUrlParams(settings);
@@ -215,7 +214,7 @@ var  generateUrlPathForSearch = function(searchKey, sort, sortType, pageNo) {
                 break;
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return urlPath;
 }
@@ -238,7 +237,7 @@ var getGoodList = function (sort, sortType, pageNo, flag) {
                 .catch(error => console.error(error));
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return result;
 }
@@ -273,7 +272,7 @@ var parseSearchGoodList = function (goodObj) {
             result = parseJdSearchGoodList(goodObj);
             break;
         case "pdd":
-            result = parsePddRecommendGoodList(goodObj);
+            result = parsePddSearchGoodList(goodObj);
             break;
         case "wph":
             result = parseWphRecommendGoodList(goodObj);
@@ -289,7 +288,7 @@ var parseTbRecommendGoodList = function (goodObj) {
         let goodList = goodObj?.tbk_dg_material_recommend_response?.result_list?.map_data;
         result = getTbGoodList(goodList);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return result;
 }
@@ -300,7 +299,7 @@ var parseTbSearchGoodList = function (goodObj) {
         let goodList = goodObj?.tbk_dg_material_optional_upgrade_response?.result_list?.map_data;
         result = getTbGoodList(goodList);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return result;
 }
@@ -310,10 +309,9 @@ var parseJdRecommendGoodList = function (goodObj) {
     try {
         let goodstr = goodObj?.jd_union_open_goods_rank_query_responce?.queryResult;
         let goodList = JSON.parse(goodstr).data;
-        console.log(goodList);
         result = getJdGoodList(goodList);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return result;
 }
@@ -324,7 +322,7 @@ var parseJdSearchGoodList = function (goodObj) {
         let goodList = goodObj?.data?.data;
         result = getJdSearchGoodList(goodList);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return result;
 }
@@ -335,7 +333,18 @@ var parsePddRecommendGoodList = function (goodObj) {
         let goodList = goodObj?.goods_basic_detail_response?.list;
         result = getPddGoodList(goodList);
     } catch (error) {
-        console.log(error);
+        console.error(error);
+    }
+    return result;
+}
+
+var parsePddSearchGoodList = function (goodObj) {
+    let result = [];
+    try {
+        let goodList = goodObj?.goods_search_response?.goods_list;
+        result = getPddGoodList(goodList);
+    } catch (error) {
+        console.error(error);
     }
     return result;
 }
@@ -346,7 +355,7 @@ var parseWphRecommendGoodList = function (goodObj) {
         let goodList = goodObj?.data?.goodsInfoList;
         result = getWphGoodList(goodList);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return result;
 }
@@ -361,6 +370,7 @@ var getTbGoodList = function (goodList) {
             sku.title = item.item_basic_info.title;
             sku.shop = item.item_basic_info.shop_title;
             sku.coupon_url = item.publish_info.coupon_share_url;
+            sku.item_url = item.publish_info.click_url;
             let delta_price = Number(item.price_promotion_info.zk_final_price) - Number(item.price_promotion_info.final_promotion_price);
             if (delta_price === 0) {
                 sku.coupon_price = 0;
@@ -378,7 +388,7 @@ var getTbGoodList = function (goodList) {
             result.push(sku);
         })
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return result;
 }
@@ -393,7 +403,7 @@ var getJdGoodList = function (goodList) {
             sku.shop = item.shopInfo.shopName
         })
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
@@ -425,7 +435,7 @@ var getPddGoodList = function (goodList) {
             result.push(sku);
         })
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return result;
 }
@@ -465,7 +475,7 @@ var getWphGoodList = function (goodList) {
             result.push(sku);
         })
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return result;
 }
@@ -486,6 +496,8 @@ var getJdSearchGoodList = function (goodList) {
                 volume_text = Number((volume / 10000).toFixed(1)) + "万";
             } else if (volume > 999) {
                 volume_text = Number((volume / 1000).toFixed(1)) + "千";
+            } else {
+                volume_text = volume;
             }
             if (item.couponInfo?.couponList?.length > 0 && item.couponInfo.couponList[0].quota <= item.priceInfo.price) {
                 sku.coupon_price = item.couponInfo.couponList[0].discount;
@@ -503,7 +515,7 @@ var getJdSearchGoodList = function (goodList) {
             result.push(sku);
         })
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return result;
 }
@@ -525,13 +537,131 @@ var showOnPage = function (goodList) {
             let sku_div = document.createElement('div');
             sku_div.innerHTML = sku;
             sku_div.classList.add('good-list');
+            sku_div.addEventListener("click", function() {
+                generatePromotion(item, true);
+            })
             goodElements.appendChild(sku_div);
         })
         document.querySelectorAll("img.img-lazy").forEach(item => {
             observer.observe(item);
         })
     } catch (error) {
-        console.log(error);
+        console.error(error);
+    }
+}
+
+var generatePromotion = function(queryParam, isApp) {
+    let settings = {};
+    let urlPath = '';
+    try {
+        switch (platform) {
+            case "tb":
+                let coupon_url = queryParam.coupon_url;
+                let url_path = '';
+                let result = {};
+                if (coupon_url && coupon_url !== '') {
+                    url_path = coupon_url.replace("https:", "").replace("http:", "");
+                } else {
+                    url_path = queryParam.item_url?.replace("https:", "").replace("http:", "");
+                }
+                result.urlPath = "taobao:" + url_path;
+                result.httpUrl = "https:" + url_path;
+                jumpToPurchasePage(queryParam, result, isApp);
+                return;
+            case "jd":
+                settings.apikey = thirdApiKey;
+                settings.unionId = thirdJdUnionId;
+                settings.positionid = thirdJdPositionId;
+                settings.type = 1;
+                settings.goods_id = queryParam.goodsId;
+                urlPath = thirdUrl + "/jd/getunionurl?" + jsonToUrlParams(settings);
+                break;
+            case "pdd":
+                settings.client_id = pddClientId;
+                settings.p_id = pddPid;
+                settings.data_type = "JSON";
+                settings.type = "pdd.ddk.goods.promotion.url.generate";
+                settings.timestamp = Math.floor((new Date().getTime())/1000);
+                settings.generate_authority_url = true;
+                settings.goods_sign_list = "[\"" + queryParam.goods_sign + "\"]";
+                settings.search_id = queryParam.search_id;
+                if (isApp) {
+                    settings.generate_schema_url = true;
+                } else {
+                    settings.generate_we_app = true;
+                }
+                settings.sign = sign(settings, pddSecret);
+                urlPath = pddUrl + "?" + jsonToUrlParams(settings);
+                break;
+            case "wph":
+                settings.apikey = thirdApiKey;
+                settings.goods_id = queryParam.goodsId;
+                settings.chanTag = vipPid;
+                settings.type = 1;
+                urlPath = thirdUrl + "/vip/getunionurl?" + jsonToUrlParams(settings);
+                break;
+        }
+        fetch('/api/proxy?url=' + encodeURIComponent(urlPath))
+            .then(response => response.json())
+            .then(data => jumpToPurchasePage(queryParam, data, isApp))
+            .catch(error => console.error(error));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
+    let url_path = '';
+    console.log(queryParam);
+    console.log(skuObj);
+    try {
+        switch (platform) {
+            case "tb":
+                window.location.href = skuObj.urlPath;
+                url_path = skuObj.httpUrl;
+                break;
+            case "jd":
+                let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + skuObj.data + "\"}";
+                window.location.href = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
+                url_path = skuObj.data;
+                break;
+            case "pdd":
+                if (isApp) {
+                    url_path = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
+                    window.location.href = url_path;
+                } else {
+                    url_path = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
+                    try {
+                        navigator.clipboard.writeText(url_path);
+                    } catch (err) {
+                        console.error('复制连接失败：', err);
+                    }
+                }
+                break;
+            case "wph":
+                window.location.href = skuObj.data?.urlInfoList[0].deeplinkUrl;
+                url_path = skuObj.data?.urlInfoList[0].vipWxUrl;
+                break;
+        }
+        setTimeout(function() {
+            let hidden = window.document.hidden || window.document.mozHidden || window.document.msHidden ||window.document.webkitHidden 
+            if(typeof hidden ==="undefined" || hidden ===false){
+                if (isApp) {
+                    if (platform === 'pdd') {
+                        generatePromotion(queryParam, false);
+                    } else {
+                        try {
+                            navigator.clipboard.writeText(url_path);
+                        } catch (err) {
+                            console.error('复制连接失败：', err);
+                        }
+                    }
+                }
+            }
+        }, 1000);
+    } catch (error) {
+        navigator.clipboard.writeText(url_path);
+        console.error(error);
     }
 }
 
@@ -559,6 +689,12 @@ var sign = function (params, app_secret) {
   }
 
 var jsonToUrlParams = function (params) {
+    if ("custom_parameters" in params) {
+        params.custom_parameters = encodeURIComponent(params.custom_parameters);
+    }
+    if ("360buy_param_json" in params) {
+        params["360buy_param_json"] = encodeURIComponent(params["360buy_param_json"]);
+    }
     let urlParams = new URLSearchParams(params);
     return urlParams.toString(); 
 }

@@ -76,6 +76,7 @@ html, body {
     position: relative;
     margin: 3px;
     padding-top: 5px;
+    cursor: pointer;
 }
 .row-three .good-img {
     float: left;
