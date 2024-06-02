@@ -614,23 +614,23 @@ var generatePromotion = function(queryParam, isApp) {
 
 var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
     let url_path = '';
-    console.log(queryParam);
-    console.log(skuObj);
+    let jump_url = '';
+    // console.log(queryParam);
+    // console.log(skuObj);
     try {
         switch (platform) {
             case "tb":
-                window.location.href = skuObj.urlPath;
+                jump_url = skuObj.urlPath;
                 url_path = skuObj.httpUrl;
                 break;
             case "jd":
                 let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + skuObj.data + "\"}";
-                window.location.href = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
+                jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
                 url_path = skuObj.data;
                 break;
             case "pdd":
                 if (isApp) {
-                    url_path = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
-                    window.location.href = url_path;
+                    jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
                 } else {
                     url_path = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
                     try {
@@ -641,26 +641,31 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
                 }
                 break;
             case "wph":
-                window.location.href = skuObj.data?.urlInfoList[0].deeplinkUrl;
+                jump_url = skuObj.data?.urlInfoList[0].deeplinkUrl;
                 url_path = skuObj.data?.urlInfoList[0].vipWxUrl;
                 break;
         }
-        setTimeout(function() {
-            let hidden = window.document.hidden || window.document.mozHidden || window.document.msHidden ||window.document.webkitHidden 
-            if(typeof hidden ==="undefined" || hidden ===false){
-                if (isApp) {
-                    if (platform === 'pdd') {
-                        generatePromotion(queryParam, false);
-                    } else {
-                        try {
-                            navigator.clipboard.writeText(url_path);
-                        } catch (err) {
-                            console.error('复制连接失败：', err);
-                        }
-                    }
-                }
-            }
-        }, 1000);
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = jump_url;
+        document.body.appendChild(iframe);
+        setTimeout(() => {
+            document.body.removeChild(iframe);
+            // let hidden = window.document.hidden || window.document.mozHidden || window.document.msHidden ||window.document.webkitHidden 
+            // if(typeof hidden ==="undefined" || hidden ===false){
+            //     if (isApp) {
+            //         if (platform === 'pdd') {
+            //             generatePromotion(queryParam, false);
+            //         } else {
+            //             try {
+            //                 navigator.clipboard.writeText(url_path);
+            //             } catch (err) {
+            //                 console.error('复制连接失败：', err);
+            //             }
+            //         }
+            //     }
+            // }
+        }, 2000);
     } catch (error) {
         navigator.clipboard.writeText(url_path);
         console.error(error);
