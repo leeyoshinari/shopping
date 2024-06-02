@@ -622,7 +622,7 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
             case "tb":
                 jump_url = skuObj.urlPath;
                 url_path = skuObj.httpUrl;
-                window.location.href = url_path;
+                window.location.href = 'intent://' + jump_url + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
                 return;
                 // break;
             case "jd":
