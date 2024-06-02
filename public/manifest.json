@@ -2,7 +2,7 @@
     "name": "优惠券",
     "short_name": "优惠券",
     "start_url": "/",
-    "display": "minimal-ui",
+    "display": "browser",
     "background_color": "#fff",
     "theme_color": "#3eaf7c",
     "icons": [
