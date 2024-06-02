@@ -1,6 +1,6 @@
 {
-    "name": "一个PWA示例",
-    "short_name": "PWA示例",
+    "name": "Shopping",
+    "short_name": "Shopping",
     "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#fff",

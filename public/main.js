@@ -510,7 +510,6 @@ var getJdSearchGoodList = function (goodList) {
 
 var showOnPage = function (goodList) {
     try {
-        console.log(goodList);
         let goodElements = document.getElementsByClassName('row-three')[0];
         goodList.forEach(item => {
             let coupon = `<span>${item.coupon_text}</span>`;
