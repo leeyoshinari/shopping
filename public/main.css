@@ -39,6 +39,7 @@ html, body {
     top: 5px;
     right: -3px;
     float: left;
+    cursor: pointer;
 }
 .search-box {
     width: 16%;
@@ -51,6 +52,7 @@ html, body {
     font-size: 1rem;
     border: 2px solid black;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .row-two {

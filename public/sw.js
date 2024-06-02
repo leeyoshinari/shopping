@@ -1,7 +1,8 @@
-const CACHE_NAME = 'shopping-1.2';
+const CACHE_NAME = 'shopping-1.1';
 
 // 要缓存的文件列表
 const urlsToCache = [
+  '/',
   '/manifest.json',
   '/icon.png',
   '/icon_x192.png',
