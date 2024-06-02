@@ -10,6 +10,7 @@ const pddUrl = 'https://gw-api.pinduoduo.com/api/router';   // 多多进宝 url
 const pddSecret = '2440d8f47d626bb837e4ea3f2920d3966ec37726';   // 拼多多应用client_secret
 const pddClientId = 'ed3db9f07b2a4476bddb07a223c6d68e'; // 拼多多应用client_id
 const pddPid = '15084399_190061927';    // 拼多多推广位PID
+const pddCustomParameters = "{\"uid\":\"15084399_190061927\"}"
 const vipPid = 'd619156f131a556c6640229727291160';      // 唯品会推广位PID
 const thirdApiKey = '25ee321ae0f7f9be';  // 好京客的API KEY
 const thirdUrl = 'https://api-gw.haojingke.com/index.php/v1/api';   // 好京客的URL
@@ -194,6 +195,7 @@ var  generateUrlPathForSearch = function(searchKey, sort, sortType, pageNo) {
                 settings.page = pageNo;
                 settings.keyword = searchKey;
                 settings.timestamp = Math.floor((new Date().getTime())/1000);
+                settings.custom_parameters = pddCustomParameters;
                 if (sort && sort.trim() !== '') {
                     settings.sort_type = parseInt(sort);
                 }
