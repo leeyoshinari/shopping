@@ -623,7 +623,8 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
                 jump_url = skuObj.urlPath;
                 url_path = skuObj.httpUrl;
                 let ahref = document.createElement('a');
-                ahref.href = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
+                ahref.href = jump_url;
+                // ahref.href = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
                 ahref.target = "_blank";
                 ahref.click();
                 // window.location.href = 'intent://' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
