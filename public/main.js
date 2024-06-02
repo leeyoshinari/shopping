@@ -225,6 +225,7 @@ var getGoodList = function (sort, sortType, pageNo, flag) {
     isLoading = true;
     let result = [];
     let searchKey = document.getElementById("search-id").value;
+    document.getElementsByClassName("spinner-container")[0].style.display = 'flex';
     try {
         if (searchKey && searchKey.trim() !== '') {
             document.getElementsByClassName('row-two')[0].style.display = 'block';
@@ -240,6 +241,7 @@ var getGoodList = function (sort, sortType, pageNo, flag) {
         }
     } catch (error) {
         console.error(error);
+        document.getElementsByClassName("spinner-container")[0].style.display = 'none';
     }
     return result;
 }
@@ -262,6 +264,7 @@ var parseRecommendGoodList = function (goodObj) {
     }
     showOnPage(result);
     isLoading = false;
+    document.getElementsByClassName("spinner-container")[0].style.display = 'none';
 }
 
 var parseSearchGoodList = function (goodObj) {
@@ -282,6 +285,7 @@ var parseSearchGoodList = function (goodObj) {
     }
     showOnPage(result);
     isLoading = false;
+    document.getElementsByClassName("spinner-container")[0].style.display = 'none';
 }
 
 var parseTbRecommendGoodList = function (goodObj) {
@@ -314,6 +318,7 @@ var parseJdRecommendGoodList = function (goodObj) {
         result = getJdGoodList(goodList);
     } catch (error) {
         console.error(error);
+        showTips(error.message);
     }
     return result;
 }
@@ -523,6 +528,10 @@ var getJdSearchGoodList = function (goodList) {
 }
 
 var showOnPage = function (goodList) {
+    if (!goodList || goodList.length < 1) {
+        showTips("我是有底线的哟 ~");
+        return;
+    }
     try {
         let goodElements = document.getElementsByClassName('row-three')[0];
         goodList.forEach(item => {
@@ -540,7 +549,7 @@ var showOnPage = function (goodList) {
             sku_div.innerHTML = sku;
             sku_div.classList.add('good-list');
             sku_div.addEventListener("click", function() {
-                generatePromotion(item, false);
+                generatePromotion(item, true);
             })
             goodElements.appendChild(sku_div);
         })
@@ -555,6 +564,7 @@ var showOnPage = function (goodList) {
 var generatePromotion = function(queryParam, isApp) {
     let settings = {};
     let urlPath = '';
+    document.getElementsByClassName("spinner-container")[0].style.display = 'flex';
     try {
         switch (platform) {
             case "tb":
@@ -646,13 +656,16 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
                 url_path = skuObj.data?.urlInfoList[0].vipWxUrl;
                 break;
         }
+        document.getElementsByClassName("spinner-container")[0].style.display = 'none';
         let ahref = document.createElement('a');
         ahref.href = jump_url;
         ahref.target = "_blank";
         ahref.click();
     } catch (error) {
         navigator.clipboard.writeText(url_path);
+        document.getElementsByClassName("spinner-container")[0].style.display = 'none';
         console.error(error);
+        showTips(error.message);
     }
 }
 
@@ -688,6 +701,13 @@ var jsonToUrlParams = function (params) {
     }
     let urlParams = new URLSearchParams(params);
     return urlParams.toString(); 
+}
+
+var showTips = function (text) {
+    var tips = document.getElementById('tips');
+    tips.innerText = text;
+    tips.classList.add('show');
+    setTimeout(function() {tips.classList.remove('show');}, 3000);
 }
 
 var observer = new IntersectionObserver((entries) => {

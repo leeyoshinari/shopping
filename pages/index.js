@@ -52,5 +52,7 @@ export default function Home() {
         <div className="filter" id="wph"><Image alt="" src="/img/wph.png" width={40} height={40} priority fetchpriority="high" /><p>唯品会</p></div>
         <div className="filter" id="wm"><Image alt="" src="/img/wm.png" width={40} height={40} priority fetchpriority="high" /><p>活 动</p></div>
       </div>
+      <div className="spinner-container"><div className="spinner"></div></div>
+      <div id="tips" className="tips"></div>
     </div>);
 }
