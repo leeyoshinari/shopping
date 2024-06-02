@@ -17,12 +17,13 @@ export default function Home() {
       <Head>
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="application-name" content="Shopping" />
-        <meta name="apple-mobile-web-app-title" content="Shopping" />
-        <meta name="msapplication-tooltip" content="Shopping" />
+        <meta name="application-name" content="优惠券" />
+        <meta name="apple-mobile-web-app-title" content="优惠券" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="msapplication-tooltip" content="优惠券" />
         <meta name="theme-color" content="#3eaf7c" />
         <meta name="msapplication-navbutton-color" content="#3eaf7c" />
-        <meta name="msapplication-starturl" content="/index.html" />
+        <meta name="msapplication-starturl" content="/" />
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no"/>
         <title>优惠券</title>
       </Head>
