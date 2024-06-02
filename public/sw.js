@@ -1,9 +1,11 @@
-const CACHE_NAME = 'shopping-1.1';
+const CACHE_NAME = 'shopping-1.2';
 
 // 要缓存的文件列表
 const urlsToCache = [
   '/manifest.json',
-  '/icon.jpg',
+  '/icon.png',
+  '/icon_x192.png',
+  '/icon_x72.png',
   '/main.css',
   '/main.js',
   '/crypto-js.js',
@@ -17,6 +19,7 @@ const urlsToCache = [
 
 // 安装事件
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
@@ -27,18 +30,18 @@ self.addEventListener('install', event => {
 
 // 激活事件
 self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
+          if (cacheName !== CACHE_NAME) {
             return caches.delete(cacheName);
           }
         })
       );
     })
   );
+  self.clients.claim();
 });
 
 // Fetch事件
