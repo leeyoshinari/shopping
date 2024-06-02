@@ -540,7 +540,7 @@ var showOnPage = function (goodList) {
             sku_div.innerHTML = sku;
             sku_div.classList.add('good-list');
             sku_div.addEventListener("click", function() {
-                generatePromotion(item, true);
+                generatePromotion(item, false);
             })
             goodElements.appendChild(sku_div);
         })
@@ -622,7 +622,9 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
             case "tb":
                 jump_url = skuObj.urlPath;
                 url_path = skuObj.httpUrl;
-                break;
+                window.location.href = url_path;
+                return;
+                // break;
             case "jd":
                 let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + skuObj.data + "\"}";
                 jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
@@ -647,7 +649,7 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
         }
         const iframe = document.createElement('iframe');
         iframe.style.display = 'none';
-        iframe.src = jump_url;
+        iframe.src = url_path;
         document.body.appendChild(iframe);
         setTimeout(() => {
             document.body.removeChild(iframe);
