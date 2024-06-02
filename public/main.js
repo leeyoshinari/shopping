@@ -622,14 +622,8 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
             case "tb":
                 jump_url = skuObj.urlPath;
                 url_path = skuObj.httpUrl;
-                let ahref = document.createElement('a');
-                ahref.href = jump_url;
-                // ahref.href = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
-                ahref.target = "_blank";
-                ahref.click();
                 // window.location.href = 'intent://' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
-                return;
-                // break;
+                break;
             case "jd":
                 let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + skuObj.data + "\"}";
                 jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
@@ -652,27 +646,10 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
                 url_path = skuObj.data?.urlInfoList[0].vipWxUrl;
                 break;
         }
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = url_path;
-        document.body.appendChild(iframe);
-        setTimeout(() => {
-            document.body.removeChild(iframe);
-            // let hidden = window.document.hidden || window.document.mozHidden || window.document.msHidden ||window.document.webkitHidden 
-            // if(typeof hidden ==="undefined" || hidden ===false){
-            //     if (isApp) {
-            //         if (platform === 'pdd') {
-            //             generatePromotion(queryParam, false);
-            //         } else {
-            //             try {
-            //                 navigator.clipboard.writeText(url_path);
-            //             } catch (err) {
-            //                 console.error('复制连接失败：', err);
-            //             }
-            //         }
-            //     }
-            // }
-        }, 2000);
+        let ahref = document.createElement('a');
+        ahref.href = jump_url;
+        ahref.target = "_blank";
+        ahref.click();
     } catch (error) {
         navigator.clipboard.writeText(url_path);
         console.error(error);
