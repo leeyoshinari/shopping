@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shopping-12';
+const CACHE_NAME = 'shopping-13';
 
 // 要缓存的文件列表
 const urlsToCache = [

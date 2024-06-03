@@ -318,7 +318,6 @@ var parseJdRecommendGoodList = function (goodObj) {
         result = getJdGoodList(goodList);
     } catch (error) {
         console.error(error);
-        showTips(error.message);
     }
     return result;
 }
@@ -452,7 +451,7 @@ var getWphGoodList = function (goodList) {
     try {
         goodList.forEach(item => {
             let sku = {};
-            sku.img = item.goodsThumbUrl;
+            sku.img = item.goodsThumbUrl.startsWith("https:")? item.goodsThumbUrl: item.goodsThumbUrl.replace("http:", "https:");
             sku.title = item.goodsName;
             sku.goodsId = item.goodsId;
             sku.sale_price = item.marketPrice;
