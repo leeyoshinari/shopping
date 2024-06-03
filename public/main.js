@@ -115,7 +115,7 @@ var generateUrlPathForRecommend = function (pageNo) {
                 settings.method = 'taobao.tbk.dg.material.recommend';
                 settings.v = '2.0';
                 settings.page_no = pageNo;
-                settings.material_id = 27446;
+                settings.material_id = 86594;
                 settings.sign = sign(settings, tbAppSceret);
                 urlPath = tbUrl + "?" + jsonToUrlParams(settings);
                 break;
@@ -669,7 +669,8 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
                 break;
             case "pdd":
                 if (isApp) {
-                    jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
+                    // jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
+                    jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].url;
                 } else {
                     url_path = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
                     try {
@@ -686,17 +687,18 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
         }
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
         if (getDeviceType() === "IOS" && 'jd wph'.indexOf(platform) > -1) {
-            window.open(url_path);
+            if (platform === 'jd') {
+                let jd_url = "https://linkst.m.jd.com/ul/ul.action?" + jump_url;
+                clickUrl(jd_url);
+            } else {
+                clickUrl(url_path);
+            }
         } else {
-            window.open(jump_url);
-            // let ahref = document.createElement('a');
-            // ahref.href = jump_url;
-            // ahref.target = "_blank";
-            // ahref.click();
+            clickUrl(jump_url);
         }
     } catch (error) {
-        navigator.clipboard.writeText(url_path);
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
+        navigator.clipboard.writeText(url_path);
         console.error(error);
         showTips(error.message);
     }
@@ -739,10 +741,17 @@ var jsonToUrlParams = function (params) {
 var getDeviceType = function () {
     const userAgent = navigator.userAgent || window.opera;
     if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      return "iOS";
+      return "IOS";
     } else {
         return "Android";
     }
+}
+
+var clickUrl = function (click_url) {
+    let ahref = document.createElement('a');
+    ahref.href = click_url;
+    ahref.target = "_blank";
+    ahref.click();
 }
 
 var showTips = function (text) {
