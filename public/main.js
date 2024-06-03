@@ -685,10 +685,15 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
                 break;
         }
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
-        let ahref = document.createElement('a');
-        ahref.href = jump_url;
-        ahref.target = "_blank";
-        ahref.click();
+        if (getDeviceType() === "IOS" && 'jd wph'.indexOf(platform) > -1) {
+            window.open(url_path);
+        } else {
+            window.open(jump_url);
+            // let ahref = document.createElement('a');
+            // ahref.href = jump_url;
+            // ahref.target = "_blank";
+            // ahref.click();
+        }
     } catch (error) {
         navigator.clipboard.writeText(url_path);
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
@@ -729,6 +734,15 @@ var jsonToUrlParams = function (params) {
     }
     let urlParams = new URLSearchParams(params);
     return urlParams.toString(); 
+}
+
+var getDeviceType = function () {
+    const userAgent = navigator.userAgent || window.opera;
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return "iOS";
+    } else {
+        return "Android";
+    }
 }
 
 var showTips = function (text) {

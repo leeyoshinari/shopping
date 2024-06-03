@@ -1,8 +1,9 @@
-const CACHE_NAME = 'shopping-3';
+const CACHE_NAME = 'shopping-5';
 
 // 要缓存的文件列表
 const urlsToCache = [
   '/',
+  '/sw.js',
   '/manifest.json',
   '/icon.png',
   '/icon_x192.png',
@@ -40,9 +41,10 @@ self.addEventListener('activate', event => {
           }
         })
       );
+    }).then(() => {
+      return self.clients.claim();
     })
   );
-  self.clients.claim();
 });
 
 // Fetch事件
