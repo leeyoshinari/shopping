@@ -120,15 +120,19 @@ var generateUrlPathForRecommend = function (pageNo) {
                 urlPath = tbUrl + "?" + jsonToUrlParams(settings);
                 break;
             case "jd":
-                settings.format = 'json';
-                settings.sign_method = 'md5';
-                settings.app_key = jdAppKey;
-                settings.timestamp = timestampToDate();
-                settings.method = 'jd.union.open.goods.material.query';
-                settings.v = '1.0';
-                settings["360buy_param_json"] = JSON.stringify({"goodsReq":{"eliteId":2,"pageIndex":pageNo}});
-                settings.sign = sign(settings, jdAppSecret);
-                urlPath = jdUrl + "?" + jsonToUrlParams(settings);
+                // settings.format = 'json';
+                // settings.sign_method = 'md5';
+                // settings.app_key = jdAppKey;
+                // settings.timestamp = timestampToDate();
+                // settings.method = 'jd.union.open.goods.material.query';
+                // settings.v = '1.0';
+                // settings["360buy_param_json"] = JSON.stringify({"goodsReq":{"eliteId":2,"pageIndex":pageNo}});
+                // settings.sign = sign(settings, jdAppSecret);
+                // urlPath = jdUrl + "?" + jsonToUrlParams(settings);
+                settings.apikey = thirdApiKey;
+                settings.pageindex = pageNo;
+                settings.activityid = 10000;
+                urlPath = thirdUrl + "/jd/getgoodsbd?" + jsonToUrlParams(settings);
                 break;
             case "pdd":
                 settings.client_id = pddClientId;
@@ -313,8 +317,9 @@ var parseTbSearchGoodList = function (goodObj) {
 var parseJdRecommendGoodList = function (goodObj) {
     let result = [];
     try {
-        let goodstr = goodObj?.jd_union_open_goods_rank_query_responce?.queryResult;
-        let goodList = JSON.parse(goodstr).data;
+        // let goodstr = goodObj?.jd_union_open_goods_rank_query_responce?.queryResult;
+        // let goodList = JSON.parse(goodstr).data;
+        let goodList = goodObj?.data?.data;
         result = getJdGoodList(goodList);
     } catch (error) {
         console.error(error);
@@ -404,13 +409,37 @@ var getJdGoodList = function (goodList) {
     try {
         goodList.forEach(item => {
             let sku = {};
-            sku.img = item.imageUrl;
-            sku.title = item.skuName
-            sku.shop = item.shopInfo.shopName
+            sku.img = item.picurl;
+            sku.title = item.goods_name;
+            sku.shop = item.shopname;
+            sku.goodsId = item.goods_id;
+            sku.brokerage = item.commission;
+            let volume = item.sales;
+            let volumeText = volume;
+            if (volume > 9999) {
+                volumeText = Number((volume / 10000).toFixed(1)) + "万";
+            } else if (volume > 999) {
+                volumeText = Number((volume / 1000).toFixed(1)) + "千";
+            }
+            if (item.price > item.price_after) {
+                sku.coupon_price = Number((item.price - item.price_after).toFixed(2));
+                sku.coupon_text = "元券\u00A0\u00A0\u00A0" + volumeText + "人已购买";
+                sku.sale_price = item.price;
+                sku.final_price_text = " 券后 ￥";
+                sku.final_price = item.price_after;
+            } else {
+                sku.coupon_price = 0;
+                sku.coupon_text = volumeText + "人已购买";
+                sku.sale_price = 0;
+                sku.final_price_text = "";
+                sku.final_price = item.price;
+            }
+            result.push(sku);
         })
     } catch (error) {
         console.error(error);
     }
+    return result;
 }
 
 var getPddGoodList = function (goodList) {
