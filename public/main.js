@@ -88,7 +88,11 @@ var switchPlatform = function () {
         }
     })
     goodsListElement.innerHTML = '';
-    getGoodList(sortBy, sortType, pageNo, true);
+    if (platform === 'wm') {
+        return;
+    } else {
+        getGoodList(sortBy, sortType, pageNo, true);
+    }
 }
 
 var clickSortChangeColor = function (eleId) {
