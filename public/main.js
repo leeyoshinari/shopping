@@ -614,7 +614,7 @@ var generatePromotion = (queryParam) => {
                 }
                 result.urlPath = "taobao:" + url_path;
                 result.httpUrl = "https:" + url_path;
-                jumpToPurchasePage(result);
+                jumpToPurchasePage(result, queryParam.title);
                 return;
             case "jd":
                 settings.apikey = thirdApiKey;
@@ -648,20 +648,22 @@ var generatePromotion = (queryParam) => {
         }
         fetch('/api/proxy?url=' + encodeURIComponent(urlPath))
             .then(response => response.json())
-            .then(data => jumpToPurchasePage(data))
+            .then(data => jumpToPurchasePage(data, queryParam.title))
             .catch(error => console.error(error));
     } catch (error) {
         console.error(error);
     }
 }
 
-var jumpToPurchasePage = (skuObj) => {
+var jumpToPurchasePage = (skuObj, title) => {
     let jump_url = '';
     let we_app_url = '';
+    let share_url = '';
     try {
         switch (platform) {
             case "tb":
                 jump_url = skuObj.urlPath;
+                share_url = skuObj.httpUrl;
                 // url_path = skuObj.httpUrl;
                 // window.location.href = 'intent://' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
                 break;
@@ -673,6 +675,7 @@ var jumpToPurchasePage = (skuObj) => {
                     jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
                 }
                 we_app_url = skuObj.data;
+                share_url = skuObj.data;
                 break;
             case "pdd":
                 if (getDeviceType() === "IOS") {
@@ -681,6 +684,7 @@ var jumpToPurchasePage = (skuObj) => {
                     jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
                 }
                 we_app_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
+                share_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].short_url;
                 break;
             case "wph":
                 if (getDeviceType() === "IOS") {
@@ -689,13 +693,16 @@ var jumpToPurchasePage = (skuObj) => {
                     jump_url = skuObj.data?.urlInfoList[0].deeplinkUrl;
                 }
                 we_app_url = skuObj.data?.urlInfoList[0].vipWxUrl;
+                share_url = skuObj.data?.urlInfoList[0].url;
                 break;
         }
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
         if (getDeviceType() === "IOS") {
-            window.open(jump_url);
+            // window.open(jump_url);
+            shareUrl(title, share_url);
         } else {
-            clickUrl(jump_url);
+            // clickUrl(jump_url);
+            shareUrl(title, share_url);
         }
     } catch (error) {
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
@@ -753,6 +760,21 @@ var clickUrl = (click_url) => {
     ahref.href = click_url;
     ahref.target = "_blank";
     ahref.click();
+}
+
+var shareUrl = (title, share_url) => {
+    if (!navigator.share || !navigator.canShare) {
+        return;
+    }
+    try {
+        navigator.share({
+          text: title,
+          url: share_url,
+        });
+      } catch (error) {
+        showTips("系统暂不支持 ~");
+        console.error(error);
+      }
 }
 
 var showTips = (text) => {
