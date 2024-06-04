@@ -762,15 +762,17 @@ var clickUrl = (click_url) => {
     ahref.click();
 }
 
-var shareUrl = (title, share_url) => {
+var shareUrl = async (title, share_url) => {
     if (!navigator.share || !navigator.canShare) {
+        showTips("系统暂不支持 ~");
         return;
     }
     try {
-        navigator.share({
+        await navigator.share({
           text: title,
           url: share_url,
         });
+        
       } catch (error) {
         showTips("系统暂不支持 ~");
         console.error(error);
