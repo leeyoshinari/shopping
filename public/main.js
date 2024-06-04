@@ -665,12 +665,18 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
             case "jd":
                 let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + skuObj.data + "\"}";
                 jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
+                if (getDeviceType() === "IOS") {
+                    jump_url = skuObj.data;
+                }
                 url_path = skuObj.data;
                 break;
             case "pdd":
                 if (isApp) {
-                    // jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
-                    jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].url;
+                    if (getDeviceType() === "IOS") {
+                        jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].url;
+                    } else {
+                        jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
+                    }
                 } else {
                     url_path = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
                     try {
@@ -681,21 +687,16 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
                 }
                 break;
             case "wph":
-                jump_url = skuObj.data?.urlInfoList[0].deeplinkUrl;
+                if (getDeviceType() === "IOS") {
+                    jump_url = skuObj.data?.urlInfoList[0].url;
+                } else {
+                    jump_url = skuObj.data?.urlInfoList[0].deeplinkUrl;
+                }
                 url_path = skuObj.data?.urlInfoList[0].vipWxUrl;
                 break;
         }
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
-        if (getDeviceType() === "IOS" && 'jd wph'.indexOf(platform) > -1) {
-            if (platform === 'jd') {
-                let jd_url = "https://linkst.m.jd.com/ul/ul.action?" + jump_url;
-                clickUrl(jd_url);
-            } else {
-                clickUrl(url_path);
-            }
-        } else {
-            clickUrl(jump_url);
-        }
+        clickUrl(jump_url);
     } catch (error) {
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
         navigator.clipboard.writeText(url_path);
