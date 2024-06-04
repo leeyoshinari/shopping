@@ -26,7 +26,7 @@ let isLoading = false;   // 数据加载标志，防止重复加载
 const goodsListElement = document.getElementsByClassName("row-three")[0];
 
 document.getElementsByClassName('footer')[0].querySelectorAll('div').forEach(item => {
-    item.addEventListener('click', function (event) {
+    item.addEventListener('click', (event) => {
         platform = event.currentTarget.id;
         localStorage.setItem('platform', platform);
         switchPlatform();
@@ -34,11 +34,11 @@ document.getElementsByClassName('footer')[0].querySelectorAll('div').forEach(ite
 })
 
 
-document.getElementsByClassName("close")[0].addEventListener("click", function (event) {
+document.getElementsByClassName("close")[0].addEventListener("click", (event) => {
     document.getElementById("search-id").value = null;
 })
 
-document.getElementsByClassName("search")[0].addEventListener("click", function (event) {
+document.getElementsByClassName("search")[0].addEventListener("click", (event) => {
     let searchKey = document.getElementById("search-id").value;
     if (searchKey && searchKey.trim() !== '') {
         goodsListElement.innerHTML = '';
@@ -48,13 +48,13 @@ document.getElementsByClassName("search")[0].addEventListener("click", function 
     }
 })
 
-document.getElementById("zh").addEventListener("click", function (event) {
+document.getElementById("zh").addEventListener("click", (event) => {
     sortBy = null;
     sortType = null;
     clickSortChangeColor('zh');
 })
 
-document.getElementById("price").addEventListener("click", function (event) {
+document.getElementById("price").addEventListener("click", (event) => {
     if (platform === 'tb') {sortBy = 'price_asc'; sortType = null;}
     if (platform === 'pdd') {sortBy = '3'; sortType = null;}
     if (platform === 'jd') {sortBy = '1'; sortType = 'asc';}
@@ -62,7 +62,7 @@ document.getElementById("price").addEventListener("click", function (event) {
     clickSortChangeColor('price');
 })
 
-document.getElementById("sale").addEventListener("click", function (event) {
+document.getElementById("sale").addEventListener("click", (event) => {
     if (platform === 'tb') {sortBy = 'total_sales_des'; sortType = null;}
     if (platform === 'pdd') {sortBy = '6'; sortType = null;}
     if (platform === 'jd') {sortBy = '4'; sortType = 'desc';}
@@ -70,14 +70,14 @@ document.getElementById("sale").addEventListener("click", function (event) {
     clickSortChangeColor('sale');
 })
 
-goodsListElement.onscroll = function () {
+goodsListElement.onscroll = () => {
     if (goodsListElement.scrollTop + goodsListElement.clientHeight + 150 >= goodsListElement.scrollHeight && !isLoading) {
         pageNo += 1;
         getGoodList(sortBy, sortType, pageNo, true);
     }
 }
 
-var switchPlatform = function () {
+var switchPlatform = () => {
     document.getElementsByClassName('row-two')[0].style.display = 'none';
     let imgs = document.getElementsByClassName('footer')[0].querySelectorAll('div');
     imgs.forEach(item => {
@@ -89,13 +89,15 @@ var switchPlatform = function () {
     })
     goodsListElement.innerHTML = '';
     if (platform === 'wm') {
-        return;
+        document.getElementsByClassName('row-one')[0].style.display = 'none';
+        showActivity();
     } else {
+        document.getElementsByClassName('row-one')[0].style.display = 'block';
         getGoodList(sortBy, sortType, pageNo, true);
     }
 }
 
-var clickSortChangeColor = function (eleId) {
+var clickSortChangeColor = (eleId) => {
     document.getElementsByClassName("sort-by")[0].querySelectorAll("span").forEach(item => {
         if (eleId === item.id) {
             item.classList.contains('filter')? item.classList.remove('filter'): null;
@@ -107,7 +109,7 @@ var clickSortChangeColor = function (eleId) {
     getGoodList(sortBy, sortType, pageNo, true);
 }
 
-var generateUrlPathForRecommend = function (pageNo) {
+var generateUrlPathForRecommend = (pageNo) => {
     let urlPath = '';
     let settings = {};
     try {
@@ -165,7 +167,7 @@ var generateUrlPathForRecommend = function (pageNo) {
     return urlPath;
 }
 
-var  generateUrlPathForSearch = function(searchKey, sort, sortType, pageNo) {
+var  generateUrlPathForSearch = (searchKey, sort, sortType, pageNo) => {
     let urlPath = '';
     let settings = {};
     try {
@@ -231,7 +233,7 @@ var  generateUrlPathForSearch = function(searchKey, sort, sortType, pageNo) {
     return urlPath;
 }
 
-var getGoodList = function (sort, sortType, pageNo, flag) {
+var getGoodList = (sort, sortType, pageNo, flag) => {
     isLoading = true;
     let result = [];
     let searchKey = document.getElementById("search-id").value;
@@ -256,7 +258,7 @@ var getGoodList = function (sort, sortType, pageNo, flag) {
     return result;
 }
 
-var parseRecommendGoodList = function (goodObj) {
+var parseRecommendGoodList = (goodObj) => {
     let result = [];
     switch (platform) {
         case "tb":
@@ -277,7 +279,7 @@ var parseRecommendGoodList = function (goodObj) {
     document.getElementsByClassName("spinner-container")[0].style.display = 'none';
 }
 
-var parseSearchGoodList = function (goodObj) {
+var parseSearchGoodList = (goodObj) => {
     let result = [];
     switch (platform) {
         case "tb":
@@ -298,7 +300,7 @@ var parseSearchGoodList = function (goodObj) {
     document.getElementsByClassName("spinner-container")[0].style.display = 'none';
 }
 
-var parseTbRecommendGoodList = function (goodObj) {
+var parseTbRecommendGoodList = (goodObj) => {
     let result = [];
     try {
         let goodList = goodObj?.tbk_dg_material_recommend_response?.result_list?.map_data;
@@ -309,7 +311,7 @@ var parseTbRecommendGoodList = function (goodObj) {
     return result;
 }
 
-var parseTbSearchGoodList = function (goodObj) {
+var parseTbSearchGoodList = (goodObj) => {
     let result = [];
     try {
         let goodList = goodObj?.tbk_dg_material_optional_upgrade_response?.result_list?.map_data;
@@ -320,7 +322,7 @@ var parseTbSearchGoodList = function (goodObj) {
     return result;
 }
 
-var parseJdRecommendGoodList = function (goodObj) {
+var parseJdRecommendGoodList = (goodObj) => {
     let result = [];
     try {
         // let goodstr = goodObj?.jd_union_open_goods_rank_query_responce?.queryResult;
@@ -333,7 +335,7 @@ var parseJdRecommendGoodList = function (goodObj) {
     return result;
 }
 
-var parseJdSearchGoodList = function (goodObj) {
+var parseJdSearchGoodList = (goodObj) => {
     let result = [];
     try {
         let goodList = goodObj?.data?.data;
@@ -344,7 +346,7 @@ var parseJdSearchGoodList = function (goodObj) {
     return result;
 }
 
-var parsePddRecommendGoodList = function (goodObj) {
+var parsePddRecommendGoodList = (goodObj) => {
     let result = [];
     try {
         let goodList = goodObj?.goods_basic_detail_response?.list;
@@ -355,7 +357,7 @@ var parsePddRecommendGoodList = function (goodObj) {
     return result;
 }
 
-var parsePddSearchGoodList = function (goodObj) {
+var parsePddSearchGoodList = (goodObj) => {
     let result = [];
     try {
         let goodList = goodObj?.goods_search_response?.goods_list;
@@ -366,7 +368,7 @@ var parsePddSearchGoodList = function (goodObj) {
     return result;
 }
 
-var parseWphRecommendGoodList = function (goodObj) {
+var parseWphRecommendGoodList = (goodObj) => {
     let result = [];
     try {
         let goodList = goodObj?.data?.goodsInfoList;
@@ -377,7 +379,7 @@ var parseWphRecommendGoodList = function (goodObj) {
     return result;
 }
 
-var getTbGoodList = function (goodList) {
+var getTbGoodList = (goodList) => {
     let result = [];
     try {
         goodList.forEach(item => {
@@ -410,7 +412,7 @@ var getTbGoodList = function (goodList) {
     return result;
 }
 
-var getJdGoodList = function (goodList) {
+var getJdGoodList = (goodList) => {
     let result = [];
     try {
         goodList.forEach(item => {
@@ -448,7 +450,7 @@ var getJdGoodList = function (goodList) {
     return result;
 }
 
-var getPddGoodList = function (goodList) {
+var getPddGoodList = (goodList) => {
     let result = [];
     try {
         goodList.forEach(item => {
@@ -481,7 +483,7 @@ var getPddGoodList = function (goodList) {
     return result;
 }
 
-var getWphGoodList = function (goodList) {
+var getWphGoodList = (goodList) => {
     let result = [];
     try {
         goodList.forEach(item => {
@@ -521,7 +523,7 @@ var getWphGoodList = function (goodList) {
     return result;
 }
 
-var getJdSearchGoodList = function (goodList) {
+var getJdSearchGoodList = (goodList) => {
     let result = [];
     try {
         goodList.forEach(item => {
@@ -561,7 +563,7 @@ var getJdSearchGoodList = function (goodList) {
     return result;
 }
 
-var showOnPage = function (goodList) {
+var showOnPage = (goodList) => {
     if (!goodList || goodList.length < 1) {
         showTips("我是有底线的哟 ~");
         return;
@@ -582,7 +584,7 @@ var showOnPage = function (goodList) {
             let sku_div = document.createElement('div');
             sku_div.innerHTML = sku;
             sku_div.classList.add('good-list');
-            sku_div.addEventListener("click", function() {
+            sku_div.addEventListener("click", () => {
                 generatePromotion(item);
             })
             goodElements.appendChild(sku_div);
@@ -595,7 +597,7 @@ var showOnPage = function (goodList) {
     }
 }
 
-var generatePromotion = function(queryParam) {
+var generatePromotion = (queryParam) => {
     let settings = {};
     let urlPath = '';
     document.getElementsByClassName("spinner-container")[0].style.display = 'flex';
@@ -653,7 +655,7 @@ var generatePromotion = function(queryParam) {
     }
 }
 
-var jumpToPurchasePage = function (skuObj) {
+var jumpToPurchasePage = (skuObj) => {
     let jump_url = '';
     let we_app_url = '';
     try {
@@ -703,7 +705,7 @@ var jumpToPurchasePage = function (skuObj) {
     }
 }
 
-var timestampToDate = function() {
+var timestampToDate = () => {
     let currentDate = new Date();
     let year = currentDate.getFullYear();
     let month = String(currentDate.getMonth() + 1).padStart(2, '0');
@@ -715,7 +717,7 @@ var timestampToDate = function() {
     return formattedDateTime;
 }
 
-var sign = function (params, app_secret) {
+var sign = (params, app_secret) => {
     let sorted = Object.keys(params).sort();
     let basestring = app_secret;
     for (var i = 0, l = sorted.length; i < l; i++) {
@@ -726,7 +728,7 @@ var sign = function (params, app_secret) {
     return CryptoJS.MD5(basestring).toString(CryptoJS.enc.Hex).toUpperCase();
   }
 
-var jsonToUrlParams = function (params) {
+var jsonToUrlParams = (params) => {
     if ("custom_parameters" in params) {
         params.custom_parameters = encodeURIComponent(params.custom_parameters);
     }
@@ -737,7 +739,7 @@ var jsonToUrlParams = function (params) {
     return urlParams.toString(); 
 }
 
-var getDeviceType = function () {
+var getDeviceType = () => {
     const userAgent = navigator.userAgent || window.opera;
     if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
       return "IOS";
@@ -746,18 +748,18 @@ var getDeviceType = function () {
     }
 }
 
-var clickUrl = function (click_url) {
+var clickUrl = (click_url) => {
     let ahref = document.createElement('a');
     ahref.href = click_url;
     ahref.target = "_blank";
     ahref.click();
 }
 
-var showTips = function (text) {
+var showTips = (text) => {
     var tips = document.getElementById('tips');
     tips.innerText = text;
     tips.classList.add('show');
-    setTimeout(function() {tips.classList.remove('show');}, 3000);
+    setTimeout(() => {tips.classList.remove('show');}, 3000);
 }
 
 var observer = new IntersectionObserver((entries) => {
@@ -770,5 +772,16 @@ var observer = new IntersectionObserver((entries) => {
       }
     });
   }, { threshold: 0 });
+
+  var showActivity = () => {
+    try {
+        fetch("/api/activity")
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+    } catch (error) {
+        console.error(error);
+    }
+  }
 
 switchPlatform();

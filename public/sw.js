@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shopping-9';
+const CACHE_NAME = 'shopping-99';
 
 // 要缓存的文件列表
 const urlsToCache = [
@@ -16,7 +16,8 @@ const urlsToCache = [
   '/img/jd.png',
   '/img/pdd.png',
   '/img/wph.png',
-  '/img/wm.png'
+  '/img/wm.png',
+  '/api/activity'
 ];
 
 // 安装事件
