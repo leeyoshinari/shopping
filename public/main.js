@@ -689,8 +689,7 @@ var jumpToPurchasePage = function (skuObj) {
         if (getDeviceType() === "IOS") {
             window.open(jump_url);
         } else {
-            window.open(jump_url);
-            // clickUrl(jump_url);
+            clickUrl(jump_url);
         }
     } catch (error) {
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
