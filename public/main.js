@@ -43,7 +43,9 @@ document.getElementsByClassName("search")[0].addEventListener("click", function 
     if (searchKey && searchKey.trim() !== '') {
         goodsListElement.innerHTML = '';
         getGoodList(sortBy, sortType, pageNo, true);
-    } else {}
+    } else {
+        showTips("请输入商品名称 ~");
+    }
 })
 
 document.getElementById("zh").addEventListener("click", function (event) {
@@ -577,7 +579,7 @@ var showOnPage = function (goodList) {
             sku_div.innerHTML = sku;
             sku_div.classList.add('good-list');
             sku_div.addEventListener("click", function() {
-                generatePromotion(item, true);
+                generatePromotion(item);
             })
             goodElements.appendChild(sku_div);
         })
@@ -589,7 +591,7 @@ var showOnPage = function (goodList) {
     }
 }
 
-var generatePromotion = function(queryParam, isApp) {
+var generatePromotion = function(queryParam) {
     let settings = {};
     let urlPath = '';
     document.getElementsByClassName("spinner-container")[0].style.display = 'flex';
@@ -606,7 +608,7 @@ var generatePromotion = function(queryParam, isApp) {
                 }
                 result.urlPath = "taobao:" + url_path;
                 result.httpUrl = "https:" + url_path;
-                jumpToPurchasePage(queryParam, result, isApp);
+                jumpToPurchasePage(result);
                 return;
             case "jd":
                 settings.apikey = thirdApiKey;
@@ -625,11 +627,8 @@ var generatePromotion = function(queryParam, isApp) {
                 settings.generate_authority_url = true;
                 settings.goods_sign_list = "[\"" + queryParam.goods_sign + "\"]";
                 settings.search_id = queryParam.search_id;
-                if (isApp) {
-                    settings.generate_schema_url = true;
-                } else {
-                    settings.generate_we_app = true;
-                }
+                settings.generate_schema_url = true;
+                settings.generate_we_app = true;
                 settings.sign = sign(settings, pddSecret);
                 urlPath = pddUrl + "?" + jsonToUrlParams(settings);
                 break;
@@ -643,48 +642,39 @@ var generatePromotion = function(queryParam, isApp) {
         }
         fetch('/api/proxy?url=' + encodeURIComponent(urlPath))
             .then(response => response.json())
-            .then(data => jumpToPurchasePage(queryParam, data, isApp))
+            .then(data => jumpToPurchasePage(data))
             .catch(error => console.error(error));
     } catch (error) {
         console.error(error);
     }
 }
 
-var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
-    let url_path = '';
+var jumpToPurchasePage = function (skuObj) {
     let jump_url = '';
-    // console.log(queryParam);
-    // console.log(skuObj);
+    let we_app_url = '';
     try {
         switch (platform) {
             case "tb":
                 jump_url = skuObj.urlPath;
-                url_path = skuObj.httpUrl;
+                // url_path = skuObj.httpUrl;
                 // window.location.href = 'intent://' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
                 break;
             case "jd":
-                let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + skuObj.data + "\"}";
-                jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
                 if (getDeviceType() === "IOS") {
                     jump_url = skuObj.data;
+                } else {
+                    let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + skuObj.data + "\"}";
+                    jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
                 }
-                url_path = skuObj.data;
+                we_app_url = skuObj.data;
                 break;
             case "pdd":
-                if (isApp) {
-                    if (getDeviceType() === "IOS") {
-                        jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].url;
-                    } else {
-                        jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
-                    }
+                if (getDeviceType() === "IOS") {
+                    jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].short_url;
                 } else {
-                    url_path = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
-                    try {
-                        navigator.clipboard.writeText(url_path);
-                    } catch (err) {
-                        console.error('复制连接失败：', err);
-                    }
+                    jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
                 }
+                we_app_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
                 break;
             case "wph":
                 if (getDeviceType() === "IOS") {
@@ -692,14 +682,19 @@ var jumpToPurchasePage = function (queryParam, skuObj, isApp) {
                 } else {
                     jump_url = skuObj.data?.urlInfoList[0].deeplinkUrl;
                 }
-                url_path = skuObj.data?.urlInfoList[0].vipWxUrl;
+                we_app_url = skuObj.data?.urlInfoList[0].vipWxUrl;
                 break;
         }
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
-        clickUrl(jump_url);
+        if (getDeviceType() === "IOS") {
+            window.open(jump_url);
+        } else {
+            window.open(jump_url);
+            // clickUrl(jump_url);
+        }
     } catch (error) {
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
-        navigator.clipboard.writeText(url_path);
+        navigator.clipboard.writeText(jump_url);
         console.error(error);
         showTips(error.message);
     }
