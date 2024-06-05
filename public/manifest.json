@@ -1,6 +1,11 @@
 {
     "name": "优惠券",
     "short_name": "优惠券",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#3eaf7c",
+"scope": "/",
     "icons": [
       {
         "src": "/icon.png",

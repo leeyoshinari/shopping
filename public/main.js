@@ -756,10 +756,15 @@ var getDeviceType = () => {
 }
 
 var clickUrl = (click_url) => {
-    let ahref = document.createElement('a');
-    ahref.href = click_url;
-    ahref.target = "_blank";
-    ahref.click();
+    document.getElementById("good-url").href = click_url;
+    var myEvent = new MouseEvent("click", {
+        view: window, bubbles: true, cancelable: true
+    });
+    document.getElementById("good-url").dispatchEvent(myEvent);
+    // let ahref = document.createElement('a');
+    // ahref.href = click_url;
+    // ahref.target = "_blank";
+    // ahref.click();
 }
 
 var shareUrl = async (title, share_url) => {

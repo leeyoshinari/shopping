@@ -54,5 +54,6 @@ export default function Home() {
       </div>
       <div className="spinner-container"><div className="spinner"></div></div>
       <div id="tips" className="tips"></div>
+      <a href="" target="_blank" rel="noopener noreferrer" className="hidden" id="good-url"></a>
     </div>);
 }
