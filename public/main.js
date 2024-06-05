@@ -698,11 +698,11 @@ var jumpToPurchasePage = (skuObj, title) => {
         }
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
         if (getDeviceType() === "IOS") {
-            // window.open(jump_url);
-            shareUrl(title, share_url);
+            setTimeout(() => clickUrl(jump_url), 50);
+            // shareUrl(title, share_url);
         } else {
-            // clickUrl(jump_url);
-            shareUrl(title, share_url);
+            clickUrl(jump_url);
+            // shareUrl(title, share_url);
         }
     } catch (error) {
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
@@ -764,7 +764,7 @@ var clickUrl = (click_url) => {
 
 var shareUrl = async (title, share_url) => {
     if (!navigator.share || !navigator.canShare) {
-        showTips("系统暂不支持 ~");
+        showTips("浏览器暂不支持 ~");
         return;
     }
     try {
@@ -774,7 +774,7 @@ var shareUrl = async (title, share_url) => {
         });
         
       } catch (error) {
-        showTips("系统暂不支持 ~");
+        showTips("浏览器暂不支持 ~");
         console.error(error);
       }
 }
