@@ -749,7 +749,7 @@ var jsonToUrlParams = (params) => {
 
 var getDeviceType = () => {
     const userAgent = navigator.userAgent || window.opera;
-    if (/iPad|iPhone|iPod|Safari/.test(userAgent) && !window.MSStream) {
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
       return "IOS";
     } else {
         return "Android";
@@ -757,11 +757,15 @@ var getDeviceType = () => {
 }
 
 var clickUrl = (click_url) => {
-    document.getElementById("good-url").href = click_url;
-    var myEvent = new MouseEvent("click", {
-        view: window, bubbles: true, cancelable: true
-    });
-    document.getElementById("good-url").dispatchEvent(myEvent);
+    // document.getElementById("good-url").href = click_url;
+    // var myEvent = new MouseEvent("click", {
+    //     view: window, bubbles: true, cancelable: true
+    // });
+    // document.getElementById("good-url").dispatchEvent(myEvent);
+    const w = window.open('', '_blank', 'width=600,height=400');
+    if (w) {
+      w.document.location.assign(click_url);
+    }
     // let ahref = document.createElement('a');
     // ahref.href = click_url;
     // ahref.target = "_blank";
