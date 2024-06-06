@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shopping-7';
+const CACHE_NAME = 'shopping-8';
 
 // 要缓存的文件列表
 const urlsToCache = [
@@ -82,3 +82,6 @@ self.addEventListener('notificationclick', event => {
     clients.openWindow('/')
   );
 });
+// "display": "standalone",
+// "background_color": "#fff",
+// "theme_color": "#3eaf7c",
