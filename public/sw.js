@@ -82,6 +82,3 @@ self.addEventListener('notificationclick', event => {
     clients.openWindow('/')
   );
 });
-// "display": "standalone",
-// "background_color": "#fff",
-// "theme_color": "#3eaf7c",
