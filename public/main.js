@@ -664,8 +664,9 @@ var jumpToPurchasePage = (skuObj, title) => {
             case "tb":
                 jump_url = skuObj.urlPath;
                 share_url = skuObj.httpUrl;
+                jump_url = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
                 // url_path = skuObj.httpUrl;
-                // window.location.href = 'intent://' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
+                // window.location.href = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
                 break;
             case "jd":
                 if (getDeviceType() === "IOS") {
@@ -748,7 +749,7 @@ var jsonToUrlParams = (params) => {
 
 var getDeviceType = () => {
     const userAgent = navigator.userAgent || window.opera;
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    if (/iPad|iPhone|iPod|Safari/.test(userAgent) && !window.MSStream) {
       return "IOS";
     } else {
         return "Android";
