@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shopping-1';
+const CACHE_NAME = 'shopping-3';
 
 // 要缓存的文件列表
 const urlsToCache = [
@@ -17,6 +17,10 @@ const urlsToCache = [
   '/img/pdd.png',
   '/img/wph.png',
   '/img/wm.png',
+  '/img/tm_market.jpg',
+  '/img/tb_tgc.png',
+  '/img/pdd_subsidy.jpg',
+  '/img/pdd_qwbt.png',
   '/api/activity'
 ];
 
@@ -82,3 +86,4 @@ self.addEventListener('notificationclick', event => {
     clients.openWindow('/')
   );
 });
+// "display": "standalone",

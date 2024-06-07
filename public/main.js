@@ -17,12 +17,16 @@ const thirdUrl = 'https://api-gw.haojingke.com/index.php/v1/api';   // 好京客
 const thirdJdUnionId = '1002712393';
 const thirdJdPositionId = '3003427429';
 
-let platform = localStorage.getItem('platform') || 'tb';
+let platform = localStorage.getItem('platform')? localStorage.getItem('platform') : 'tb';
+let activityPlatform = localStorage.getItem('activityPlatform')? localStorage.getItem('activityPlatform') : 'tb';
 let sortBy = null;
 let sortType = null;
 let pageNo = 1;
 let isLoading = false;   // 数据加载标志，防止重复加载
+let startX = 0;
+let activityIndex = 0;
 
+const activityIds = ['tb', 'jd', 'pdd', 'wph', 'mt'];   // 和页面上的顺序保持一致
 const goodsListElement = document.getElementsByClassName("row-three")[0];
 
 document.getElementsByClassName('footer')[0].querySelectorAll('div').forEach(item => {
@@ -77,6 +81,32 @@ goodsListElement.onscroll = () => {
     }
 }
 
+goodsListElement.addEventListener("touchstart", (event) => {
+    startX = event.touches[0].clientX;
+})
+
+goodsListElement.addEventListener("touchend", (event) => {
+    let endX = event.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+        activityIndex = activityIndex - 1;
+        activityIndex = activityIndex < 0? activityIds.length : activityIndex;
+        clickChangeActivity(activityIds[activityIndex]);
+    } else if (endX - startX > 50) {
+        activityIndex = activityIndex + 1;
+        activityIndex = activityIndex >= activityIds.length? 0 : activityIndex;
+        clickChangeActivity(activityIds[activityIndex]);
+    }
+})
+
+document.getElementsByClassName("activity-header")[0].querySelectorAll(".nav-item").forEach(item => {
+    item.addEventListener('click', (event) => {
+        document.getElementsByClassName("row-three")[0].innerHTML = '';
+        activityPlatform = item.className.replace('nav-item', '').replace('filter', '').trim();
+        localStorage.setItem("activityPlatform", activityPlatform);
+        clickChangeActivity(activityPlatform);
+    })
+})
+
 var switchPlatform = () => {
     document.getElementsByClassName('row-two')[0].style.display = 'none';
     let imgs = document.getElementsByClassName('footer')[0].querySelectorAll('div');
@@ -90,9 +120,13 @@ var switchPlatform = () => {
     goodsListElement.innerHTML = '';
     if (platform === 'wm') {
         document.getElementsByClassName('row-one')[0].style.display = 'none';
-        showActivity();
+        // document.getElementsByClassName('row-three')[0].style.display = 'none';
+        document.getElementsByClassName('activity-header')[0].style.display = 'block';
+        clickChangeActivity(activityPlatform);
     } else {
+        document.getElementsByClassName('activity-header')[0].style.display = 'none';
         document.getElementsByClassName('row-one')[0].style.display = 'block';
+        // document.getElementsByClassName('row-three')[0].style.display = 'block';
         getGoodList(sortBy, sortType, pageNo, true);
     }
 }
@@ -665,9 +699,7 @@ var jumpToPurchasePage = (skuObj, title) => {
                 jump_url = skuObj.urlPath;
                 share_url = skuObj.httpUrl;
                 // jump_url = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
-                jump_url = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=https;action=android.intent.action.VIEW;end';
-                // url_path = skuObj.httpUrl;
-                // window.location.href = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
+                // jump_url = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=https;action=android.intent.action.VIEW;end';
                 break;
             case "jd":
                 if (getDeviceType() === "IOS") {
@@ -758,15 +790,11 @@ var getDeviceType = () => {
 }
 
 var clickUrl = (click_url) => {
-    // document.getElementById("good-url").href = click_url;
-    // var myEvent = new MouseEvent("click", {
-    //     view: window, bubbles: true, cancelable: true
-    // });
-    // document.getElementById("good-url").dispatchEvent(myEvent);
-    const w = window.open('', '_blank', 'width=600,height=400');
-    if (w) {
-      w.document.location.assign(click_url);
-    }
+    document.getElementById("good-url").href = click_url;
+    var myEvent = new MouseEvent("click", {
+        view: window, bubbles: true, cancelable: true
+    });
+    document.getElementById("good-url").dispatchEvent(myEvent);
     // let ahref = document.createElement('a');
     // ahref.href = click_url;
     // ahref.target = "_blank";
@@ -808,15 +836,43 @@ var observer = new IntersectionObserver((entries) => {
     });
   }, { threshold: 0 });
 
-  var showActivity = () => {
+  var showActivity = (activity_platform) => {
     try {
         fetch("/api/activity")
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => clickActivity(data[activity_platform]))
             .catch(error => console.error(error));
     } catch (error) {
         console.error(error);
     }
   }
+
+  var clickActivity = (activityList) => {
+    activityList.forEach(item => {
+        let sku = `<span>${item.title}</span><img src=${item.imgUrl} alt="" />`;
+        let sku_div = document.createElement('div');
+        sku_div.innerHTML = sku;
+        sku_div.classList.add('a-activity');
+        sku_div.addEventListener("click", () => {
+            if (getDeviceType() === "IOS") {
+                setTimeout(() => clickUrl(item.jumpUrl), 50);
+            } else {
+                clickUrl(item.jumpUrl);
+            }
+        })
+        document.getElementsByClassName("row-three")[0].appendChild(sku_div);
+    })
+  }
+
+  var clickChangeActivity = (eleId) => {
+    document.getElementsByClassName("activity-header")[0].querySelectorAll(".nav-item").forEach(item => {
+        if (item.classList.contains(eleId)) {
+            item.classList.contains('filter')? item.classList.remove('filter'): null;
+        } else {
+            item.classList.contains('filter')? null: item.classList.add('filter');
+        }
+    })
+    showActivity(eleId);
+}
 
 switchPlatform();

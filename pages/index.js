@@ -44,6 +44,7 @@ export default function Home() {
           <span className="filter" id="sale">销量</span>
         </div>
       </div>
+      <div className="activity-header hidden"><span className='tb nav-item filter'>淘宝</span><span className='jd nav-item filter'>京东</span><span className='pdd nav-item filter'>拼多多</span><span className='wph nav-item filter'>唯品会</span><span className='mt nav-item filter'>美团</span></div>
       <div className="row-three"></div>
       <div className="footer">
         <div className="filter" id="tb"><Image alt="" src="/img/tb.png" width={40} height={40} priority fetchpriority="high" /><p>淘 宝</p></div>
