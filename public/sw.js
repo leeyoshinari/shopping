@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shopping-3';
+const CACHE_NAME = 'shopping-5';
 
 // 要缓存的文件列表
 const urlsToCache = [
@@ -21,6 +21,11 @@ const urlsToCache = [
   '/img/tb_tgc.png',
   '/img/pdd_subsidy.jpg',
   '/img/pdd_qwbt.png',
+  '/img/jd_flash_sale.webp',
+  '/img/mt_wm.jpg',
+  '/img/mt_cs.jpg',
+  '/img/mt_ds.jpg',
+  '/img/mt_ms.jpg',
   '/api/activity'
 ];
 

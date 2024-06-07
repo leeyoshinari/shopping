@@ -82,10 +82,12 @@ goodsListElement.onscroll = () => {
 }
 
 goodsListElement.addEventListener("touchstart", (event) => {
+    event.preventDefault();
     startX = event.touches[0].clientX;
 })
 
 goodsListElement.addEventListener("touchend", (event) => {
+    event.preventDefault();
     let endX = event.changedTouches[0].clientX;
     if (startX - endX > 50) {
         activityIndex = activityIndex - 1;
@@ -100,7 +102,6 @@ goodsListElement.addEventListener("touchend", (event) => {
 
 document.getElementsByClassName("activity-header")[0].querySelectorAll(".nav-item").forEach(item => {
     item.addEventListener('click', (event) => {
-        document.getElementsByClassName("row-three")[0].innerHTML = '';
         activityPlatform = item.className.replace('nav-item', '').replace('filter', '').trim();
         localStorage.setItem("activityPlatform", activityPlatform);
         clickChangeActivity(activityPlatform);
@@ -864,7 +865,61 @@ var observer = new IntersectionObserver((entries) => {
     })
   }
 
+  var jumpToActivityPage = (activityUrl) => {
+    let jump_url = '';
+    try {
+        switch (activityPlatform) {
+            case "tb":
+                jump_url = "taobao:" + activityUrl.replace("https:", "").replace("http:", "");
+                break;
+            case "jd":
+                if (getDeviceType() === "IOS") {
+                    jump_url = activityUrl;
+                } else {
+                    let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + activityUrl + "\"}";
+                    jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
+                }
+                break;
+            case "pdd":
+                if (getDeviceType() === "IOS") {
+                    jump_url = activityUrl
+                } else {
+                    jump_url = "pinduoduo://com.xunmeng.pinduoduo" + activityUrl;
+                }
+                break;
+            case "wph":
+                if (getDeviceType() === "IOS") {
+                    jump_url = activityUrl;
+                } else {
+                    jump_url = "vipshop://showWebview?url=" + encodeURIComponent(activityUrl);
+                }
+                break;
+            case "mt":
+                if (getDeviceType() === "IOS") {
+                    jump_url = activityUrl;
+                } else {
+                    jump_url = "imeituan://www.meituan.com/web?url=" + activityUrl;
+                }
+                break;
+        }
+        document.getElementsByClassName("spinner-container")[0].style.display = 'none';
+        if (getDeviceType() === "IOS") {
+            setTimeout(() => clickUrl(jump_url), 50);
+            // shareUrl(title, share_url);
+        } else {
+            clickUrl(jump_url);
+            // shareUrl(title, share_url);
+        }
+    } catch (error) {
+        document.getElementsByClassName("spinner-container")[0].style.display = 'none';
+        navigator.clipboard.writeText(jump_url);
+        console.error(error);
+        showTips(error.message);
+    }
+}
+
   var clickChangeActivity = (eleId) => {
+    document.getElementsByClassName("row-three")[0].innerHTML = '';
     document.getElementsByClassName("activity-header")[0].querySelectorAll(".nav-item").forEach(item => {
         if (item.classList.contains(eleId)) {
             item.classList.contains('filter')? item.classList.remove('filter'): null;
