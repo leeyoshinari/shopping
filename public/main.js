@@ -664,7 +664,8 @@ var jumpToPurchasePage = (skuObj, title) => {
             case "tb":
                 jump_url = skuObj.urlPath;
                 share_url = skuObj.httpUrl;
-                jump_url = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
+                // jump_url = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
+                jump_url = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=https;action=android.intent.action.VIEW;end';
                 // url_path = skuObj.httpUrl;
                 // window.location.href = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
                 break;
