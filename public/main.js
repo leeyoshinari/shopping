@@ -138,7 +138,7 @@ var moveTouchEnd = (event) => {
     let endX = event.changedTouches[0].clientX;
     let endY = event.changedTouches[0].clientY;
     let endTime = new Date().getTime();
-    let deltaY = endY - endX;
+    let deltaY = endY - startY;
     if (endX - startX > 60 && Math.abs(deltaY) < 60) {
         activityIndex = activityIndex - 1;
         activityIndex = activityIndex < 0? activityIds.length - 1 : activityIndex;
