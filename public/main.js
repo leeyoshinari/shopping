@@ -102,12 +102,14 @@ var switchPlatform = () => {
     if (platform === 'wm') {
         document.getElementsByClassName('row-one')[0].style.display = 'none';
         document.getElementsByClassName('activity-header')[0].style.display = 'block';
+        document.getElementsByClassName('row-three')[0].style.backgroundColor = '#e1e1e1';
         clickChangeActivity(activityPlatform);
         goodsListElement.addEventListener("touchstart", moveTouchStart, {passive: false});
         goodsListElement.addEventListener("touchend", moveTouchEnd, {passive: false});
     } else {
         document.getElementsByClassName('activity-header')[0].style.display = 'none';
         document.getElementsByClassName('row-one')[0].style.display = 'block';
+        document.getElementsByClassName('row-three')[0].style.backgroundColor = 'white';
         goodsListElement.removeEventListener("touchstart", moveTouchStart, {passive: false});
         goodsListElement.removeEventListener("touchend", moveTouchEnd, {passive: false});
         getGoodList(sortBy, sortType, pageNo, true);
@@ -122,18 +124,17 @@ var moveTouchStart = (event) => {
 var moveTouchEnd = (event) => {
     event.preventDefault();
     let endX = event.changedTouches[0].clientX;
-    if (endX - startX > 80) {
+    if (endX - startX > 60) {
         activityIndex = activityIndex - 1;
         activityIndex = activityIndex < 0? activityIds.length : activityIndex;
         clickChangeActivity(activityIds[activityIndex]);
-    } else if (startX - endX > 80) {
+    } else if (startX - endX > 60) {
         activityIndex = activityIndex + 1;
         activityIndex = activityIndex >= activityIds.length? 0 : activityIndex;
         clickChangeActivity(activityIds[activityIndex]);
     } else {
         event.target.click();
     }
-    console.log(endX - startX);
 }
 
 var clickSortChangeColor = (eleId) => {
@@ -927,6 +928,7 @@ var observer = new IntersectionObserver((entries) => {
             item.classList.contains('filter')? null: item.classList.add('filter');
         }
     })
+    activityPlatform = eleId;
     localStorage.setItem("activityPlatform", eleId);
     showActivity(eleId);
 }

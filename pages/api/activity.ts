@@ -63,7 +63,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           weAppUrl: ""
         }
       ],
-      wph: [],
+      wph: [{
+          title: "618年中特卖节",
+          imgUrl: "http://ms.vpimg1.com/upload/actpics/cps/0/2024/06/04/180/dvshwvnhjxzs68d.png",
+          jumpUrl: "https://t.vip.com/36NZre",
+          weAppUrl: ""
+        },{
+          title: "每日超值低价",
+          imgUrl: "/img/wph_low_price.webp",
+          jumpUrl: "https://t.vip.com/LHNY7PsXkR6",
+          weAppUrl: ""
+        },{
+          title: "3折疯抢",
+          imgUrl: "/img/wph_qiang.jpg",
+          jumpUrl: "https://t.vip.com/6q1Yt593LqA?chanTag=d619156f131a556c6640229727291160",
+          weAppUrl: ""
+        },{
+          title: "唯品快抢",
+          imgUrl: "/img/wph_kq.png",
+          jumpUrl: "https://t.vip.com/N7CVJWu9sl9?chanTag=d619156f131a556c6640229727291160",
+          weAppUrl: ""
+        }
+      ],
       mt: [
         {
           title: "天天领美团外卖红包",
