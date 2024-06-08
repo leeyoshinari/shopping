@@ -23,7 +23,7 @@ let sortBy = null;
 let sortType = null;
 let pageNo = 1;
 let isLoading = false;   // 数据加载标志，防止重复加载
-let startX = 0;
+let startX, startY, startTime;
 let activityIndex = 0;
 
 const activityIds = ['tb', 'jd', 'pdd', 'wph', 'mt'];   // 和页面上的顺序保持一致
@@ -105,34 +105,49 @@ var switchPlatform = () => {
         document.getElementsByClassName('row-three')[0].style.backgroundColor = '#e1e1e1';
         clickChangeActivity(activityPlatform);
         goodsListElement.addEventListener("touchstart", moveTouchStart, {passive: false});
+        goodsListElement.addEventListener("touchmove", moveTouchMove, {passive: false});
         goodsListElement.addEventListener("touchend", moveTouchEnd, {passive: false});
     } else {
         document.getElementsByClassName('activity-header')[0].style.display = 'none';
         document.getElementsByClassName('row-one')[0].style.display = 'block';
         document.getElementsByClassName('row-three')[0].style.backgroundColor = 'white';
         goodsListElement.removeEventListener("touchstart", moveTouchStart, {passive: false});
+        goodsListElement.removeEventListener("touchmove", moveTouchMove, {passive: false});
         goodsListElement.removeEventListener("touchend", moveTouchEnd, {passive: false});
         getGoodList(sortBy, sortType, pageNo, true);
     }
 }
 
 var moveTouchStart = (event) => {
-    event.preventDefault();
     startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+    startTime = new Date().getTime();
+}
+
+var moveTouchMove = (event) => {
+    let touch = event.touches[0];
+    let deltaX = touch.pageX - startX;
+    let deltaY = touch.pageY - startY;
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) >= 60) {
+        event.preventDefault();
+    }
 }
 
 var moveTouchEnd = (event) => {
     event.preventDefault();
     let endX = event.changedTouches[0].clientX;
-    if (endX - startX > 60) {
+    let endY = event.changedTouches[0].clientY;
+    let endTime = new Date().getTime();
+    let deltaY = endY - endX;
+    if (endX - startX > 60 && Math.abs(deltaY) < 60) {
         activityIndex = activityIndex - 1;
-        activityIndex = activityIndex < 0? activityIds.length : activityIndex;
+        activityIndex = activityIndex < 0? activityIds.length - 1 : activityIndex;
         clickChangeActivity(activityIds[activityIndex]);
-    } else if (startX - endX > 60) {
+    } else if (startX - endX > 60 && Math.abs(deltaY) < 60) {
         activityIndex = activityIndex + 1;
         activityIndex = activityIndex >= activityIds.length? 0 : activityIndex;
         clickChangeActivity(activityIds[activityIndex]);
-    } else {
+    } else if (endTime - startTime < 200) {
         event.target.click();
     }
 }
@@ -620,7 +635,7 @@ var showOnPage = (goodList) => {
                 sale_price = `<span class="sale-price">${item.sale_price}</span><span>${item.final_price_text}</span><span class="final-price">${item.final_price}</span>`;
             }
             let sku = `<div class="good-img"><img class="img-lazy" alt="" data-src="${item.img}"></div><div class="good-info"><div class="good-title"><span>${item.title}</span></div>
-            <div class="coupon">${coupon}</div><div class="good-price"><span>￥</span>${sale_price}</div><div class="good-shop"><span>${item.shop}</span></div></div>`;
+            <div class="coupon">${coupon}</div><div class="good-price"><span>￥</span>${sale_price}</div><div class="good-shop"><span class="brokerage">${item.brokerage}-</span><span>${item.shop}</span></div></div>`;
             let sku_div = document.createElement('div');
             sku_div.innerHTML = sku;
             sku_div.classList.add('good-list');

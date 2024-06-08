@@ -125,6 +125,11 @@ html, body {
     color: orangered;
 }
 
+.row-three .good-info .good-shop .brokerage {
+    color: black;
+    font-size: smaller;
+}
+
 .filter {
     filter: grayscale(1);
 }
