@@ -81,29 +81,9 @@ goodsListElement.onscroll = () => {
     }
 }
 
-goodsListElement.addEventListener("touchstart", (event) => {
-    event.preventDefault();
-    startX = event.touches[0].clientX;
-})
-
-goodsListElement.addEventListener("touchend", (event) => {
-    event.preventDefault();
-    let endX = event.changedTouches[0].clientX;
-    if (startX - endX > 50) {
-        activityIndex = activityIndex - 1;
-        activityIndex = activityIndex < 0? activityIds.length : activityIndex;
-        clickChangeActivity(activityIds[activityIndex]);
-    } else if (endX - startX > 50) {
-        activityIndex = activityIndex + 1;
-        activityIndex = activityIndex >= activityIds.length? 0 : activityIndex;
-        clickChangeActivity(activityIds[activityIndex]);
-    }
-})
-
 document.getElementsByClassName("activity-header")[0].querySelectorAll(".nav-item").forEach(item => {
     item.addEventListener('click', (event) => {
         activityPlatform = item.className.replace('nav-item', '').replace('filter', '').trim();
-        localStorage.setItem("activityPlatform", activityPlatform);
         clickChangeActivity(activityPlatform);
     })
 })
@@ -121,15 +101,39 @@ var switchPlatform = () => {
     goodsListElement.innerHTML = '';
     if (platform === 'wm') {
         document.getElementsByClassName('row-one')[0].style.display = 'none';
-        // document.getElementsByClassName('row-three')[0].style.display = 'none';
         document.getElementsByClassName('activity-header')[0].style.display = 'block';
         clickChangeActivity(activityPlatform);
+        goodsListElement.addEventListener("touchstart", moveTouchStart, {passive: false});
+        goodsListElement.addEventListener("touchend", moveTouchEnd, {passive: false});
     } else {
         document.getElementsByClassName('activity-header')[0].style.display = 'none';
         document.getElementsByClassName('row-one')[0].style.display = 'block';
-        // document.getElementsByClassName('row-three')[0].style.display = 'block';
+        goodsListElement.removeEventListener("touchstart", moveTouchStart, {passive: false});
+        goodsListElement.removeEventListener("touchend", moveTouchEnd, {passive: false});
         getGoodList(sortBy, sortType, pageNo, true);
     }
+}
+
+var moveTouchStart = (event) => {
+    event.preventDefault();
+    startX = event.touches[0].clientX;
+}
+
+var moveTouchEnd = (event) => {
+    event.preventDefault();
+    let endX = event.changedTouches[0].clientX;
+    if (endX - startX > 80) {
+        activityIndex = activityIndex - 1;
+        activityIndex = activityIndex < 0? activityIds.length : activityIndex;
+        clickChangeActivity(activityIds[activityIndex]);
+    } else if (startX - endX > 80) {
+        activityIndex = activityIndex + 1;
+        activityIndex = activityIndex >= activityIds.length? 0 : activityIndex;
+        clickChangeActivity(activityIds[activityIndex]);
+    } else {
+        event.target.click();
+    }
+    console.log(endX - startX);
 }
 
 var clickSortChangeColor = (eleId) => {
@@ -796,10 +800,6 @@ var clickUrl = (click_url) => {
         view: window, bubbles: true, cancelable: true
     });
     document.getElementById("good-url").dispatchEvent(myEvent);
-    // let ahref = document.createElement('a');
-    // ahref.href = click_url;
-    // ahref.target = "_blank";
-    // ahref.click();
 }
 
 var shareUrl = async (title, share_url) => {
@@ -856,9 +856,9 @@ var observer = new IntersectionObserver((entries) => {
         sku_div.classList.add('a-activity');
         sku_div.addEventListener("click", () => {
             if (getDeviceType() === "IOS") {
-                setTimeout(() => clickUrl(item.jumpUrl), 50);
+                setTimeout(() => jumpToActivityPage(item.jumpUrl), 50);
             } else {
-                clickUrl(item.jumpUrl);
+                jumpToActivityPage(item.jumpUrl);
             }
         })
         document.getElementsByClassName("row-three")[0].appendChild(sku_div);
@@ -927,6 +927,7 @@ var observer = new IntersectionObserver((entries) => {
             item.classList.contains('filter')? null: item.classList.add('filter');
         }
     })
+    localStorage.setItem("activityPlatform", eleId);
     showActivity(eleId);
 }
 
