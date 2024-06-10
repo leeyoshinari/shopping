@@ -147,7 +147,7 @@ var moveTouchEnd = (event) => {
         activityIndex = activityIndex + 1;
         activityIndex = activityIndex >= activityIds.length? 0 : activityIndex;
         clickChangeActivity(activityIds[activityIndex]);
-    } else if (endTime - startTime < 200) {
+    } else if (Math.abs(deltaY) < 60 && endTime - startTime < 100) {
         event.target.click();
     }
 }
