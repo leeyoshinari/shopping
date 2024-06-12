@@ -30,9 +30,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           expire: 1743695437000
         },{
           title: "飞猪旅行-天天特惠",
-          imgUrl: "https://img.alicdn.com/imgextra/i2/O1CN01MIYWxx1WerHBk0pt9_!!6000000002814-0-tps-800-450.jpg",
+          imgUrl: "/img/fz_all.jpg",
           jumpUrl: "https://s.click.taobao.com/e410fkt",
           expire: 1743695437000
+        },{
+          title: "飞猪特价门票",
+          imgUrl: "/img/fz_mp.jpg",
+          jumpUrl: "https://s.click.taobao.com/4vA0ekt",
+          expire: 1735642837000
+        },{
+          title: "飞猪酒店特惠",
+          imgUrl: "/img/fz_hotal.png",
+          jumpUrl: "https://s.click.taobao.com/vEpLzjt",
+          expire: 1735642837000
         }
       ],
       jd: [{

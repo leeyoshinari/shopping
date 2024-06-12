@@ -221,8 +221,9 @@ html, body {
 
 .activity-header {
     overflow-x: auto;
-    margin-top: 3%;
-    margin-bottom: 3%;
+    white-space: nowrap;
+    padding-top: 3%;
+    padding-bottom: 3%;
 }
 
 .activity-header span {
