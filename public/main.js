@@ -74,12 +74,12 @@ document.getElementById("sale").addEventListener("click", (event) => {
     clickSortChangeColor('sale');
 })
 
-goodsListElement.onscroll = () => {
-    if (goodsListElement.scrollTop + goodsListElement.clientHeight + 150 >= goodsListElement.scrollHeight && !isLoading) {
-        pageNo += 1;
-        getGoodList(sortBy, sortType, pageNo, true);
-    }
-}
+// goodsListElement.onscroll = () => {
+//     if (goodsListElement.scrollTop + goodsListElement.clientHeight + 150 >= goodsListElement.scrollHeight && !isLoading) {
+//         pageNo += 1;
+//         getGoodList(sortBy, sortType, pageNo, true);
+//     }
+// }
 
 document.getElementsByClassName("activity-header")[0].querySelectorAll(".nav-item").forEach(item => {
     item.addEventListener('click', (event) => {
@@ -107,6 +107,7 @@ var switchPlatform = () => {
         goodsListElement.addEventListener("touchstart", moveTouchStart, {passive: false});
         goodsListElement.addEventListener("touchmove", moveTouchMove, {passive: false});
         goodsListElement.addEventListener("touchend", moveTouchEnd, {passive: false});
+        goodsListElement.onscroll = () => {return;}
     } else {
         document.getElementsByClassName('activity-header')[0].style.display = 'none';
         document.getElementsByClassName('row-one')[0].style.display = 'block';
@@ -114,6 +115,12 @@ var switchPlatform = () => {
         goodsListElement.removeEventListener("touchstart", moveTouchStart, {passive: false});
         goodsListElement.removeEventListener("touchmove", moveTouchMove, {passive: false});
         goodsListElement.removeEventListener("touchend", moveTouchEnd, {passive: false});
+        goodsListElement.onscroll = () => {
+            if (goodsListElement.scrollTop + goodsListElement.clientHeight + 150 >= goodsListElement.scrollHeight && !isLoading) {
+                pageNo += 1;
+                getGoodList(sortBy, sortType, pageNo, true);
+            }
+        }
         getGoodList(sortBy, sortType, pageNo, true);
     }
 }

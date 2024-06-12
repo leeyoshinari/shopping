@@ -50,11 +50,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       ],
       wph: [{
-          title: "618年中特卖节",
-          imgUrl: "http://ms.vpimg1.com/upload/actpics/cps/0/2024/06/04/180/dvshwvnhjxzs68d.png",
-          jumpUrl: "https://t.vip.com/36NZre",
-          expire: 1718725837000
-        },{
           title: "每日超值低价",
           imgUrl: "/img/wph_low_price.webp",
           jumpUrl: "https://t.vip.com/LHNY7PsXkR6",
