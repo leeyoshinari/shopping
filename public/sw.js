@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sw-333';
+const CACHE_NAME = 'sw-3333';
 
 // 要缓存的文件列表
 const urlsToCache = [
@@ -19,7 +19,10 @@ const urlsToCache = [
   '/img/wm.png',
   '/img/tm_market.jpg',
   '/img/tb_tgc.png',
+  '/img/tb_sy.png',
+  '/img/tm_al.png',
   '/img/pdd_subsidy.jpg',
+  '/img/pdd_voucher.jpg',
   '/img/pdd_qwbt.png',
   '/img/jd_flash_sale.webp',
   '/img/mt_wm.jpg',

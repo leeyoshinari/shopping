@@ -11,13 +11,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },{
           title: "淘工厂 3元3件",
           imgUrl: "/img/tb_tgc.png",
-          jumpUrl: "https://s.click.taobao.com/nNZOakt",
+          jumpUrl: "https://s.click.taobao.com/ZSCO0kt",
           expire: 1735642837000
+        },{
+          title: "天猫优选 大牌试用",
+          imgUrl: "/img/tb_sy.png",
+          jumpUrl: "https://s.click.taobao.com/b5ssekt",
+          expire: 1743695437000
+        },{
+          title: "天猫服饰-奥莱清仓1折起",
+          imgUrl: "/img/tm_al.png",
+          jumpUrl: "https://s.click.taobao.com/m91C0kt",
+          expire: 1743695437000
         },{
           title: "天猫超市优惠",
           imgUrl: "/img/tm_market.jpg",
-          jumpUrl: "https://s.click.taobao.com/usATElt",
-          expire: 1735642837000
+          jumpUrl: "https://s.click.taobao.com/20BP0kt",
+          expire: 1743695437000
+        },{
+          title: "飞猪旅行-天天特惠",
+          imgUrl: "https://img.alicdn.com/imgextra/i2/O1CN01MIYWxx1WerHBk0pt9_!!6000000002814-0-tps-800-450.jpg",
+          jumpUrl: "https://s.click.taobao.com/e410fkt",
+          expire: 1743695437000
         }
       ],
       jd: [{
@@ -39,7 +54,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           expire: 1735642837000
         },{
           title: "领券中心",
-          imgUrl: "/img/pdd_subsidy.jpg",
+          imgUrl: "/img/pdd_voucher.jpg",
           jumpUrl: "/duo_transfer_channel.html?resourceType=40000&pid=15084399_190061839&cpsSign=CE_240607_15084399_190061839_67b48ab5157fcdd8e7720940f244b277&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
           expire: 1735642837000
         },{

@@ -72,15 +72,14 @@ html, body {
     overflow-y: auto;
 }
 .row-three .good-list {
-    height: 150px;
+    display: flex;
     position: relative;
     margin: 3px;
-    padding-top: 5px;
+    padding-top: 3px;
     cursor: pointer;
 }
 .row-three .good-img {
     float: left;
-    position: absolute;
 }
 .row-three img {
     width: 150px;
@@ -88,7 +87,7 @@ html, body {
     border-radius: 15px;
 }
 .row-three .good-info {
-    margin-left: 155px;
+    margin-left: 3px;
 }
 .row-three .good-info .good-title {
     display: block;
@@ -101,6 +100,9 @@ html, body {
 }
 .row-three .good-info .coupon {
     margin-top: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .row-three .good-info .coupon .coupon-price {
     font-size: larger;
@@ -118,9 +120,9 @@ html, body {
     color: red;
 }
 .row-three .good-info .good-shop {
-    position: absolute;
     margin-top: 8px;
-    right: 3px;
+    margin-right: 3px;
+    text-align: right;
     font-size: small;
     color: orangered;
 }
