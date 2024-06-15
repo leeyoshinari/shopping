@@ -185,7 +185,7 @@ var generateUrlPathForRecommend = (pageNo) => {
                 settings.method = 'taobao.tbk.dg.material.recommend';
                 settings.v = '2.0';
                 settings.page_no = pageNo;
-                settings.material_id = 86594;
+                settings.material_id = 84230;
                 settings.sign = sign(settings, tbAppSceret);
                 urlPath = tbUrl + "?" + jsonToUrlParams(settings);
                 break;
@@ -194,15 +194,16 @@ var generateUrlPathForRecommend = (pageNo) => {
                 // settings.sign_method = 'md5';
                 // settings.app_key = jdAppKey;
                 // settings.timestamp = timestampToDate();
-                // settings.method = 'jd.union.open.goods.material.query';
+                // settings.method = 'jd.union.open.goods.rank.query';
                 // settings.v = '1.0';
-                // settings["360buy_param_json"] = JSON.stringify({"goodsReq":{"eliteId":2,"pageIndex":pageNo}});
+                // settings["360buy_param_json"] = JSON.stringify({"RankGoodsReq":{"pageIndex":pageNo,"pageSize":20,"rankId":200000,"sortType":2}});
                 // settings.sign = sign(settings, jdAppSecret);
                 // urlPath = jdUrl + "?" + jsonToUrlParams(settings);
                 settings.apikey = thirdApiKey;
-                settings.pageindex = pageNo;
-                settings.activityid = 10000;
-                urlPath = thirdUrl + "/jd/getgoodsbd?" + jsonToUrlParams(settings);
+                settings.pageIndex = pageNo;
+                settings.pageSize = 20;
+                settings.eliteId = 1;
+                urlPath = thirdUrl + "/jd/getjingfen?" + jsonToUrlParams(settings);
                 break;
             case "pdd":
                 settings.client_id = pddClientId;
@@ -479,6 +480,24 @@ var getJdGoodList = (goodList) => {
     try {
         goodList.forEach(item => {
             let sku = {};
+            // sku.img = item.imageUrl;
+            // sku.title = item.skuName;
+            // sku.goodsId = item.itemId;
+            // sku.shop = '';
+            // sku.brokerage = item.commission;
+            // if (item.purchasePriceInfo.couponList && item.purchasePriceInfo.couponList[0].discount > 0) {
+            //     sku.coupon_price = item.purchasePriceInfo.couponList[0].discount;
+            //     sku.coupon_text = "元券\u00A0\u00A0\u00A0" + "好评率:" + item.goodCommentsShare + "%";
+            //     sku.sale_price = item.wlprice;
+            //     sku.final_price_text = " 券后 ￥";
+            //     sku.final_price = item.purchasePriceInfo.purchasePrice;
+            // } else {
+            //     sku.coupon_price = 0;
+            //     sku.coupon_text = "好评率:" + item.goodCommentsShare + "%";
+            //     sku.sale_price = 0;
+            //     sku.final_price_text = "";
+            //     sku.final_price = item.purchasePriceInfo.purchasePrice;
+            // }
             sku.img = item.picurl;
             sku.title = item.goods_name;
             sku.shop = item.shopname;
@@ -491,7 +510,7 @@ var getJdGoodList = (goodList) => {
             } else if (volume > 999) {
                 volumeText = Number((volume / 1000).toFixed(1)) + "千";
             }
-            if (item.price > item.price_after) {
+            if (Number(item.price) > Number(item.price_after)) {
                 sku.coupon_price = Number((item.price - item.price_after).toFixed(2));
                 sku.coupon_text = "元券\u00A0\u00A0\u00A0" + volumeText + "人已购买";
                 sku.sale_price = item.price;
@@ -642,7 +661,7 @@ var showOnPage = (goodList) => {
                 sale_price = `<span class="sale-price">${item.sale_price}</span><span>${item.final_price_text}</span><span class="final-price">${item.final_price}</span>`;
             }
             let sku = `<div class="good-img"><img class="img-lazy" alt="" data-src="${item.img}"></div><div class="good-info"><div class="good-title"><span>${item.title}</span></div>
-            <div class="coupon">${coupon}</div><div class="good-price"><span>￥</span>${sale_price}</div><div class="good-shop"><span class="brokerage">${item.brokerage}-</span><span>${item.shop}</span></div></div>`;
+            <div class="coupon">${coupon}</div><div class="good-price"><span>￥</span>${sale_price}</div><div class="good-shop"><span class="brokerage">${item.brokerage}</span><span>${item.shop}</span></div></div>`;
             let sku_div = document.createElement('div');
             sku_div.innerHTML = sku;
             sku_div.classList.add('good-list');
