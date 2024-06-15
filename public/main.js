@@ -661,7 +661,7 @@ var showOnPage = (goodList) => {
                 sale_price = `<span class="sale-price">${item.sale_price}</span><span>${item.final_price_text}</span><span class="final-price">${item.final_price}</span>`;
             }
             let sku = `<div class="good-img"><img class="img-lazy" alt="" data-src="${item.img}"></div><div class="good-info"><div class="good-title"><span>${item.title}</span></div>
-            <div class="coupon">${coupon}</div><div class="good-price"><span>￥</span>${sale_price}</div><div class="good-shop"><span class="brokerage">${item.brokerage}</span><span>${item.shop}</span></div></div>`;
+            <div class="coupon">${coupon}</div><div class="good-price"><span>￥</span>${sale_price}</div><div class="good-shop"><span class="brokerage">${item.brokerage}-</span><span>${item.shop}</span></div></div>`;
             let sku_div = document.createElement('div');
             sku_div.innerHTML = sku;
             sku_div.classList.add('good-list');
