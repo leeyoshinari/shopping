@@ -20,7 +20,7 @@ html, body {
 }
 
 .input-box {
-    width: 79%;
+    width: 77%;
     position: relative;
     margin-left: 2px;
 }
@@ -42,7 +42,7 @@ html, body {
     cursor: pointer;
 }
 .search-box {
-    width: 16%;
+    width: 18%;
     float: right;
 }
 .search-box .search {
