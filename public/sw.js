@@ -1,13 +1,14 @@
-const CACHE_NAME = 'sw-8';
+const CACHE_NAME = 'sw-9';
 
 // 要缓存的文件列表
 const urlsToCache = [
   '/',
   '/sw.js',
   '/manifest.json',
-  '/icon.png',
-  '/icon_x192.png',
-  '/icon_x72.png',
+  '/icon.svg',
+  '/icon_512.svg',
+  '/icon_256.svg',
+  '/icon_72.svg',
   '/main.css',
   '/main.js',
   '/crypto-js.js',
@@ -87,8 +88,8 @@ self.addEventListener('push', event => {
   const title = data.title || '通知';
   const options = {
     body: data.body || '您有一条新通知',
-    icon: '/icon.jpg',
-    badge: '/icon.jpg'
+    icon: '/icon.svg',
+    badge: '/icon.svg'
   };
 
   event.waitUntil(
