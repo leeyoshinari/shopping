@@ -23,8 +23,9 @@ let sortBy = null;
 let sortType = null;
 let pageNo = 1;
 let isLoading = false;   // 数据加载标志，防止重复加载
-let startX, startY, startTime;
+let startX, startY, startTime, longPressTimer;
 let activityIndex = 0;
+let isLongPress = false;
 
 const activityIds = ['tb', 'jd', 'pdd', 'wph', 'mt'];   // 和页面上的顺序保持一致
 const goodsListElement = document.getElementsByClassName("row-three")[0];
@@ -51,6 +52,19 @@ document.getElementsByClassName("search")[0].addEventListener("click", (event) =
         showTips("请输入商品名称 ~");
     }
 })
+
+document.getElementById("search-id").addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        let searchKey = document.getElementById("search-id").value;
+        if (searchKey && searchKey.trim() !== '') {
+            goodsListElement.innerHTML = '';
+            getGoodList(sortBy, sortType, pageNo, true);
+        } else {
+            showTips("请输入商品名称 ~");
+        }
+    }
+});
 
 document.getElementById("zh").addEventListener("click", (event) => {
     sortBy = null;
@@ -665,9 +679,28 @@ var showOnPage = (goodList) => {
             let sku_div = document.createElement('div');
             sku_div.innerHTML = sku;
             sku_div.classList.add('good-list');
-            sku_div.addEventListener("click", () => {
-                generatePromotion(item);
-            })
+            sku_div.addEventListener("click", () => {generatePromotion(item, 1);})
+            sku_div.addEventListener('touchstart', (event) => {
+                clearTimeout(longPressTimer); 
+                startX = event.touches[0].clientX;
+                startY = event.touches[0].clientY;
+                isLongPress = false;
+                longPressTimer = setTimeout(() => {isLongPress = true; generatePromotion(item, 2);}, 800);}
+            );
+            sku_div.addEventListener('touchmove', (event) => {
+                const deltaX = event.touches[0].clientX - startX;
+                const deltaY = event.touches[0].clientY - startY;
+        
+                if (Math.abs(deltaX) > 20 || Math.abs(deltaY) > 20) {
+                    clearTimeout(longPressTimer);
+                    if (isLongPress) {return;}
+                }
+            });
+            sku_div.addEventListener('touchend', (event) => {
+                const deltaX = event.changedTouches[0].clientX - startX;
+                if (Math.abs(deltaX) > 60) {generatePromotion(item, 3);}
+            });
+            sku_div.addEventListener('touchcancel', () => {clearTimeout(longPressTimer);});
             goodElements.appendChild(sku_div);
         })
         document.querySelectorAll("img.img-lazy").forEach(item => {
@@ -678,7 +711,7 @@ var showOnPage = (goodList) => {
     }
 }
 
-var generatePromotion = (queryParam) => {
+var generatePromotion = (queryParam, flag) => {
     let settings = {};
     let urlPath = '';
     document.getElementsByClassName("spinner-container")[0].style.display = 'flex';
@@ -695,7 +728,7 @@ var generatePromotion = (queryParam) => {
                 }
                 result.urlPath = "taobao:" + url_path;
                 result.httpUrl = "https:" + url_path;
-                jumpToPurchasePage(result, queryParam.title);
+                jumpToPurchasePage(result, flag);
                 return;
             case "jd":
                 settings.apikey = thirdApiKey;
@@ -729,14 +762,15 @@ var generatePromotion = (queryParam) => {
         }
         fetch('/api/proxy?url=' + encodeURIComponent(urlPath))
             .then(response => response.json())
-            .then(data => jumpToPurchasePage(data, queryParam.title))
+            .then(data => jumpToPurchasePage(data, flag))
             .catch(error => console.error(error));
     } catch (error) {
         console.error(error);
     }
 }
 
-var jumpToPurchasePage = (skuObj, title) => {
+var jumpToPurchasePage = (skuObj, flag) => {
+    // flag = 1:打开 APP，2：复制分享链接，3：复制微信小程序链接
     let jump_url = '';
     let we_app_url = '';
     let share_url = '';
@@ -745,8 +779,7 @@ var jumpToPurchasePage = (skuObj, title) => {
             case "tb":
                 jump_url = skuObj.urlPath;
                 share_url = skuObj.httpUrl;
-                // jump_url = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=taobao;package=com.taobao.taobao;end';
-                // jump_url = 'intent:' + jump_url.replace("taobao:", "") + '#Intent;scheme=https;action=android.intent.action.VIEW;end';
+                we_app_url = skuObj.httpUrl;
                 break;
             case "jd":
                 if (getDeviceType() === "IOS") {
@@ -778,12 +811,20 @@ var jumpToPurchasePage = (skuObj, title) => {
                 break;
         }
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
-        if (getDeviceType() === "IOS") {
-            setTimeout(() => clickUrl(jump_url), 50);
-            // shareUrl(title, share_url);
-        } else {
-            clickUrl(jump_url);
-            // shareUrl(title, share_url);
+        switch (flag) {
+            case 2:
+                copyText(share_url);
+                break;
+            case 3:
+                copyText(we_app_url);
+                break;
+            default:
+                if (getDeviceType() === "IOS") {
+                    setTimeout(() => clickUrl(jump_url), 50);
+                } else {
+                    clickUrl(jump_url);
+                }
+                break;
         }
     } catch (error) {
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
@@ -791,6 +832,14 @@ var jumpToPurchasePage = (skuObj, title) => {
         console.error(error);
         showTips(error.message);
     }
+}
+
+var copyText = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+        showTips('商品购买链接复制成功 ~');
+    }).catch(err => {
+        showTips('复制失败: ', err);
+    });
 }
 
 var timestampToDate = () => {
