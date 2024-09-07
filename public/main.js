@@ -43,28 +43,13 @@ document.getElementsByClassName("close")[0].addEventListener("click", (event) =>
     document.getElementById("search-id").value = null;
 })
 
-document.getElementsByClassName("search")[0].addEventListener("click", (event) => {
-    let searchKey = document.getElementById("search-id").value;
-    if (searchKey && searchKey.trim() !== '') {
-        goodsListElement.innerHTML = '';
-        getGoodList(sortBy, sortType, pageNo, true);
-    } else {
-        showTips("请输入商品名称 ~");
-    }
-})
+document.getElementsByClassName("search")[0].addEventListener("click", (event) => {searchGoodsList();})
 
 document.getElementById("search-id").addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        let searchKey = document.getElementById("search-id").value;
-        if (searchKey && searchKey.trim() !== '') {
-            goodsListElement.innerHTML = '';
-            getGoodList(sortBy, sortType, pageNo, true);
-        } else {
-            showTips("请输入商品名称 ~");
-        }
-    }
-});
+    if (event.key === 'Enter') {event.preventDefault(); searchGoodsList();}
+})
+
+document.getElementById("search-id").addEventListener('blur', function() {searchGoodsList();})
 
 document.getElementById("zh").addEventListener("click", (event) => {
     sortBy = null;
@@ -88,19 +73,22 @@ document.getElementById("sale").addEventListener("click", (event) => {
     clickSortChangeColor('sale');
 })
 
-// goodsListElement.onscroll = () => {
-//     if (goodsListElement.scrollTop + goodsListElement.clientHeight + 150 >= goodsListElement.scrollHeight && !isLoading) {
-//         pageNo += 1;
-//         getGoodList(sortBy, sortType, pageNo, true);
-//     }
-// }
-
 document.getElementsByClassName("activity-header")[0].querySelectorAll(".nav-item").forEach(item => {
     item.addEventListener('click', (event) => {
         activityPlatform = item.className.replace('nav-item', '').replace('filter', '').trim();
         clickChangeActivity(activityPlatform);
     })
 })
+
+var searchGoodsList = () => {
+    let searchKey = document.getElementById("search-id").value;
+    if (searchKey && searchKey.trim() !== '') {
+        goodsListElement.innerHTML = '';
+        getGoodList(sortBy, sortType, pageNo, true);
+    } else {
+        showTips("请输入商品名称 ~");
+    }
+}
 
 var switchPlatform = () => {
     document.getElementsByClassName('row-two')[0].style.display = 'none';
@@ -681,6 +669,7 @@ var showOnPage = (goodList) => {
             sku_div.classList.add('good-list');
             sku_div.addEventListener("click", () => {generatePromotion(item, 1);})
             sku_div.addEventListener('touchstart', (event) => {
+                event.preventDefault();
                 clearTimeout(longPressTimer); 
                 startX = event.touches[0].clientX;
                 startY = event.touches[0].clientY;
