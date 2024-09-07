@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sw-11';
+const CACHE_NAME = 'sw-11-1';
 
 // 要缓存的文件列表
 const urlsToCache = [

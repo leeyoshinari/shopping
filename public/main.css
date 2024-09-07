@@ -198,7 +198,7 @@ html, body {
 #tips {
     position: fixed;
     bottom: -50px;
-    left: 47%;
+    left: 46%;
     transform: translateX(-50%);
     background-color: #737373;
     color: #fff;
