@@ -79,7 +79,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           expire: 2735642837000
         },{
           title: "限时秒杀",
-          imgUrl: "/img/pdd_qwbt.png",
+          imgUrl: "/img/pdd_xsms.jpg",
           jumpUrl: "/duo_transfer_channel.html?resourceType=4&pid=15084399_190061927&cpsSign=CE_240908_15084399_190061927_dd76076561ab1f9db0267ac2cee55ab7&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
           expire: 2735642837000
         }
