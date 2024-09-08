@@ -1,46 +1,9 @@
-const CACHE_NAME = 'sw-11-1';
+const CACHE_NAME = 'sw-11-8';
 
 // 要缓存的文件列表
-const urlsToCache = [
-  '/',
-  '/sw.js',
-  '/manifest.json',
-  '/icon.svg',
-  '/icon_512.svg',
-  '/icon_256.svg',
-  '/icon_72.svg',
-  '/main.css',
-  '/main.js',
-  '/crypto-js.js',
-  '/img/close.png',
-  '/img/tb.png',
-  '/img/jd.png',
-  '/img/pdd.png',
-  '/img/wph.png',
-  '/img/wm.png',
-  '/img/tm_market.jpg',
-  '/img/tb_tgc.png',
-  '/img/tb_sy.png',
-  '/img/tm_al.png',
-  '/img/fz_all.jpg',
-  '/img/fz_hotal.png',
-  '/img/fz_mp.jpg',
-  '/img/pdd_subsidy.jpg',
-  '/img/pdd_voucher.jpg',
-  '/img/pdd_qwbt.png',
-  '/img/jd_flash_sale.webp',
-  '/img/mt_wm.jpg',
-  '/img/mt_cs.jpg',
-  '/img/mt_ds.jpg',
-  '/img/mt_voucher.jpg',
-  '/img/mt_10.png',
-  '/img/mt_xh.png',
-  '/img/mt_yao.jpeg',
-  '/img/wph_low_price.webp',
-  '/img/wph_qiang.jpg',
-  '/img/wph_kq.png',
-  '/api/activity'
-];
+const staticFileExtensions = ['/img/', '.css', '.js', '.json', '.svg', '%2Fimg%2F'];
+const regex = new RegExp(`(${staticFileExtensions.join('|').replace(/\./g, '\\.')})`, 'i');
+const urlsToCache = ['/', '/api/activity'];
 
 // 安装事件
 self.addEventListener('install', event => {
@@ -71,14 +34,23 @@ self.addEventListener('activate', event => {
 });
 
 // Fetch事件
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then(response => {
-        if (response) {
-          return response;
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      return fetch(event.request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200 && regex.test(networkResponse.url) && networkResponse.type === 'basic') {
+          const clonedResponse = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, clonedResponse);
+          });
         }
-        return fetch(event.request);
-      })
+        return networkResponse;
+      });
+    })
   );
 });
 

@@ -673,7 +673,7 @@ var showOnPage = (goodList) => {
                 startX = event.touches[0].clientX;
                 startY = event.touches[0].clientY;
                 isLongPress = false;
-                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; generatePromotion(item, 2);}, 800);}
+                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; generatePromotion(item, 2);}, 1000);}
             );
             sku_div.addEventListener('touchmove', (event) => {
                 const deltaX = event.touches[0].clientX - startX;
@@ -825,7 +825,7 @@ var jumpToPurchasePage = (skuObj, flag) => {
 
 var copyText = (text) => {
     navigator.clipboard.writeText(text).then(() => {
-        showTips('商品购买链接复制成功 ~');
+        showTips('链接复制成功 ~');
     }).catch(err => {
         showTips('复制失败: ', err);
     });
@@ -917,7 +917,7 @@ var observer = new IntersectionObserver((entries) => {
     });
   }, { threshold: 0 });
 
-  var showActivity = (activity_platform) => {
+var showActivity = (activity_platform) => {
     try {
         fetch("/api/activity")
             .then(response => response.json())
@@ -926,9 +926,9 @@ var observer = new IntersectionObserver((entries) => {
     } catch (error) {
         console.error(error);
     }
-  }
+}
 
-  var clickActivity = (activityList) => {
+var clickActivity = (activityList) => {
     let currentTime = new Date().getTime();
     activityList.forEach(item => {
         if (item.expire > currentTime) {
@@ -943,12 +943,31 @@ var observer = new IntersectionObserver((entries) => {
                     jumpToActivityPage(item.jumpUrl);
                 }
             })
+            sku_div.addEventListener('touchstart', (event) => {
+                clearTimeout(longPressTimer); 
+                startX = event.touches[0].clientX;
+                startY = event.touches[0].clientY;
+                isLongPress = false;
+                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; copyActivityUrl(item.jumpUrl);}, 1000);}
+            );
+            sku_div.addEventListener('touchmove', (event) => {
+                const deltaX = event.touches[0].clientX - startX;
+                const deltaY = event.touches[0].clientY - startY;
+        
+                if (Math.abs(deltaX) > 20 || Math.abs(deltaY) > 20) {
+                    clearTimeout(longPressTimer);
+                    if (isLongPress) {return;}
+                }
+            });
+            sku_div.addEventListener('touchend', () => {clearTimeout(longPressTimer);});
+            sku_div.addEventListener('touchcancel', () => {clearTimeout(longPressTimer);});
+            sku_div.addEventListener('contextmenu', (event) => {event.preventDefault();});
             document.getElementsByClassName("row-three")[0].appendChild(sku_div);
         }
     })
-  }
+}
 
-  var jumpToActivityPage = (activityUrl) => {
+var jumpToActivityPage = (activityUrl) => {
     let jump_url = '';
     try {
         switch (activityPlatform) {
@@ -1001,7 +1020,7 @@ var observer = new IntersectionObserver((entries) => {
     }
 }
 
-  var clickChangeActivity = (eleId) => {
+var clickChangeActivity = (eleId) => {
     document.getElementsByClassName("row-three")[0].innerHTML = '';
     document.getElementsByClassName("activity-header")[0].querySelectorAll(".nav-item").forEach(item => {
         if (item.classList.contains(eleId)) {
@@ -1013,6 +1032,13 @@ var observer = new IntersectionObserver((entries) => {
     activityPlatform = eleId;
     localStorage.setItem("activityPlatform", eleId);
     showActivity(eleId);
+}
+
+var copyActivityUrl = (activityUrl) => {
+    if (activityPlatform === "pdd") {
+        activityUrl = "https://mobile.yangkeduo.com" + activityUrl;
+    }
+    copyText(activityUrl);
 }
 
 switchPlatform();
