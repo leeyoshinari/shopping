@@ -208,15 +208,21 @@ var generateUrlPathForRecommend = (pageNo) => {
                 urlPath = thirdUrl + "/jd/getjingfen?" + jsonToUrlParams(settings);
                 break;
             case "pdd":
-                settings.client_id = pddClientId;
-                settings.pid = pddPid;
-                settings.data_type = 'JSON';
-                settings.type = 'pdd.ddk.goods.recommend.get';
-                settings.offset = (pageNo - 1) * 20;
+                // settings.client_id = pddClientId;
+                // settings.pid = pddPid;
+                // settings.data_type = 'JSON';
+                // settings.type = 'pdd.ddk.goods.recommend.get';
+                // settings.offset = (pageNo - 1) * 20;
+                // settings.channel_type = 1;
+                // settings.timestamp = Math.floor((new Date().getTime())/1000);
+                // settings.sign = sign(settings, pddSecret);
+                // urlPath = pddUrl + "?" + jsonToUrlParams(settings);
+                settings.apikey = thirdApiKey;
                 settings.channel_type = 1;
-                settings.timestamp = Math.floor((new Date().getTime())/1000);
-                settings.sign = sign(settings, pddSecret);
-                urlPath = pddUrl + "?" + jsonToUrlParams(settings);
+                settings.isunion = 1;
+                settings.offset = pageNo;
+                settings.limit = 20;
+                urlPath = thirdUrl + "/pdd/getrecommendgoods?" + jsonToUrlParams(settings);
                 break;
             case "wph":
                 settings.apikey = thirdApiKey;
@@ -265,19 +271,22 @@ var  generateUrlPathForSearch = (searchKey, sort, sortType, pageNo) => {
                 urlPath = thirdUrl + "/jd/goodslist?" + jsonToUrlParams(settings);
                 break;
             case "pdd":
-                settings.client_id = pddClientId;
+                // settings.client_id = pddClientId;
                 settings.pid = pddPid;
-                settings.data_type = 'JSON';
-                settings.type = 'pdd.ddk.goods.search';
+                // settings.data_type = 'JSON';
+                // settings.type = 'pdd.ddk.goods.search';
                 settings.page = pageNo;
                 settings.keyword = searchKey;
-                settings.timestamp = Math.floor((new Date().getTime())/1000);
+                // settings.timestamp = Math.floor((new Date().getTime())/1000);
                 settings.custom_parameters = pddCustomParameters;
                 if (sort && sort.trim() !== '') {
                     settings.sort_type = parseInt(sort);
                 }
-                settings.sign = sign(settings, pddSecret);
-                urlPath = pddUrl + "?" + jsonToUrlParams(settings);
+                // settings.sign = sign(settings, pddSecret);
+                // urlPath = pddUrl + "?" + jsonToUrlParams(settings);
+                settings.apikey = thirdApiKey;
+                settings.isunion = 1;
+                urlPath = thirdUrl + "/pdd/goodslist?" + jsonToUrlParams(settings);
                 break;
             case "wph":
                 settings.apikey = thirdApiKey;
@@ -414,7 +423,8 @@ var parseJdSearchGoodList = (goodObj) => {
 var parsePddRecommendGoodList = (goodObj) => {
     let result = [];
     try {
-        let goodList = goodObj?.goods_basic_detail_response?.list;
+        // let goodList = goodObj?.goods_basic_detail_response?.list;
+        let goodList = goodObj?.data?.goods_list;
         result = getPddGoodList(goodList);
     } catch (error) {
         console.error(error);
@@ -425,7 +435,8 @@ var parsePddRecommendGoodList = (goodObj) => {
 var parsePddSearchGoodList = (goodObj) => {
     let result = [];
     try {
-        let goodList = goodObj?.goods_search_response?.goods_list;
+        // let goodList = goodObj?.goods_search_response?.goods_list;
+        let goodList = goodObj?.data?.goods_list;
         result = getPddGoodList(goodList);
     } catch (error) {
         console.error(error);
@@ -728,18 +739,23 @@ var generatePromotion = (queryParam, flag) => {
                 urlPath = thirdUrl + "/jd/getunionurl?" + jsonToUrlParams(settings);
                 break;
             case "pdd":
-                settings.client_id = pddClientId;
-                settings.p_id = pddPid;
-                settings.data_type = "JSON";
-                settings.type = "pdd.ddk.goods.promotion.url.generate";
-                settings.timestamp = Math.floor((new Date().getTime())/1000);
+                // settings.client_id = pddClientId;
+                // settings.p_id = pddPid;
+                // settings.data_type = "JSON";
+                // settings.type = "pdd.ddk.goods.promotion.url.generate";
+                // settings.timestamp = Math.floor((new Date().getTime())/1000);
                 settings.generate_authority_url = true;
-                settings.goods_sign_list = "[\"" + queryParam.goods_sign + "\"]";
+                // settings.goods_sign_list = "[\"" + queryParam.goods_sign + "\"]";
                 settings.search_id = queryParam.search_id;
-                settings.generate_schema_url = true;
-                settings.generate_we_app = true;
-                settings.sign = sign(settings, pddSecret);
-                urlPath = pddUrl + "?" + jsonToUrlParams(settings);
+                // settings.generate_schema_url = true;
+                // settings.generate_we_app = true;
+                // settings.sign = sign(settings, pddSecret);
+                // urlPath = pddUrl + "?" + jsonToUrlParams(settings);
+                settings.apikey = thirdApiKey;
+                settings.pid = pddPid;
+                settings.goods_sign = queryParam.goods_sign;
+                settings.positionid = pddCustomParameters;
+                urlPath = thirdUrl + "/pdd/getunionurl?" + jsonToUrlParams(settings);
                 break;
             case "wph":
                 settings.apikey = thirdApiKey;
@@ -782,12 +798,16 @@ var jumpToPurchasePage = (skuObj, flag) => {
                 break;
             case "pdd":
                 if (getDeviceType() === "IOS") {
-                    jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].short_url;
+                    // jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].short_url;
+                    jump_url = skuObj.data?.alldata.short_url;
                 } else {
-                    jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
+                    // jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
+                    jump_url = skuObj.data?.alldata.schema_url;
                 }
-                we_app_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
-                share_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].short_url;
+                // we_app_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
+                we_app_url = skuObj.data?.alldata.we_app_info.page_path;
+                // share_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].short_url;
+                share_url = skuObj.data?.alldata.short_url;
                 break;
             case "wph":
                 if (getDeviceType() === "IOS") {
