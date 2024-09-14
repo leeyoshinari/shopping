@@ -18,17 +18,18 @@ const thirdJdUnionId = '1002712393';    // 好京客中授权的京东联盟ID
 const thirdJdPositionId = '3003427429';    // 京东联盟推广位最后一位
 
 let platform = localStorage.getItem('platform')? localStorage.getItem('platform') : 'tb';
-let activityPlatform = localStorage.getItem('activityPlatform')? localStorage.getItem('activityPlatform') : 'tb';
+let activityPlatform = localStorage.getItem('activityPlatform')? localStorage.getItem('activityPlatform') : 'cy';
+let activityIndex = parseInt(localStorage.getItem('activityIndex')) > -1? parseInt(localStorage.getItem('activityIndex')) : 0;
 let sortBy = null;
 let sortType = null;
 let pageNo = 1;
 let isLoading = false;   // 数据加载标志，防止重复加载
 let startX, startY, startTime, longPressTimer;
-let activityIndex = 0;
 let isLongPress = false;
 
-const activityIds = ['tb', 'jd', 'pdd', 'wph', 'mt'];   // 和页面上的顺序保持一致
+const activityIds = ['cy', 'tb', 'jd', 'pdd', 'wph', 'mt', 'ele', 'dd', 'qt'];   // 和页面上的顺序保持一致
 const goodsListElement = document.getElementsByClassName("row-three")[0];
+localStorage.setItem("activityIndex", activityIndex);
 
 document.getElementsByClassName('footer')[0].querySelectorAll('div').forEach(item => {
     item.addEventListener('click', (event) => {
@@ -104,7 +105,7 @@ var switchPlatform = () => {
     goodsListElement.innerHTML = '';
     if (platform === 'wm') {
         document.getElementsByClassName('row-one')[0].style.display = 'none';
-        document.getElementsByClassName('activity-header')[0].style.display = 'block';
+        document.getElementsByClassName('activity-header')[0].style.display = 'flex';
         document.getElementsByClassName('row-three')[0].style.backgroundColor = '#e1e1e1';
         clickChangeActivity(activityPlatform);
         goodsListElement.addEventListener("touchstart", moveTouchStart, {passive: false});
@@ -136,16 +137,17 @@ var moveTouchStart = (event) => {
 }
 
 var moveTouchMove = (event) => {
-    let touch = event.touches[0];
-    let deltaX = touch.pageX - startX;
-    let deltaY = touch.pageY - startY;
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) >= 60) {
-        event.preventDefault();
-    }
+    // let touch = event.touches[0];
+    // let deltaX = touch.pageX - startX;
+    // let deltaY = touch.pageY - startY;
+    // if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) >= 60) {
+    //     event.preventDefault();
+    // }
 }
 
 var moveTouchEnd = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
+    activityIndex = parseInt(localStorage.getItem("activityIndex"));
     let endX = event.changedTouches[0].clientX;
     let endY = event.changedTouches[0].clientY;
     let endTime = new Date().getTime();
@@ -154,10 +156,12 @@ var moveTouchEnd = (event) => {
         activityIndex = activityIndex - 1;
         activityIndex = activityIndex < 0? activityIds.length - 1 : activityIndex;
         clickChangeActivity(activityIds[activityIndex]);
+        localStorage.setItem("activityIndex", activityIndex);
     } else if (startX - endX > 60 && Math.abs(deltaY) < 60) {
         activityIndex = activityIndex + 1;
         activityIndex = activityIndex >= activityIds.length? 0 : activityIndex;
         clickChangeActivity(activityIds[activityIndex]);
+        localStorage.setItem("activityIndex", activityIndex);
     } else if (Math.abs(deltaY) < 60 && endTime - startTime < 100) {
         event.target.click();
     }
@@ -891,7 +895,7 @@ var jsonToUrlParams = (params) => {
 var getDeviceType = () => {
     const userAgent = navigator.userAgent || window.opera;
     if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      return "IOS";
+        return "IOS";
     } else {
         return "Android";
     }
@@ -971,7 +975,7 @@ var clickActivity = (activityList) => {
                 startX = event.touches[0].clientX;
                 startY = event.touches[0].clientY;
                 isLongPress = false;
-                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; copyActivityUrl(item.jumpUrl);}, 1000);}
+                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; copyActivityUrl(item.weAppUrl);}, 1000);}
             );
             sku_div.addEventListener('touchmove', (event) => {
                 const deltaX = event.touches[0].clientX - startX;
@@ -1025,6 +1029,9 @@ var jumpToActivityPage = (activityUrl) => {
                 } else {
                     jump_url = "imeituan://www.meituan.com/web?url=" + activityUrl;
                 }
+                break;
+            default:
+                jump_url = activityUrl;
                 break;
         }
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';

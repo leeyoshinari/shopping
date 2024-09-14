@@ -220,6 +220,10 @@ html, body {
 }
 
 .activity-header {
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    flex-direction: row;
+    display: flex;
     overflow-x: auto;
     white-space: nowrap;
     padding-top: 3%;
@@ -229,9 +233,10 @@ html, body {
 .activity-header span {
     font-size: large;
     color: orangered;
-    width: 20%;
     display: inline-block;
     text-align: center;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .a-activity {
