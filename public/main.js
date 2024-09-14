@@ -84,6 +84,7 @@ var searchGoodsList = () => {
     let searchKey = document.getElementById("search-id").value;
     if (searchKey && searchKey.trim() !== '') {
         goodsListElement.innerHTML = '';
+        pageNo = 1;
         getGoodList(sortBy, sortType, pageNo, true);
     } else {
         showTips("请输入商品名称 ~");
@@ -123,6 +124,7 @@ var switchPlatform = () => {
                 getGoodList(sortBy, sortType, pageNo, true);
             }
         }
+        pageNo = 1;
         getGoodList(sortBy, sortType, pageNo, true);
     }
 }
@@ -170,6 +172,7 @@ var clickSortChangeColor = (eleId) => {
         }
     })
     goodsListElement.innerHTML = '';
+    pageNo = 1;
     getGoodList(sortBy, sortType, pageNo, true);
 }
 
@@ -272,13 +275,13 @@ var  generateUrlPathForSearch = (searchKey, sort, sortType, pageNo) => {
                 break;
             case "pdd":
                 // settings.client_id = pddClientId;
-                settings.pid = pddPid;
+                // settings.pid = pddPid;
                 // settings.data_type = 'JSON';
                 // settings.type = 'pdd.ddk.goods.search';
                 settings.page = pageNo;
                 settings.keyword = searchKey;
                 // settings.timestamp = Math.floor((new Date().getTime())/1000);
-                settings.custom_parameters = pddCustomParameters;
+                // settings.custom_parameters = pddCustomParameters;
                 if (sort && sort.trim() !== '') {
                     settings.sort_type = parseInt(sort);
                 }
