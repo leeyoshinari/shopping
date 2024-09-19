@@ -62,40 +62,40 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },{
           title: "京东秒杀",
           imgUrl: "/img/jd_flash_sale.webp",
-          jumpUrl: "https://union-click.jd.com/jdc?e=618%7Cpc%7C&p=JF8BANYJK1olXDYDZBoCUBVIMzZNXhpXVhgcDwYCXhxDXHBTTkRHA1ocDBsJVEVTbT9aXjVUUUJdDAACFBtFRjdPQx5dSkJdDAACZgpHVTtmQw4ZXgcCV1ptTyh1SgZtbDt3JU5iUxdUfy9iUDZMa1cZbQMCVV9fC0MXC2o4G1oUXgACV1xVCnsnA2w4UDUUbQQDVVxYC00SAGc4G10VWwAGUVxfDE8XB18PG1IlAF1QVFpdCkgQbTM4K2sWbQECXUpbegpFF2l6K2sWXTYBZG5fCUoTCl84K2sl",
-          weAppUrl: "",
-          expire: 1735642837000
+          jumpUrl: "https://u.jd.com/drgA8wY",
+          weAppUrl: "https://u.jd.com/drgA8wY",
+          expire: 1731850074000
         },{
           title: "京东百亿农产品补贴",
           imgUrl: "/img/jd_subsidy_nong.jpg",
           jumpUrl: "https://union-click.jd.com/jdc?e=618%7Cpc%7C&p=JF8BAOkJK1olXDYDZBoCUBVIMzZNXhpXVhgcFR0DFxcIWDoXSQVJQ1pSCQNDWBlSWyhcBVkSO05_DhsYSg9oCxhhewl1OX9-E14YDjFWZTsWQwRACU8dDRsBVUVEUzxcRilMDVldAANRTQ5SB19eQgZuAnlFBz1ZajhpeTp0Ul1yD1lUWFJtDUsWAm0LE1sdWDYCVV9eDksUAWcKK2sVXjZJOl9tCkoWAWoLHV4WVTYCUl1ZDkwXAG0NGVoSbQECXW4AUxkXB28KGFx7ATYyZF1tD0seF2l6WgkBW3QyZFxtC3snAW4JH1IlbTYyZA",
-          weAppUrl: "",
-          expire: 1735649837000
+          weAppUrl: "https://u.jd.com/dDgJi6w",
+          expire: 1731850074000
         }
       ],
       pdd: [{
           title: "百亿补贴",
           imgUrl: "/img/pdd_subsidy.jpg",
           jumpUrl: "/duo_transfer_channel.html?resourceType=39996&pid=15084399_190061839&_pdd_fs=1&_pdd_tc=ffffff&_pdd_sbs=1&cpsSign=CE_240607_15084399_190061839_6d8e20ccc033104197541a05c1e0bd94&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&_pdd_fs=1&_pdd_tc=ffffff&_pdd_sbs=1&campaign=ddjb&cid=launch_transfer_channel_",
-          weAppUrl: "",
+          weAppUrl: "/duo_transfer_channel.html?resourceType=39996&pid=15084399_190061839&_pdd_fs=1&_pdd_tc=ffffff&_pdd_sbs=1&cpsSign=CE_240607_15084399_190061839_6d8e20ccc033104197541a05c1e0bd94&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&_pdd_fs=1&_pdd_tc=ffffff&_pdd_sbs=1&campaign=ddjb&cid=launch_transfer_channel_",
           expire: 2735642837000
         },{
           title: "千万补贴",
           imgUrl: "/img/pdd_qwbt.png",
           jumpUrl: "/duo_theme_activity.html?__page=duo_qianwan_activity&pid=15084399_190061839&cpsSign=CE_240607_15084399_190061839_053a6b42227ced719f7098feab2468b9&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
-          weAppUrl: "",
+          weAppUrl: "/duo_theme_activity.html?__page=duo_qianwan_activity&pid=15084399_190061839&cpsSign=CE_240607_15084399_190061839_053a6b42227ced719f7098feab2468b9&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
           expire: 2735642837000
         },{
           title: "限时秒杀",
           imgUrl: "/img/pdd_xsms.jpg",
           jumpUrl: "/duo_transfer_channel.html?resourceType=4&pid=15084399_190061927&cpsSign=CE_240908_15084399_190061927_dd76076561ab1f9db0267ac2cee55ab7&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
-          weAppUrl: "",
+          weAppUrl: "/duo_transfer_channel.html?resourceType=4&pid=15084399_190061927&cpsSign=CE_240908_15084399_190061927_dd76076561ab1f9db0267ac2cee55ab7&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
           expire: 2735642837000
         },{
           title: "领券中心",
           imgUrl: "/img/pdd_voucher.jpg",
           jumpUrl: "/duo_transfer_channel.html?resourceType=40000&pid=15084399_190061839&cpsSign=CE_240607_15084399_190061839_67b48ab5157fcdd8e7720940f244b277&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
-          weAppUrl: "",
+          weAppUrl: "/duo_transfer_channel.html?resourceType=40000&pid=15084399_190061839&cpsSign=CE_240607_15084399_190061839_67b48ab5157fcdd8e7720940f244b277&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
           expire: 2735642837000
         }
       ],
@@ -103,19 +103,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           title: "每日超值低价",
           imgUrl: "/img/wph_low_price.webp",
           jumpUrl: "https://t.vip.com/LHNY7PsXkR6",
-          weAppUrl: "",
+          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252FDpLEiuICnbzo8RE7CremZg.php%253Fwapid%253Dmst_100056642%2526_src%253Dmst%2526extra_banner%253D115056642%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu060000f1qle1fubmpltc0336&chl_type=wxk",
           expire: 1735642837000
         },{
           title: "3折疯抢",
           imgUrl: "/img/wph_qiang.jpg",
           jumpUrl: "https://t.vip.com/6q1Yt593LqA?chanTag=d619156f131a556c6640229727291160",
-          weAppUrl: "",
+          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252FDAFYkbX9rT9ZrU-uW_ylnw.php%253Fwapid%253Dmst_100114375%2526_src%253Dmst%2526extra_banner%253D115114375%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu060000drv8r2lr1lqvghalr2&chl_type=wxk",
           expire: 1735642837000
         },{
           title: "唯品快抢",
           imgUrl: "/img/wph_kq.png",
           jumpUrl: "https://t.vip.com/N7CVJWu9sl9?chanTag=d619156f131a556c6640229727291160",
-          weAppUrl: "",
+          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252F27Pzw99-SzJDKCFI8NooXQ.php%253Fwapid%253Dmst_100048881%2526_src%253Dmst%2526extra_banner%253D115048881%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide%2526nmsns%253Dshop_iphone-7.60.1-link%2526nst%253Dsubject%2526nsbc%253D%2526nct%253Dlink%2526ncid%253Df931935d51a7563e78f29f518b607deb16c0ce17%2526nabtid%253D5bbc01d7a130404a6260dd533954b23d%2526nuid%253DNDkzOTIwODE3%2526nchl_param%253Dshare%253Af931935d51a7563e78f29f518b607deb16c0ce17%253A1640764250&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu0600009z6k9a0xohmj22g40a&chl_type=wxk",
           expire: 1735642837000
         }
       ],
@@ -161,13 +161,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           title: "饿了么天天领红包",
           imgUrl: "/img/ele_redpackage.png",
           jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021004134685665%2Fpages%2Ftaoke-guide%2Findex%3Fscene%3D05c5bcaad8a4419e849c8b7cfd6d692e",
-          weAppUrl: "",
+          weAppUrl: "commercialize/pages/taoke-guide/index?scene=05c5bcaad8a4419e849c8b7cfd6d692e",
           expire: 1735659837000
       },{
           title: "饿了么 24城消费日专享",
           imgUrl: "/img/ele_city.jpg",
           jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021003183669766%2Fpages%2Fwh-coupon-guide%2Findex%3Fscene%3D0ccac9ad4f2442d9956fe8760baf1641",
-          weAppUrl: "",
+          weAppUrl: "ad-bdlm-sub/pages/wh-coupon-guide/index?scene=0ccac9ad4f2442d9956fe8760baf1641",
           expire: 1735659837000
       }],
       dd: [{

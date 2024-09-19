@@ -978,11 +978,7 @@ var clickActivity = (activityList) => {
                 longPressTimer = setTimeout(() => {
                     event.preventDefault(); 
                     isLongPress = true;
-                    if (activityPlatform === "cy" || activityPlatform === "qt") {
-                        copyActivityUrl(item.weAppUrl);
-                    } else {
-                        copyActivityUrl(item.jumpUrl);
-                    }
+                    copyActivityUrl(item.weAppUrl);
                 }, 1000);}
             );
             sku_div.addEventListener('touchmove', (event) => {
