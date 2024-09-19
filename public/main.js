@@ -975,7 +975,15 @@ var clickActivity = (activityList) => {
                 startX = event.touches[0].clientX;
                 startY = event.touches[0].clientY;
                 isLongPress = false;
-                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; copyActivityUrl(item.weAppUrl);}, 1000);}
+                longPressTimer = setTimeout(() => {
+                    event.preventDefault(); 
+                    isLongPress = true;
+                    if (activityPlatform === "cy" || activityPlatform === "qt") {
+                        copyActivityUrl(item.weAppUrl);
+                    } else {
+                        copyActivityUrl(item.jumpUrl);
+                    }
+                }, 1000);}
             );
             sku_div.addEventListener('touchmove', (event) => {
                 const deltaX = event.touches[0].clientX - startX;
