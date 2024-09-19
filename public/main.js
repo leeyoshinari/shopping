@@ -704,7 +704,7 @@ var showOnPage = (goodList) => {
             });
             sku_div.addEventListener('touchend', (event) => {
                 const deltaX = event.changedTouches[0].clientX - startX;
-                if (Math.abs(deltaX) > 60) {generatePromotion(item, 3);}
+                if (Math.abs(deltaX) > 150) {generatePromotion(item, 3);}
             });
             sku_div.addEventListener('touchcancel', () => {clearTimeout(longPressTimer);});
             sku_div.addEventListener('contextmenu', (event) => {event.preventDefault();});

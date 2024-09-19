@@ -68,7 +68,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },{
           title: "京东百亿农产品补贴",
           imgUrl: "/img/jd_subsidy_nong.jpg",
-          jumpUrl: "https://union-click.jd.com/jdc?e=618%7Cpc%7C&p=JF8BAOkJK1olXDYDZBoCUBVIMzZNXhpXVhgcFR0DFxcIWDoXSQVJQ1pSCQNDWBlSWyhcBVkSO05_DhsYSg9oCxhhewl1OX9-E14YDjFWZTsWQwRACU8dDRsBVUVEUzxcRilMDVldAANRTQ5SB19eQgZuAnlFBz1ZajhpeTp0Ul1yD1lUWFJtDUsWAm0LE1sdWDYCVV9eDksUAWcKK2sVXjZJOl9tCkoWAWoLHV4WVTYCUl1ZDkwXAG0NGVoSbQECXW4AUxkXB28KGFx7ATYyZF1tD0seF2l6WgkBW3QyZFxtC3snAW4JH1IlbTYyZA",
+          jumpUrl: "https://u.jd.com/dDgJi6w",
           weAppUrl: "https://u.jd.com/dDgJi6w",
           expire: 1731850074000
         }
@@ -123,37 +123,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           title: "天天领美团外卖红包",
           imgUrl: "/img/mt_wm.jpg",
           jumpUrl: "http://dpurl.cn/3846xJqz",
-          weAppUrl: "",
+          weAppUrl: "https://market.waimai.meituan.com/gd/single.html?el_biz=waimai&el_page=gundam.loader&gundam_id=2KAWnD&activity_id=380797&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_7&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Dm90i875zfw1e",
           expire: 1735642837000
         },{
           title: "美团外卖超值券包",
           imgUrl: "/img/mt_voucher.jpg",
           jumpUrl: "http://dpurl.cn/isKuO66z",
-          weAppUrl: "",
+          weAppUrl: "https://market.waimai.meituan.com/gd2/wm/IBA0CO?el_biz=waimai&el_page=gundam.loader&gundam_id=IBA0CO&tenant=gundam&isMultiTab=true&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_26&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DHFgt875z-KHF",
           expire: 1735642837000
         },{
           title: "美团爆款鲜花3折起",
           imgUrl: "/img/mt_xh.png",
           jumpUrl: "http://dpurl.cn/qGPlYwqz",
-          weAppUrl: "",
+          weAppUrl: "https://market.waimai.meituan.com/gd2/wm/43XqV7?el_biz=waimai&el_page=gundam.loader&gundam_id=43XqV7&tenant=gundam&onHideRemain=true&isMultiTab=true&g_source=sg_BGuVBdpA&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_272&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Dcm3U875z_FyU",
           expire: 1735649837000
         },{
           title: "商超果蔬红包天天领",
           imgUrl: "/img/mt_cs.jpeg",
           jumpUrl: "hhttp://dpurl.cn/W7OqL6yz",
-          weAppUrl: "",
+          weAppUrl: "https://market.waimai.meituan.com/gd2/wm/rCFbdO?el_biz=waimai&el_page=gundam.loader&gundam_id=rCFbdO&tenant=gundam&onHideRemain=true&isMultiTab=true&g_source=sg_VQaDcIKU&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_273&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DCSnUhb5zlVF3",
           expire: 1735649837000
         },{
           title: "美团买药健康爆品",
           imgUrl: "/img/mt_yao.jpg",
           jumpUrl: "http://dpurl.cn/rQ430jvz",
-          weAppUrl: "",
+          weAppUrl: "https://market.waimai.meituan.com/gd2/wm/4mFyYu?el_biz=waimai&el_page=gundam.loader&gundam_id=4mFyYu&tenant=gundam&isMultiTab=true&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_302&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DMxLXhb5zWGI0",
           expire: 1735649837000
         },{
           title: "美团电商购物红包",
           imgUrl: "/img/mt_ds.jpg",
           jumpUrl: "http://dpurl.cn/y584BXWz",
-          weAppUrl: "",
+          weAppUrl: "https://market.waimai.meituan.com/gd/single.html?el_biz=waimai&el_page=gundam.loader&tenant=gundam&gundam_id=2nC5Vb&boot_id=g_source_2922&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_19&utm_term=&channel=&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D4%26c%3D2%26p%3De20h875zN9pm",
           expire: 1735642837000
         }
       ],
