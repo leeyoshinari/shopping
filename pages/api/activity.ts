@@ -4,11 +4,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const activity = {
       tb: [{
-          title: "99百亿盛典-主会场",
-          imgUrl: "https://img.alicdn.com/imgextra/i3/O1CN01FDVStm1ViEoq2NuJy_!!6000000002686-0-tps-800-450.jpg",
-          jumpUrl: "https://s.click.taobao.com/NZPyoVt",
+          title: "双11超级红包主会场",
+          imgUrl: "https://gw.alicdn.com/imgextra/i2/O1CN015vNMih1blnbTZP07Y_!!6000000003506-0-tps-800-450.jpg",
+          jumpUrl: "https://s.click.taobao.com/gE07ONt",
           weAppUrl: "",
-          expire: 1726070389000
+          expire: 1731340792000
+        },{
+          title: "双11超级红包限时加码",
+          imgUrl: "https://gw.alicdn.com/imgextra/i2/O1CN019Pat6v1ZuNgxL8CRt_!!6000000003254-0-tps-800-450.jpg",
+          jumpUrl: "https://s.click.taobao.com/OZocGOt",
+          weAppUrl: "",
+          expire: 1731340792000
         },{
           title: "淘工厂 3元3件",
           imgUrl: "/img/tb_tgc.png",
@@ -54,11 +60,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       ],
       jd: [{
-          title: "2024年618京享红包活动",
+          title: "2024年11.11京享红包活动",
           imgUrl: "https://gw.alicdn.com/imgextra/i1/O1CN01U5E4pn1rMBGD1Now3_!!6000000005616-0-tps-800-450.jpg",
-          jumpUrl: "https://u.jd.com/xbRQCrn",
-          weAppUrl: "",
-          expire: 1718725837000
+          jumpUrl: "https://u.jd.com/CDFyRyk",
+          weAppUrl: "https://u.jd.com/CDFyRyk",
+          expire: 1731340792000
         },{
           title: "京东秒杀",
           imgUrl: "/img/jd_flash_sale.webp",
@@ -74,6 +80,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       ],
       pdd: [{
+          title: "11·11大促",
+          imgUrl: "https://t16img.yangkeduo.com/pdd_oms/2024-10-12/8f707294e3b6cba554183e8df972e7d5.png",
+          jumpUrl: "/attendance.html?type=1&id=199954&_pdd_fs=1&_pdd_tc=ffffff&_pdd_sbs=1&pid=15084399_190061839&_x_ddjb_dmn=%7B%22cpsSign%22%3A%22CM_241018_15084399_190061839_b438df9c820addc6fb2973e378c574f7%22%2C%22id%22%3A%22199954%22%2C%22type%22%3A%221%22%7D&cpsSign=CM_241018_15084399_190061839_b438df9c820addc6fb2973e378c574f7&_x_ddjb_act=%7B%22st%22%3A%223%22%7D&duoduo_type=2&launch_pdd=1&_pdd_fs=1&_pdd_tc=ffffff&_pdd_sbs=1&campaign=ddjb&cid=launch_",
+          weAppUrl: "/attendance.html?type=1&id=199954&_pdd_fs=1&_pdd_tc=ffffff&_pdd_sbs=1&pid=15084399_190061839&_x_ddjb_dmn=%7B%22cpsSign%22%3A%22CM_241018_15084399_190061839_b438df9c820addc6fb2973e378c574f7%22%2C%22id%22%3A%22199954%22%2C%22type%22%3A%221%22%7D&cpsSign=CM_241018_15084399_190061839_b438df9c820addc6fb2973e378c574f7&_x_ddjb_act=%7B%22st%22%3A%223%22%7D&duoduo_type=2&launch_pdd=1&_pdd_fs=1&_pdd_tc=ffffff&_pdd_sbs=1&campaign=ddjb&cid=launch_",
+          expire: 1731340792000
+        },{
           title: "百亿补贴",
           imgUrl: "/img/pdd_subsidy.jpg",
           jumpUrl: "/duo_transfer_channel.html?resourceType=39996&pid=15084399_190061839&_pdd_fs=1&_pdd_tc=ffffff&_pdd_sbs=1&cpsSign=CE_240607_15084399_190061839_6d8e20ccc033104197541a05c1e0bd94&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&_pdd_fs=1&_pdd_tc=ffffff&_pdd_sbs=1&campaign=ddjb&cid=launch_transfer_channel_",
@@ -100,6 +112,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       ],
       wph: [{
+          title: "11.11特卖狂欢节超级红包",
+          imgUrl: "http://ms.vpimg1.com/upload/actpics/cps/0/2024/10/11/140/60x4831axr2begl.jpg",
+          jumpUrl: "https://t.vip.com/rl1m2t",
+          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252FUYRxhGHdshVvag0436SNMQ.php%253Fwapid%253Dmst_100136497%2526_src%253Dmst%2526extra_banner%253D0%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu0600005dknnru9kzgwlz7f5c&chl_type=wxk",
+          expire: 1731340792000
+        },{
           title: "每日超值低价",
           imgUrl: "/img/wph_low_price.webp",
           jumpUrl: "https://t.vip.com/LHNY7PsXkR6",
