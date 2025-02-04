@@ -10,11 +10,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           weAppUrl: "",
           expire: 1731340792000
         },{
-          title: "双11超级红包限时加码",
-          imgUrl: "https://gw.alicdn.com/imgextra/i2/O1CN019Pat6v1ZuNgxL8CRt_!!6000000003254-0-tps-800-450.jpg",
-          jumpUrl: "https://s.click.taobao.com/OZocGOt",
+          title: "领券中心",
+          imgUrl: "https://gw.alicdn.com/imgextra/i4/O1CN01qpP0oq1quFAy6UhA0_!!6000000005555-0-tps-800-450.jpg",
+          jumpUrl: "https://s.click.taobao.com/7wvICrs",
           weAppUrl: "",
-          expire: 1731340792000
+          expire: 1764299383000
         },{
           title: "淘工厂 3元3件",
           imgUrl: "/img/tb_tgc.png",
@@ -36,15 +36,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },{
           title: "天猫超市优惠",
           imgUrl: "/img/tm_market.jpg",
-          jumpUrl: "https://s.click.taobao.com/20BP0kt",
+          jumpUrl: "https://s.click.taobao.com/4JSvPss",
           weAppUrl: "",
-          expire: 1743695437000
+          expire: 1764299383000
         },{
           title: "飞猪旅行-天天特惠",
           imgUrl: "/img/fz_all.jpg",
-          jumpUrl: "https://s.click.taobao.com/e410fkt",
+          jumpUrl: "https://s.click.taobao.com/Bj1yBrs",
           weAppUrl: "",
-          expire: 1743695437000
+          expire: 1764299383000
         },{
           title: "飞猪特价门票",
           imgUrl: "/img/fz_mp.jpg",
@@ -54,9 +54,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },{
           title: "飞猪酒店特惠",
           imgUrl: "/img/fz_hotal.png",
-          jumpUrl: "https://s.click.taobao.com/vEpLzjt",
+          jumpUrl: "https://s.click.taobao.com/rGrwBrs",
           weAppUrl: "",
-          expire: 1735642837000
+          expire: 1764299383000
         }
       ],
       jd: [{
@@ -68,15 +68,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },{
           title: "京东秒杀",
           imgUrl: "/img/jd_flash_sale.webp",
-          jumpUrl: "https://u.jd.com/drgA8wY",
-          weAppUrl: "https://u.jd.com/drgA8wY",
-          expire: 1731850074000
+          jumpUrl: "https://u.jd.com/zrPRXtW",
+          weAppUrl: "https://u.jd.com/zrPRXtW",
+          expire: 1743563383000
         },{
           title: "京东百亿农产品补贴",
           imgUrl: "/img/jd_subsidy_nong.jpg",
-          jumpUrl: "https://u.jd.com/dDgJi6w",
-          weAppUrl: "https://u.jd.com/dDgJi6w",
-          expire: 1731850074000
+          jumpUrl: "https://u.jd.com/z6PDE2h",
+          weAppUrl: "https://u.jd.com/z6PDE2h",
+          expire: 1743563383000
         }
       ],
       pdd: [{
@@ -120,47 +120,47 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },{
           title: "每日超值低价",
           imgUrl: "/img/wph_low_price.webp",
-          jumpUrl: "https://t.vip.com/LHNY7PsXkR6",
-          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252FDpLEiuICnbzo8RE7CremZg.php%253Fwapid%253Dmst_100056642%2526_src%253Dmst%2526extra_banner%253D115056642%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu060000f1qle1fubmpltc0336&chl_type=wxk",
-          expire: 1735642837000
+          jumpUrl: "https://t.vip.com/2FpMvccdl59?chanTag=d619156f131a556c6640229727291160",
+          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252FO-wSpmRJ3xdDUtB39vLuTg.php%253Fwapid%253Dmst_100126749%2526_src%253Dmst%2526extra_banner%253D115126749%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu060000wtlmziwzoe5ssiyuyd&chl_type=wxk",
+          expire: 1751987383000
         },{
           title: "3折疯抢",
           imgUrl: "/img/wph_qiang.jpg",
-          jumpUrl: "https://t.vip.com/6q1Yt593LqA?chanTag=d619156f131a556c6640229727291160",
-          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252FDAFYkbX9rT9ZrU-uW_ylnw.php%253Fwapid%253Dmst_100114375%2526_src%253Dmst%2526extra_banner%253D115114375%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu060000drv8r2lr1lqvghalr2&chl_type=wxk",
-          expire: 1735642837000
+          jumpUrl: "https://t.vip.com/U3bc5Ef2MP9?chanTag=d619156f131a556c6640229727291160",
+          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252FDAFYkbX9rT9ZrU-uW_ylnw.php%253Fwapid%253Dmst_100114375%2526_src%253Dmst%2526extra_banner%253D115114375%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu060000drv8r27o5z27ixbath&chl_type=wxk",
+          expire: 1764529783000
         },{
           title: "唯品快抢",
           imgUrl: "/img/wph_kq.png",
           jumpUrl: "https://t.vip.com/N7CVJWu9sl9?chanTag=d619156f131a556c6640229727291160",
-          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252F27Pzw99-SzJDKCFI8NooXQ.php%253Fwapid%253Dmst_100048881%2526_src%253Dmst%2526extra_banner%253D115048881%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide%2526nmsns%253Dshop_iphone-7.60.1-link%2526nst%253Dsubject%2526nsbc%253D%2526nct%253Dlink%2526ncid%253Df931935d51a7563e78f29f518b607deb16c0ce17%2526nabtid%253D5bbc01d7a130404a6260dd533954b23d%2526nuid%253DNDkzOTIwODE3%2526nchl_param%253Dshare%253Af931935d51a7563e78f29f518b607deb16c0ce17%253A1640764250&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu0600009z6k9a0xohmj22g40a&chl_type=wxk",
-          expire: 1735642837000
+          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252F27Pzw99-SzJDKCFI8NooXQ.php%253Fwapid%253Dmst_100048881%2526_src%253Dmst%2526extra_banner%253D115048881%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide%2526nmsns%253Dshop_iphone-7.60.1-link%2526nst%253Dsubject%2526nsbc%253D%2526nct%253Dlink%2526ncid%253Df931935d51a7563e78f29f518b607deb16c0ce17%2526nabtid%253D5bbc01d7a130404a6260dd533954b23d%2526nuid%253DNDkzOTIwODE3%2526nchl_param%253Dshare%253Af931935d51a7563e78f29f518b607deb16c0ce17%253A1640764250&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu0600009z6k9axv5rpdhxw5qb&chl_type=wxk",
+          expire: 1764529783000
         }
       ],
       mt: [{
           title: "天天领美团外卖红包",
           imgUrl: "/img/mt_wm.jpg",
-          jumpUrl: "http://dpurl.cn/3846xJqz",
+          jumpUrl: "http://dpurl.cn/RDp9Xkuz",
           weAppUrl: "https://market.waimai.meituan.com/gd/single.html?el_biz=waimai&el_page=gundam.loader&gundam_id=2KAWnD&activity_id=380797&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_7&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Dm90i875zfw1e",
-          expire: 1735642837000
+          expire: 1767193783000
         },{
           title: "美团外卖超值券包",
           imgUrl: "/img/mt_voucher.jpg",
-          jumpUrl: "http://dpurl.cn/isKuO66z",
+          jumpUrl: "http://dpurl.cn/l1GjaKcz",
           weAppUrl: "https://market.waimai.meituan.com/gd2/wm/IBA0CO?el_biz=waimai&el_page=gundam.loader&gundam_id=IBA0CO&tenant=gundam&isMultiTab=true&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_26&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DHFgt875z-KHF",
-          expire: 1735642837000
+          expire: 1767193783000
         },{
           title: "美团爆款鲜花3折起",
           imgUrl: "/img/mt_xh.png",
-          jumpUrl: "http://dpurl.cn/qGPlYwqz",
+          jumpUrl: "http://dpurl.cn/gyBrqMgz",
           weAppUrl: "https://market.waimai.meituan.com/gd2/wm/43XqV7?el_biz=waimai&el_page=gundam.loader&gundam_id=43XqV7&tenant=gundam&onHideRemain=true&isMultiTab=true&g_source=sg_BGuVBdpA&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_272&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Dcm3U875z_FyU",
-          expire: 1735649837000
+          expire: 1767193783000
         },{
           title: "商超果蔬红包天天领",
           imgUrl: "/img/mt_cs.jpeg",
-          jumpUrl: "hhttp://dpurl.cn/W7OqL6yz",
+          jumpUrl: "http://dpurl.cn/N31mzzcz",
           weAppUrl: "https://market.waimai.meituan.com/gd2/wm/rCFbdO?el_biz=waimai&el_page=gundam.loader&gundam_id=rCFbdO&tenant=gundam&onHideRemain=true&isMultiTab=true&g_source=sg_VQaDcIKU&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_273&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DCSnUhb5zlVF3",
-          expire: 1735649837000
+          expire: 1767193783000
         },{
           title: "美团买药健康爆品",
           imgUrl: "/img/mt_yao.jpg",
@@ -178,120 +178,120 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ele: [{
           title: "饿了么天天领红包",
           imgUrl: "/img/ele_redpackage.png",
-          jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021004134685665%2Fpages%2Ftaoke-guide%2Findex%3Fscene%3D05c5bcaad8a4419e849c8b7cfd6d692e",
-          weAppUrl: "commercialize/pages/taoke-guide/index?scene=05c5bcaad8a4419e849c8b7cfd6d692e",
-          expire: 1735659837000
+          jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021004134685665%2Fpages%2Ftaoke-guide%2Findex%3Fscene%3D8b81253451dc4e4484d46ebc039a8306",
+          weAppUrl: "commercialize/pages/taoke-guide/index?scene=8b81253451dc4e4484d46ebc039a8306",
+          expire: 1767193783000
       },{
           title: "饿了么 24城消费日专享",
           imgUrl: "/img/ele_city.jpg",
-          jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021003183669766%2Fpages%2Fwh-coupon-guide%2Findex%3Fscene%3D0ccac9ad4f2442d9956fe8760baf1641",
-          weAppUrl: "ad-bdlm-sub/pages/wh-coupon-guide/index?scene=0ccac9ad4f2442d9956fe8760baf1641",
-          expire: 1735659837000
+          jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021003183669766%2Fpages%2Fwh-coupon-guide%2Findex%3Fscene%3D41933a79adf54a6b80267819e1560faf",
+          weAppUrl: "ad-bdlm-sub/pages/wh-coupon-guide/index?scene=41933a79adf54a6b80267819e1560faf",
+          expire: 1767193783000
       }],
       dd: [{
           title: "滴滴出行优惠券",
           imgUrl: "/img/dd_redpackage.jpg",
-          jumpUrl: "https://v.didi.cn/eoQRvjW?source_id=100001000946181",
-          weAppUrl: "/pages/index/index?scene=mxZ1qYD&source_id=100001000946181",
-          expire: 1738338237000
+          jumpUrl: "https://v.didi.cn/eoQRvjW?source_id=100001000946181&ref_from=dunion",
+          weAppUrl: "/pages/index/index?scene=mxZ1qYD&source_id=100001000946181&ref_from=dunion",
+          expire: 1767193783000
       },{
           title: "滴滴网约车",
           imgUrl: "/img/dd_100.png",
-          jumpUrl: "https://vv.didi.cn/v6n80MW?source_id=100001000946181",
-          weAppUrl: "/webx/entry/block-prevention?scene=bEr671z&source_id=100001000946181",
-          expire: 1735659837000
+          jumpUrl: "https://vv.didi.cn/OajYPJe?source_id=100001000946181&ref_from=dunion",
+          weAppUrl: "/webx/entry/block-prevention?scene=Lbl9BvJ&source_id=100001000946181&ref_from=dunion",
+          expire: 1767193783000
       },{
           title: "【滴滴】代驾100元券包",
           imgUrl: "/img/dd_dj100.jpg",
-          jumpUrl: "https://v.didi.cn/nxZLj0D?source_id=100001000946181",
-          weAppUrl: "/pages/index/index?scene=vKbjd9r&source_id=100001000946181",
-          expire: 1735659837000
+          jumpUrl: "https://v.didi.cn/nxZLj0D?source_id=100001000946181&ref_from=dunion",
+          weAppUrl: "/pages/index/index?scene=vKbjd9r&source_id=100001000946181&ref_from=dunion",
+          expire: 1767193783000
       }],
       cy: [{
           title: "瑞幸咖啡",
           imgUrl: "/img/hjk_ruixing.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=rx",
           weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=rx",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "奈雪的茶",
           imgUrl: "/img/hjk_naixue.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=nx",
           weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=nx",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "喜茶",
           imgUrl: "/img/hjk_xicha.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=10",
           weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=10",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "星巴克",
           imgUrl: "/img/hjk_xingbake.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=xbk",
           weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=xbk",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "麦当劳",
           imgUrl: "/img/hjk_maidanglao.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=mdl",
           weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=mdl",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "肯德基",
           imgUrl: "/img/hjk_kfc.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=kfc",
           weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=kfc",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "必胜客",
           imgUrl: "/img/hjk_bishengke.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=bsk",
           weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=bsk",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "华莱士",
           imgUrl: "/img/hjk_hualaishi.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=1",
           weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=1",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "汉堡王",
           imgUrl: "/img/hjk_hanbaowang.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=7",
           weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=7",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "百果园",
           imgUrl: "/img/hjk_baiguoyuan.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=8",
           weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=8",
-          expire: 1735659837000
+          expire: 1767193783000
       }],
       qt: [{
           title: "折扣电影票",
           imgUrl: "/img/hjk_movie.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=1",
           weAppUrl: "plugin-private://wx459759608c80cf98/pages/index?movieapikey=25ee321ae0f7f9be&movieuid=myxq_28931&moviekefu=/pages/service/service",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "折扣充值",
           imgUrl: "/img/hjk_huafei.jpg",
           jumpUrl: "https://myxq8.kuaizhan.com/0/59/p880289478292b1?mid=28931&uid=myxq_28931",
           weAppUrl: "plugin-private://wx92eb6fb9f1218f37/pages/index/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&index=/pages/index/index",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "特惠寄快递",
           imgUrl: "/img/hjk_kuaidi.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=15",
           weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=15",
-          expire: 1735659837000
+          expire: 1767193783000
       },{
           title: "鲜花配送",
           imgUrl: "/img/hjk_xianhua.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=2",
           weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=2",
-          expire: 1735659837000
+          expire: 1767193783000
       }]
     }
     res.status(200).json(activity);

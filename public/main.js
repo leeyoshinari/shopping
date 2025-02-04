@@ -629,7 +629,7 @@ var getJdSearchGoodList = (goodList) => {
     try {
         goodList.forEach(item => {
             let sku = {};
-            sku.goodsId = item.skuId;
+            sku.goodsId = item.itemId;
             sku.img = item.imageInfo.imageList[0].url;
             sku.title = item.skuName;
             sku.shop = item.shopInfo.shopName;
