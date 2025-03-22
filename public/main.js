@@ -691,7 +691,7 @@ var showOnPage = (goodList) => {
                 startX = event.touches[0].clientX;
                 startY = event.touches[0].clientY;
                 isLongPress = false;
-                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; generatePromotion(item, 2);}, 1000);}
+                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; generatePromotion(item, 2);}, 3000);}
             );
             sku_div.addEventListener('touchmove', (event) => {
                 const deltaX = event.touches[0].clientX - startX;
@@ -704,7 +704,7 @@ var showOnPage = (goodList) => {
             });
             sku_div.addEventListener('touchend', (event) => {
                 const deltaX = event.changedTouches[0].clientX - startX;
-                if (Math.abs(deltaX) > 150) {generatePromotion(item, 3);}
+                if (Math.abs(deltaX) > 250) {generatePromotion(item, 3);}
             });
             sku_div.addEventListener('touchcancel', () => {clearTimeout(longPressTimer);});
             sku_div.addEventListener('contextmenu', (event) => {event.preventDefault();});
@@ -822,7 +822,7 @@ var jumpToPurchasePage = (skuObj, flag) => {
                 } else {
                     jump_url = skuObj.data?.urlInfoList[0].deeplinkUrl;
                 }
-                we_app_url = skuObj.data?.urlInfoList[0].vipWxUrl;
+                we_app_url = skuObj.data?.urlInfoList[0].vipZfbSchemeUrl;
                 share_url = skuObj.data?.urlInfoList[0].url;
                 break;
         }
@@ -832,7 +832,15 @@ var jumpToPurchasePage = (skuObj, flag) => {
                 copyText(share_url);
                 break;
             case 3:
-                copyText(we_app_url);
+                if (platform === "wph") {
+                    if (getDeviceType() === "IOS") {
+                        setTimeout(() => clickUrl(we_app_url), 50);
+                    } else {
+                        clickUrl(we_app_url);
+                    }
+                } else {
+                    copyText(we_app_url);
+                }
                 break;
             default:
                 if (getDeviceType() === "IOS") {
@@ -948,14 +956,14 @@ var showActivity = (activity_platform) => {
     try {
         fetch("/api/activity")
             .then(response => response.json())
-            .then(data => clickActivity(data[activity_platform]))
+            .then(data => clickActivity(data[activity_platform], activity_platform))
             .catch(error => console.error(error));
     } catch (error) {
         console.error(error);
     }
 }
 
-var clickActivity = (activityList) => {
+var clickActivity = (activityList, activity_platform) => {
     let currentTime = new Date().getTime();
     activityList.forEach(item => {
         if (item.expire > currentTime) {
@@ -978,8 +986,16 @@ var clickActivity = (activityList) => {
                 longPressTimer = setTimeout(() => {
                     event.preventDefault(); 
                     isLongPress = true;
-                    copyActivityUrl(item.weAppUrl);
-                }, 1000);}
+                    if (activity_platform === 'dd') {
+                        if (getDeviceType() === "IOS") {
+                            setTimeout(() => jumpToActivityPage(item.weAppUrl), 50);
+                        } else {
+                            jumpToActivityPage(item.weAppUrl);
+                        }
+                    } else {
+                        copyActivityUrl(item.weAppUrl);
+                    }
+                }, 2000);}
             );
             sku_div.addEventListener('touchmove', (event) => {
                 const deltaX = event.touches[0].clientX - startX;

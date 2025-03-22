@@ -192,19 +192,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           title: "滴滴出行优惠券",
           imgUrl: "/img/dd_redpackage.jpg",
           jumpUrl: "https://v.didi.cn/eoQRvjW?source_id=100001000946181&ref_from=dunion",
-          weAppUrl: "/pages/index/index?scene=mxZ1qYD&source_id=100001000946181&ref_from=dunion",
+          weAppUrl: "alipays://platformapi/startapp?appId=10000007&qrcode=https://vv.didi.cn/OajYPJe?source_id=100001000946181&ref_from=dunion",
           expire: 1767193783000
       },{
           title: "滴滴网约车",
           imgUrl: "/img/dd_100.png",
           jumpUrl: "https://vv.didi.cn/OajYPJe?source_id=100001000946181&ref_from=dunion",
-          weAppUrl: "/webx/entry/block-prevention?scene=Lbl9BvJ&source_id=100001000946181&ref_from=dunion",
+          weAppUrl: "alipays://platformapi/startapp?appId=2019062865745088&page=/webx/entry/block-prevention?scene=Lbl9BvJ&source_id=100001000946181&ref_from=dunion",
           expire: 1767193783000
       },{
           title: "【滴滴】代驾100元券包",
           imgUrl: "/img/dd_dj100.jpg",
           jumpUrl: "https://v.didi.cn/nxZLj0D?source_id=100001000946181&ref_from=dunion",
-          weAppUrl: "/pages/index/index?scene=vKbjd9r&source_id=100001000946181&ref_from=dunion",
+          weAppUrl: "alipays://platformapi/startapp?appId=10000007&qrcode=https://v.didi.cn/nxZLj0D?source_id=100001000946181&ref_from=dunion",
           expire: 1767193783000
       }],
       cy: [{
