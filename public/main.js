@@ -691,7 +691,7 @@ var showOnPage = (goodList) => {
                 startX = event.touches[0].clientX;
                 startY = event.touches[0].clientY;
                 isLongPress = false;
-                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; generatePromotion(item, 2);}, 3000);}
+                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; generatePromotion(item, 2);}, 2000);}
             );
             sku_div.addEventListener('touchmove', (event) => {
                 const deltaX = event.touches[0].clientX - startX;
@@ -704,7 +704,7 @@ var showOnPage = (goodList) => {
             });
             sku_div.addEventListener('touchend', (event) => {
                 const deltaX = event.changedTouches[0].clientX - startX;
-                if (Math.abs(deltaX) > 250) {generatePromotion(item, 3);}
+                if (Math.abs(deltaX) > 200) {generatePromotion(item, 3);}
             });
             sku_div.addEventListener('touchcancel', () => {clearTimeout(longPressTimer);});
             sku_div.addEventListener('contextmenu', (event) => {event.preventDefault();});
