@@ -78,6 +78,7 @@ document.getElementsByClassName("activity-header")[0].querySelectorAll(".nav-ite
     item.addEventListener('click', (event) => {
         activityPlatform = item.className.replace('nav-item', '').replace('filter', '').trim();
         clickChangeActivity(activityPlatform);
+        localStorage.setItem("activityIndex", activityIds.indexOf(activityPlatform));
     })
 })
 
@@ -967,9 +968,8 @@ var clickActivity = (activityList, activity_platform) => {
     let currentTime = new Date().getTime();
     activityList.forEach(item => {
         if (item.expire > currentTime) {
-            let sku = `<span>${item.title}</span><img src=${item.imgUrl} alt="" />`;
             let sku_div = document.createElement('div');
-            sku_div.innerHTML = sku;
+            sku_div.innerHTML = `<span>${item.title}</span><img src=${item.imgUrl} alt="" />`;
             sku_div.classList.add('a-activity');
             sku_div.addEventListener("click", () => {
                 if (getDeviceType() === "IOS") {
@@ -1075,6 +1075,7 @@ var clickChangeActivity = (eleId) => {
     document.getElementsByClassName("activity-header")[0].querySelectorAll(".nav-item").forEach(item => {
         if (item.classList.contains(eleId)) {
             item.classList.contains('filter')? item.classList.remove('filter'): null;
+            item.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'});
         } else {
             item.classList.contains('filter')? null: item.classList.add('filter');
         }
