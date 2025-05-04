@@ -272,8 +272,10 @@ var  generateUrlPathForSearch = (searchKey, sort, sortType, pageNo) => {
                 settings.pageindex = pageNo;
                 settings.keyword = searchKey;
                 settings.apikey = thirdApiKey;
-                settings.sort = sortType;
-                settings.sortname = sort;
+                if (sort && sort.trim() !== '') {
+                    settings.sort = sortType;
+                    settings.sortname = sort;
+                }
                 settings.isunion = '1';
                 settings.ispg = 0;
                 urlPath = thirdUrl + "/jd/goodslist?" + jsonToUrlParams(settings);
