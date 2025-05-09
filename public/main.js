@@ -797,34 +797,21 @@ var jumpToPurchasePage = (skuObj, flag) => {
                 we_app_url = skuObj.httpUrl;
                 break;
             case "jd":
-                if (getDeviceType() === "IOS") {
-                    jump_url = skuObj.data;
-                } else {
-                    let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + skuObj.data + "\"}";
-                    jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
-                }
+                let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + skuObj.data + "\"}";
+                jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
                 we_app_url = skuObj.data;
                 share_url = skuObj.data;
                 break;
             case "pdd":
-                if (getDeviceType() === "IOS") {
-                    // jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].short_url;
-                    jump_url = skuObj.data?.alldata.short_url;
-                } else {
-                    // jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
-                    jump_url = skuObj.data?.alldata.schema_url;
-                }
+                // jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
+                jump_url = skuObj.data?.alldata.schema_url;
                 // we_app_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
                 we_app_url = skuObj.data?.alldata.we_app_info.page_path;
                 // share_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].short_url;
                 share_url = skuObj.data?.alldata.short_url;
                 break;
             case "wph":
-                if (getDeviceType() === "IOS") {
-                    jump_url = skuObj.data?.urlInfoList[0].url;
-                } else {
-                    jump_url = skuObj.data?.urlInfoList[0].deeplinkUrl;
-                }
+                jump_url = skuObj.data?.urlInfoList[0].deeplinkUrl;
                 we_app_url = skuObj.data?.urlInfoList[0].vipZfbSchemeUrl;
                 share_url = skuObj.data?.urlInfoList[0].url;
                 break;
@@ -1024,33 +1011,17 @@ var jumpToActivityPage = (activityUrl) => {
                 jump_url = "taobao:" + activityUrl.replace("https:", "").replace("http:", "");
                 break;
             case "jd":
-                if (getDeviceType() === "IOS") {
-                    jump_url = activityUrl;
-                } else {
-                    let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + activityUrl + "\"}";
-                    jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
-                }
+                let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + activityUrl + "\"}";
+                jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
                 break;
             case "pdd":
-                if (getDeviceType() === "IOS") {
-                    jump_url = activityUrl
-                } else {
-                    jump_url = "pinduoduo://com.xunmeng.pinduoduo" + activityUrl;
-                }
+                jump_url = "pinduoduo://com.xunmeng.pinduoduo" + activityUrl;
                 break;
             case "wph":
-                if (getDeviceType() === "IOS") {
-                    jump_url = activityUrl;
-                } else {
-                    jump_url = "vipshop://showWebview?url=" + encodeURIComponent(activityUrl);
-                }
+                jump_url = "vipshop://showWebview?url=" + encodeURIComponent(activityUrl);
                 break;
             case "mt":
-                if (getDeviceType() === "IOS") {
-                    jump_url = activityUrl;
-                } else {
-                    jump_url = "imeituan://www.meituan.com/web?url=" + activityUrl;
-                }
+                jump_url = "imeituan://www.meituan.com/web?url=" + activityUrl;
                 break;
             default:
                 jump_url = activityUrl;
