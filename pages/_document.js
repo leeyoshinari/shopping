@@ -12,7 +12,8 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-            <link rel="icon" href="/icon.svg" type="image/svg+xml"/>
+            {/* <link rel="icon" href="/icon.svg" type="image/svg+xml"/> */}
+            <link rel="icon" href="/icon.ico" type="image/x-icon"/>
             <link rel="stylesheet" href="/main.css"></link>
             <link rel="manifest" href="/manifest.json"></link>
             <Script src="/crypto-js.js" strategy="afterInteractive" />

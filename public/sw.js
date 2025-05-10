@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sw-05-09';
+const CACHE_NAME = 'sw-05-109';
 
 // 要缓存的文件列表
 const staticFileExtensions = ['/img/', '.css', '.js', '.json', '.svg', '%2Fimg%2F'];

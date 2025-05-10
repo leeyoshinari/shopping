@@ -688,29 +688,7 @@ var showOnPage = (goodList) => {
             let sku_div = document.createElement('div');
             sku_div.innerHTML = sku;
             sku_div.classList.add('good-list');
-            sku_div.addEventListener("click", () => {generatePromotion(item, 1);})
-            sku_div.addEventListener('touchstart', (event) => {
-                clearTimeout(longPressTimer); 
-                startX = event.touches[0].clientX;
-                startY = event.touches[0].clientY;
-                isLongPress = false;
-                longPressTimer = setTimeout(() => {event.preventDefault(); isLongPress = true; generatePromotion(item, 2);}, 2000);}
-            );
-            sku_div.addEventListener('touchmove', (event) => {
-                const deltaX = event.touches[0].clientX - startX;
-                const deltaY = event.touches[0].clientY - startY;
-        
-                if (Math.abs(deltaX) > 20 || Math.abs(deltaY) > 20) {
-                    clearTimeout(longPressTimer);
-                    if (isLongPress) {return;}
-                }
-            });
-            sku_div.addEventListener('touchend', (event) => {
-                const deltaX = event.changedTouches[0].clientX - startX;
-                if (Math.abs(deltaX) > 200) {generatePromotion(item, 3);}
-            });
-            sku_div.addEventListener('touchcancel', () => {clearTimeout(longPressTimer);});
-            sku_div.addEventListener('contextmenu', (event) => {event.preventDefault();});
+            sku_div.addEventListener("click", function handleClick(event){generatePromotion(sku_div, item, handleClick);})
             goodElements.appendChild(sku_div);
         })
         document.querySelectorAll("img.img-lazy").forEach(item => {
@@ -721,7 +699,7 @@ var showOnPage = (goodList) => {
     }
 }
 
-var generatePromotion = (queryParam, flag) => {
+var generatePromotion = (element, queryParam, clickFunction) => {
     let settings = {};
     let urlPath = '';
     document.getElementsByClassName("spinner-container")[0].style.display = 'flex';
@@ -738,7 +716,7 @@ var generatePromotion = (queryParam, flag) => {
                 }
                 result.urlPath = "taobao:" + url_path;
                 result.httpUrl = "https:" + url_path;
-                jumpToPurchasePage(result, flag);
+                jumpToPurchasePage(result);
                 return;
             case "jd":
                 settings.apikey = thirdApiKey;
@@ -777,72 +755,72 @@ var generatePromotion = (queryParam, flag) => {
         }
         fetch('/api/proxy?url=' + encodeURIComponent(urlPath))
             .then(response => response.json())
-            .then(data => jumpToPurchasePage(data, flag))
+            .then(data => {
+                if (isSafari()) {
+                    jumpDubbleCheck(element, data, clickFunction);
+                } else {
+                    jumpToPurchasePage(data);
+                }
+            })
             .catch(error => console.error(error));
     } catch (error) {
+        document.getElementsByClassName("spinner-container")[0].style.display = 'none';
         console.error(error);
     }
 }
 
-var jumpToPurchasePage = (skuObj, flag) => {
-    // flag = 1:打开 APP，2：复制分享链接，3：复制微信小程序链接
+var jumpDubbleCheck = (element, data, clickFunction) => {
+    element.removeEventListener("click", clickFunction);
+    element.addEventListener("click", () => {jumpToPurchasePage(data);});
+    showTips("由于 Safari 浏览器限制，您需要再点击一次");
+    document.getElementsByClassName("spinner-container")[0].style.display = 'none';
+}
+
+var jumpToPurchasePage = (skuObj) => {
     let jump_url = '';
     let we_app_url = '';
-    let share_url = '';
+    // let share_url = '';
     try {
         switch (platform) {
             case "tb":
                 jump_url = skuObj.urlPath;
-                share_url = skuObj.httpUrl;
+                // share_url = skuObj.httpUrl;
                 we_app_url = skuObj.httpUrl;
                 break;
             case "jd":
                 let jd_path = "{\"category\":\"jump\",\"des\":\"m\",\"url\":\"" + skuObj.data + "\"}";
                 jump_url = "openapp.jdmobile://virtual?params=" + encodeURIComponent(jd_path);
                 we_app_url = skuObj.data;
-                share_url = skuObj.data;
+                // share_url = skuObj.data;
                 break;
             case "pdd":
                 // jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
                 jump_url = skuObj.data?.alldata.schema_url;
                 // we_app_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
-                we_app_url = skuObj.data?.alldata.we_app_info.page_path;
+                // we_app_url = skuObj.data?.alldata.we_app_info.page_path;
                 // share_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].short_url;
-                share_url = skuObj.data?.alldata.short_url;
+                we_app_url = skuObj.data?.alldata.short_url;
                 break;
             case "wph":
                 jump_url = skuObj.data?.urlInfoList[0].deeplinkUrl;
                 we_app_url = skuObj.data?.urlInfoList[0].vipZfbSchemeUrl;
-                share_url = skuObj.data?.urlInfoList[0].url;
+                // share_url = skuObj.data?.urlInfoList[0].url;
                 break;
         }
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
-        switch (flag) {
-            case 2:
-                copyText(share_url);
-                break;
-            case 3:
-                if (platform === "wph") {
-                    if (getDeviceType() === "IOS") {
-                        setTimeout(() => clickUrl(we_app_url), 50);
-                    } else {
-                        clickUrl(we_app_url);
-                    }
-                } else {
-                    copyText(we_app_url);
-                }
-                break;
-            default:
-                if (getDeviceType() === "IOS") {
-                    setTimeout(() => clickUrl(jump_url), 50);
-                } else {
-                    clickUrl(jump_url);
-                }
-                break;
+        try {
+            setTimeout(() => clickUrl(jump_url), 50);
+        } catch (error) {
+            console.log(error);
+            try {
+                setTimeout(() => clickUrl(we_app_url), 50);
+            } catch (err) {
+                console.log(err);
+                showTips(err.message, timeout=5000);
+            }
         }
     } catch (error) {
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
-        navigator.clipboard.writeText(jump_url);
         console.error(error);
         showTips(error.message);
     }
@@ -924,11 +902,17 @@ var shareUrl = async (title, share_url) => {
       }
 }
 
-var showTips = (text) => {
+var showTips = (text, timeout=3000) => {
     var tips = document.getElementById('tips');
     tips.innerText = text;
     tips.classList.add('show');
-    setTimeout(() => {tips.classList.remove('show');}, 3000);
+    setTimeout(() => {tips.classList.remove('show');}, timeout);
+}
+
+var isSafari = () => {
+    const ua = navigator.userAgent.toLowerCase();
+    const isSafari = (ua.includes('safari') && !ua.includes('chrome')) || (/apple/i.test(navigator.vendor) && !/crios|fxios/i.test(ua));
+    return isSafari;
 }
 
 var observer = new IntersectionObserver((entries) => {

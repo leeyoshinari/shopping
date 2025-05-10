@@ -213,6 +213,7 @@ html, body {
 #tips.show {
     bottom: 99px;
     opacity: 1;
+    text-align: center;
 }
 
 .activity {
