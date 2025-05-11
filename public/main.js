@@ -942,7 +942,7 @@ var clickActivity = (activityList, activity_platform) => {
     activityList.forEach(item => {
         if (item.expire > currentTime) {
             let sku_div = document.createElement('div');
-            sku_div.innerHTML = `<span>${item.title}</span><img src=${item.imgUrl} alt="" />`;
+            sku_div.innerHTML = `<span>${item.title?item.title:""}</span><img src=${item.imgUrl} alt="" />`;
             sku_div.classList.add('a-activity');
             sku_div.addEventListener("click", () => {
                 if (getDeviceType() === "IOS") {

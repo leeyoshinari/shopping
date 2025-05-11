@@ -88,6 +88,7 @@ html, body {
 }
 .row-three .good-info {
     margin-left: 3px;
+    width: 99%;
 }
 .row-three .good-info .good-title {
     display: block;
@@ -242,7 +243,7 @@ html, body {
 
 .a-activity {
     text-align: center;
-    margin: 3%;
+    margin: 1%;
     cursor: pointer;
     padding-top: 10px;
     border-radius: 10px;
@@ -254,8 +255,7 @@ html, body {
 }
 
 .a-activity img {
-    width: 93%;
+    width: 98%;
     height: auto;
     border-radius: 10px;
-    margin-top: 10px;
 }
