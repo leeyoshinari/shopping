@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sw-05-109';
+const CACHE_NAME = 'sw-05-11';
 
 // 要缓存的文件列表
 const staticFileExtensions = ['/img/', '.css', '.js', '.json', '.svg', '%2Fimg%2F'];
@@ -60,8 +60,8 @@ self.addEventListener('push', event => {
   const title = data.title || '通知';
   const options = {
     body: data.body || '您有一条新通知',
-    icon: '/icon.svg',
-    badge: '/icon.svg'
+    icon: '/icon.ico',
+    badge: '/icon.ico'
   };
 
   event.waitUntil(
