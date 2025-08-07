@@ -162,7 +162,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           jumpUrl: "http://dpurl.cn/M0alF76z",
           weAppUrl: "",
           expire: 1767193783000
-        }{
+        },{
           title: "美团买药健康爆品",
           imgUrl: "/img/mt_yao.jpg",
           jumpUrl: "http://dpurl.cn/2dQWDhGz",
