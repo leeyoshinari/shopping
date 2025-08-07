@@ -141,42 +141,42 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       mt: [{
           title: "天天领美团外卖红包",
           imgUrl: "/img/mt_wm.jpg",
-          jumpUrl: "http://dpurl.cn/RDp9Xkuz",
-          weAppUrl: "https://market.waimai.meituan.com/gd/single.html?el_biz=waimai&el_page=gundam.loader&gundam_id=2KAWnD&activity_id=380797&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_7&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Dm90i875zfw1e",
+          jumpUrl: "http://dpurl.cn/TvAXWdEz",
+          weAppUrl: "",
           expire: 1767193783000
         },{
-          title: "美团外卖超值券包",
+          title: "大牌饮品商品券会场4.9",
           imgUrl: "/img/mt_voucher.jpg",
-          jumpUrl: "http://dpurl.cn/l1GjaKcz",
-          weAppUrl: "https://market.waimai.meituan.com/gd2/wm/IBA0CO?el_biz=waimai&el_page=gundam.loader&gundam_id=IBA0CO&tenant=gundam&isMultiTab=true&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_26&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DHFgt875z-KHF",
+          jumpUrl: "http://dpurl.cn/qOPo9Egz",
+          weAppUrl: "",
+          expire: 1767193783000
+        },{
+          title: "【美团闪购】红包天天领会场",
+          imgUrl: "/img/mt_flash_shop.jpg",
+          jumpUrl: "http://dpurl.cn/4jAj4K6z",
+          weAppUrl: "",
           expire: 1767193783000
         },{
           title: "美团爆款鲜花3折起",
           imgUrl: "/img/mt_xh.png",
-          jumpUrl: "http://dpurl.cn/gyBrqMgz",
-          weAppUrl: "https://market.waimai.meituan.com/gd2/wm/43XqV7?el_biz=waimai&el_page=gundam.loader&gundam_id=43XqV7&tenant=gundam&onHideRemain=true&isMultiTab=true&g_source=sg_BGuVBdpA&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_272&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Dcm3U875z_FyU",
+          jumpUrl: "http://dpurl.cn/M0alF76z",
+          weAppUrl: "",
           expire: 1767193783000
-        },{
-          title: "商超果蔬红包天天领",
-          imgUrl: "/img/mt_cs.jpeg",
-          jumpUrl: "http://dpurl.cn/N31mzzcz",
-          weAppUrl: "https://market.waimai.meituan.com/gd2/wm/rCFbdO?el_biz=waimai&el_page=gundam.loader&gundam_id=rCFbdO&tenant=gundam&onHideRemain=true&isMultiTab=true&g_source=sg_VQaDcIKU&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_273&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DCSnUhb5zlVF3",
-          expire: 1767193783000
-        },{
+        }{
           title: "美团买药健康爆品",
           imgUrl: "/img/mt_yao.jpg",
-          jumpUrl: "http://dpurl.cn/rQ430jvz",
-          weAppUrl: "https://market.waimai.meituan.com/gd2/wm/4mFyYu?el_biz=waimai&el_page=gundam.loader&gundam_id=4mFyYu&tenant=gundam&isMultiTab=true&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_302&utm_term=&channel=union&mt_id=ho15Le-Rd&mt_key=1681ca2fae8a7d4161b6d731aa6f876b&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DMxLXhb5zWGI0",
+          jumpUrl: "http://dpurl.cn/2dQWDhGz",
+          weAppUrl: "",
           expire: 1735649837000
-        },{
-          title: "美团电商购物红包",
-          imgUrl: "/img/mt_ds.jpg",
-          jumpUrl: "http://dpurl.cn/y584BXWz",
-          weAppUrl: "https://market.waimai.meituan.com/gd/single.html?el_biz=waimai&el_page=gundam.loader&tenant=gundam&gundam_id=2nC5Vb&boot_id=g_source_2922&utm_source=60413&utm_medium=weixin_mp&utm_campaign=other&utm_content=1624050432672469040_19&utm_term=&channel=&click_cps_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D4%26c%3D2%26p%3De20h875zN9pm",
-          expire: 1735642837000
         }
       ],
       ele: [{
+          title: "饿了么 淘宝闪购",
+          imgUrl: "/img/flash_shop.jpg",
+          jumpUrl: "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Fh5.ele.me%2Fminisite%2Fpages%2Findex-xsd%2Findex%3FisTab%3Dfalse%26disableNav%3DYES%26forceThemis%3Dtrue%26tfPos%3Dh5%26forbidRefineType%3DgoOut%26from%3Dminiapp.taobao%26channelInfo%3D%257B%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%26alsc_exsrc%3DES0006299852%26mdFrom%3D%26scene%3Dd3dc263b49454e6ca200002b3cbec301%26o2i_1st_clk%3D__CLICK_ID__",
+          weAppUrl: "",
+          expire: 1767193783000
+      },{
           title: "饿了么天天领红包",
           imgUrl: "/img/ele_redpackage.png",
           jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021004134685665%2Fpages%2Ftaoke-guide%2Findex%3Fscene%3D8b81253451dc4e4484d46ebc039a8306",
@@ -187,6 +187,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           imgUrl: "/img/ele_city.jpg",
           jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021003183669766%2Fpages%2Fwh-coupon-guide%2Findex%3Fscene%3D41933a79adf54a6b80267819e1560faf",
           weAppUrl: "ad-bdlm-sub/pages/wh-coupon-guide/index?scene=41933a79adf54a6b80267819e1560faf",
+          expire: 1767193783000
+      },{
+          title: "饿了么 医药红包",
+          imgUrl: "/img/ele_yao.jpg",
+          jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021003183669766%2Fpages%2Fwh-coupon-guide%2Findex%3Fscene%3D2ee1d21347554866a3de9c0f7bc2772c",
+          weAppUrl: "",
           expire: 1767193783000
       }],
       dd: [{
@@ -276,10 +282,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           weAppUrl: "plugin-private://wx459759608c80cf98/pages/index?movieapikey=25ee321ae0f7f9be&movieuid=myxq_28931&moviekefu=/pages/service/service",
           expire: 1767193783000
       },{
-          desc: "折扣充值",
-          imgUrl: "/img/hjk_huafei.jpg",
-          jumpUrl: "https://myxq8.kuaizhan.com/0/59/p880289478292b1?mid=28931&uid=myxq_28931",
-          weAppUrl: "plugin-private://wx92eb6fb9f1218f37/pages/index/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&index=/pages/index/index",
+          desc: "电信花雕卡 月租29，105G流量",
+          imgUrl: "/img/hjk_flow_card.png",
+          jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=6&id=96",
+          weAppUrl: "",
+          expire: 1767193783000
+      },{
+          desc: "超值流量卡",
+          imgUrl: "/img/hjk_flow_card.png",
+          jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=6",
+          weAppUrl: "",
           expire: 1767193783000
       },{
           desc: "特惠寄快递",
