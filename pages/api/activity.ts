@@ -216,6 +216,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }],
       cy: [{
           desc: "瑞幸咖啡",
+          imgUrl: "/img/hjk_juhe.png",
+          jumpUrl: "https://myxq8.kuaizhan.com/79/63/p1099301769c693e?myxqpid=100001000946181",
+          weAppUrl: "",
+          expire: 1767193783000
+      },{
+          desc: "瑞幸咖啡",
           imgUrl: "/img/hjk_ruixing.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=rx",
           weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=rx",
@@ -237,6 +243,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           imgUrl: "/img/hjk_xingbake.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=xbk",
           weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=xbk",
+          expire: 1767193783000
+      },{
+          desc: "库迪咖啡",
+          imgUrl: "/img/hjk_kudi.png",
+          jumpUrl: "http://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=kd",
+          weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=kd",
           expire: 1767193783000
       },{
           desc: "麦当劳",
@@ -267,6 +279,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           imgUrl: "/img/hjk_hanbaowang.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=7",
           weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=7",
+          expire: 1767193783000
+      },{
+          desc: "塔斯汀",
+          imgUrl: "/img/hjk_tst.jpg",
+          jumpUrl: "http://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=tst",
+          weAppUrl: "",
+          expire: 1767193783000
+      },{
+          desc: "德克士",
+          imgUrl: "/img/hjk_dks.jpg",
+          jumpUrl: "http://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=16",
+          weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=16",
           expire: 1767193783000
       },{
           desc: "百果园",
