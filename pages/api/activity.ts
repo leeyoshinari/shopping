@@ -113,7 +113,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           expire: 1750039159000
         },
         {
-          desc: "超级补贴",
+          desc: "限时狂秒",
           imgUrl: "/img/wph_cjbt.png",
           jumpUrl: "https://t.vip.com/CJdSptn1Bn7",
           weAppUrl: "",
@@ -139,27 +139,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       ],
       mt: [{
-          title: "天天领美团外卖红包",
-          imgUrl: "/img/mt_wm.jpg",
-          jumpUrl: "http://dpurl.cn/TvAXWdEz",
-          weAppUrl: "",
-          expire: 1767193783000
-        },{
-          title: "大牌饮品商品券会场4.9",
-          imgUrl: "/img/mt_voucher.jpg",
-          jumpUrl: "http://dpurl.cn/qOPo9Egz",
-          weAppUrl: "",
-          expire: 1767193783000
-        },{
           title: "【美团闪购】红包天天领会场",
           imgUrl: "/img/mt_flash_shop.jpg",
           jumpUrl: "http://dpurl.cn/4jAj4K6z",
           weAppUrl: "",
           expire: 1767193783000
         },{
+          title: "天天领美团外卖红包",
+          imgUrl: "/img/mt_wm.jpg",
+          jumpUrl: "http://dpurl.cn/JliuGdzz",
+          weAppUrl: "",
+          expire: 1767193783000
+        },{
+          title: "美团吃喝玩乐",
+          imgUrl: "/img/mt_chihewanle.png",
+          jumpUrl: "http://dpurl.cn/Hfpmwk9z",
+          weAppUrl: "",
+          expire: 1767193783000
+        },{
           title: "美团爆款鲜花3折起",
           imgUrl: "/img/mt_xh.png",
-          jumpUrl: "http://dpurl.cn/M0alF76z",
+          jumpUrl: "http://dpurl.cn/kQFMjzsz",
           weAppUrl: "",
           expire: 1767193783000
         },{
@@ -179,8 +179,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },{
           title: "饿了么天天领红包",
           imgUrl: "/img/ele_redpackage.png",
-          jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021004134685665%2Fpages%2Ftaoke-guide%2Findex%3Fscene%3D8b81253451dc4e4484d46ebc039a8306",
-          weAppUrl: "commercialize/pages/taoke-guide/index?scene=8b81253451dc4e4484d46ebc039a8306",
+          jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021004134685665%2Fpages%2Ftaoke-guide%2Findex%3Fscene%3D081e3131d0934040854434b14c747068",
+          weAppUrl: "",
           expire: 1767193783000
       },{
           title: "饿了么 24城消费日专享",
@@ -280,18 +280,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           imgUrl: "/img/hjk_movie.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=1",
           weAppUrl: "plugin-private://wx459759608c80cf98/pages/index?movieapikey=25ee321ae0f7f9be&movieuid=myxq_28931&moviekefu=/pages/service/service",
-          expire: 1767193783000
-      },{
-          desc: "电信花雕卡 月租29，105G流量",
-          imgUrl: "/img/hjk_flow_card.png",
-          jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=6&id=96",
-          weAppUrl: "",
-          expire: 1767193783000
-      },{
-          desc: "超值流量卡",
-          imgUrl: "/img/hjk_flow_card.png",
-          jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=6",
-          weAppUrl: "",
           expire: 1767193783000
       },{
           desc: "特惠寄快递",
