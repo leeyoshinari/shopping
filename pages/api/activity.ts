@@ -145,6 +145,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           weAppUrl: "",
           expire: 1767193783000
         },{
+          title: "美团到店",
+          imgUrl: "/img/mt_daodian.jpg",
+          jumpUrl: "http://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=qq555555&t=7",
+          weAppUrl: "",
+          expire: 1767193783000
+        },{
           title: "天天领美团外卖红包",
           imgUrl: "/img/mt_wm.jpg",
           jumpUrl: "http://dpurl.cn/JliuGdzz",
