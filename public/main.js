@@ -1005,7 +1005,11 @@ var jumpToActivityPage = (activityUrl) => {
                 jump_url = "vipshop://showWebview?url=" + encodeURIComponent(activityUrl);
                 break;
             case "mt":
-                jump_url = "imeituan://www.meituan.com/web?url=" + activityUrl;
+                if (activityUrl.indexOf("dpurl") > 0) {
+                    jump_url = "imeituan://www.meituan.com/web?url=" + activityUrl;
+                } else {
+                    jump_url = activityUrl;
+                }
                 break;
             default:
                 jump_url = activityUrl;
