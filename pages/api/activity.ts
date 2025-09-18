@@ -169,11 +169,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           weAppUrl: "",
           expire: 1767193783000
         },{
-          title: "美团买药健康爆品",
+          title: "美团买药",
           imgUrl: "/img/mt_yao.jpg",
-          jumpUrl: "http://dpurl.cn/2dQWDhGz",
+          jumpUrl: "http://dpurl.cn/lbMNDG3z",
           weAppUrl: "",
-          expire: 1735649837000
+          expire: 1767193783000
         }
       ],
       ele: [{
