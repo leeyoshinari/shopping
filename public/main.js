@@ -809,7 +809,11 @@ var jumpToPurchasePage = (skuObj) => {
         }
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
         try {
-            setTimeout(() => clickUrl(jump_url), 50);
+            setTimeout(() => {
+                if (isSafari() && platform === 'pdd') {
+                    copyText(we_app_url);
+                }
+                clickUrl(jump_url);}, 50);
         } catch (error) {
             console.log(error);
             try {
@@ -946,13 +950,18 @@ var clickActivity = (activityList, activity_platform) => {
             sku_div.classList.add('a-activity');
             sku_div.addEventListener("click", () => {
                 if (getDeviceType() === "IOS") {
-                    setTimeout(() => jumpToActivityPage(item.jumpUrl), 50);
+                    setTimeout(() => {
+                        if (isSafari() && activity_platform === 'dd') {
+                            copyActivityUrl(item.weAppUrl);
+                        }
+                        jumpToActivityPage(item.jumpUrl);
+                    }, 50);
                 } else {
                     jumpToActivityPage(item.jumpUrl);
                 }
             })
             sku_div.addEventListener('touchstart', (event) => {
-                clearTimeout(longPressTimer); 
+                clearTimeout(longPressTimer);
                 startX = event.touches[0].clientX;
                 startY = event.touches[0].clientY;
                 isLongPress = false;

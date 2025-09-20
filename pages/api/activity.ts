@@ -88,8 +88,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },{
           desc: "千万补贴",
           imgUrl: "/img/pdd_qwbt.png",
-          jumpUrl: "/duo_theme_activity.html?__page=duo_qianwan_activity&pid=15084399_190061839&cpsSign=CE_240607_15084399_190061839_053a6b42227ced719f7098feab2468b9&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
-          weAppUrl: "/duo_theme_activity.html?__page=duo_qianwan_activity&pid=15084399_190061839&cpsSign=CE_240607_15084399_190061839_053a6b42227ced719f7098feab2468b9&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
+          jumpUrl: "/duo_theme_activity.html?__page=duo_qianwan_activity&pid=15084399_190061839&cpsSign=CE_250920_15084399_190061839_a29fe4998631f416082c6e96fbd0c45e&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2",
+          weAppUrl: "/duo_theme_activity.html?__page=duo_qianwan_activity&pid=15084399_190061839&cpsSign=CE_250920_15084399_190061839_a29fe4998631f416082c6e96fbd0c45e&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2",
           expire: 2735642837000
         },{
           desc: "限时秒杀",
@@ -100,8 +100,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },{
           desc: "领券中心",
           imgUrl: "/img/pdd_voucher.jpg",
-          jumpUrl: "/duo_transfer_channel.html?resourceType=40000&pid=15084399_190061839&cpsSign=CE_240607_15084399_190061839_67b48ab5157fcdd8e7720940f244b277&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
-          weAppUrl: "/duo_transfer_channel.html?resourceType=40000&pid=15084399_190061839&cpsSign=CE_240607_15084399_190061839_67b48ab5157fcdd8e7720940f244b277&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
+          jumpUrl: "/duo_transfer_channel.html?resourceType=40000&pid=200005_851937&customParameters=100001001343743&authDuoId=200005&cpsSign=CE_250920_200005_851937_5e015d7b3a2420bae1aecf1297df5d69&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
+          weAppUrl: "/duo_transfer_channel.html?resourceType=40000&pid=200005_851937&customParameters=100001001343743&authDuoId=200005&cpsSign=CE_250920_200005_851937_5e015d7b3a2420bae1aecf1297df5d69&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
+          expire: 2735642837000
+        },{
+          desc: "拼多多备案链接",
+          imgUrl: "/img/pdd_beian.png",
+          jumpUrl: "/duo_coupon_landing.html?__page=auth&pid=200005_851937&customParameters=100001001343743&authDuoId=200005&cpsSign=CC_250920_200005_851937_62e88067fa467b3c6721e1fb38b0a4ae&_x_ddjb_act=%7B%22st%22%3A%22102%22%7D&duoduo_type=2",
+          weAppUrl: "/duo_coupon_landing.html?__page=auth&pid=200005_851937&customParameters=100001001343743&authDuoId=200005&cpsSign=CC_250920_200005_851937_62e88067fa467b3c6721e1fb38b0a4ae&_x_ddjb_act=%7B%22st%22%3A%22102%22%7D&duoduo_type=2",
           expire: 2735642837000
         }
       ],
