@@ -797,9 +797,9 @@ var jumpToPurchasePage = (skuObj) => {
                 // jump_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].schema_url;
                 jump_url = skuObj.data?.alldata.schema_url;
                 // we_app_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].we_app_info.page_path;
-                // we_app_url = skuObj.data?.alldata.we_app_info.page_path;
+                we_app_url = skuObj.data?.alldata.we_app_info.page_path;
                 // share_url = skuObj.goods_promotion_url_generate_response?.goods_promotion_url_list[0].short_url;
-                we_app_url = skuObj.data?.alldata.short_url;
+                // we_app_url = skuObj.data?.alldata.short_url;
                 break;
             case "wph":
                 jump_url = skuObj.data?.urlInfoList[0].deeplinkUrl;
@@ -951,7 +951,7 @@ var clickActivity = (activityList, activity_platform) => {
             sku_div.addEventListener("click", () => {
                 if (getDeviceType() === "IOS") {
                     setTimeout(() => {
-                        if (isSafari() && activity_platform === 'dd') {
+                        if (isSafari() && activity_platform === 'pdd') {
                             copyActivityUrl(item.weAppUrl);
                         }
                         jumpToActivityPage(item.jumpUrl);
@@ -986,6 +986,11 @@ var clickActivity = (activityList, activity_platform) => {
                 if (Math.abs(deltaX) > 20 || Math.abs(deltaY) > 20) {
                     clearTimeout(longPressTimer);
                     if (isLongPress) {return;}
+                    if (getDeviceType() === "IOS") {
+                        if (activity_platform === 'dd') {
+                            setTimeout(() => jumpToActivityPage(item.weAppUrl), 50);
+                        }
+                    }
                 }
             });
             sku_div.addEventListener('touchend', () => {clearTimeout(longPressTimer);});

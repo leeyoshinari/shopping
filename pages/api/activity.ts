@@ -198,7 +198,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           title: "饿了么 24城消费日专享",
           imgUrl: "/img/ele_city.jpg",
           jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021003183669766%2Fpages%2Fwh-coupon-guide%2Findex%3Fscene%3D41933a79adf54a6b80267819e1560faf",
-          weAppUrl: "ad-bdlm-sub/pages/wh-coupon-guide/index?scene=41933a79adf54a6b80267819e1560faf",
+          weAppUrl: "",
           expire: 1767193783000
       },{
           title: "饿了么 医药红包",
