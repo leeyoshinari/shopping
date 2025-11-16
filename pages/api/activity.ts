@@ -104,11 +104,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           weAppUrl: "/duo_transfer_channel.html?resourceType=40000&pid=200005_851937&customParameters=100001001343743&authDuoId=200005&cpsSign=CE_250920_200005_851937_5e015d7b3a2420bae1aecf1297df5d69&_x_ddjb_act=%7B%22st%22%3A%226%22%7D&duoduo_type=2&launch_pdd=1&campaign=ddjb&cid=launch_transfer_channel_",
           expire: 2735642837000
         },{
+          desc: "拼多多员工内购清单",
+          imgUrl: "https://img.haojingke.com/e0d01427c60d5f506748050a0000d9b9e3a36783890c95855wizHhMVt9.png",
+          jumpUrl: "/duo_collection.html?__page=dis&pid=200005_851937&customParameters=100001001343743&authDuoId=200005&cpsSign=CIP_251116_200005_851937_a45a294e2c52f267fc5216b62d153573&_x_ddjb_act=%7B%22st%22%3A%2217%22%7D&duoduo_type=2",
+          weAppUrl: "/duo_collection.html?__page=dis&pid=200005_851937&customParameters=100001001343743&authDuoId=200005&cpsSign=CIP_251116_200005_851937_a45a294e2c52f267fc5216b62d153573&_x_ddjb_act=%7B%22st%22%3A%2217%22%7D&duoduo_type=2",
+          expire: 2735642837000
+        },{
           desc: "拼多多备案链接",
           imgUrl: "/img/pdd_beian.png",
           jumpUrl: "/duo_coupon_landing.html?__page=auth&pid=200005_851937&customParameters=100001001343743&authDuoId=200005&cpsSign=CC_250920_200005_851937_62e88067fa467b3c6721e1fb38b0a4ae&_x_ddjb_act=%7B%22st%22%3A%22102%22%7D&duoduo_type=2",
           weAppUrl: "/duo_coupon_landing.html?__page=auth&pid=200005_851937&customParameters=100001001343743&authDuoId=200005&cpsSign=CC_250920_200005_851937_62e88067fa467b3c6721e1fb38b0a4ae&_x_ddjb_act=%7B%22st%22%3A%22102%22%7D&duoduo_type=2",
-          expire: 2735642837000
+          expire: 2735642837
         }
       ],
       wph: [{
@@ -178,6 +184,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           title: "美团买药",
           imgUrl: "/img/mt_yao.jpg",
           jumpUrl: "http://dpurl.cn/lbMNDG3z",
+          weAppUrl: "",
+          expire: 1767193783000
+        },{
+          title: "华住集团旗下酒店",
+          imgUrl: "/img/mt_huazhuhui.jpg",
+          jumpUrl: "http://dpurl.cn/32lPTzvz",
+          weAppUrl: "",
+          expire: 1767193783000
+        },{
+          title: "山河之旅酒店",
+          imgUrl: "https://img.haojingke.com/9fc392b69e31a37d711099c3cd22b490bc0d86c45eab8ee4k7FmVdHij7.png",
+          jumpUrl: "http://dpurl.cn/sXO4Ms1z",
+          weAppUrl: "",
+          expire: 1767193783000
+        },{
+          title: "景点门票",
+          imgUrl: "https://img.haojingke.com/a1892313ae111e85b3511e621f276286e6169ca1cf3372a1QXVDoaWOvZ.jpg",
+          jumpUrl: "http://dpurl.cn/A2uIRKNz",
           weAppUrl: "",
           expire: 1767193783000
         }
