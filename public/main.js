@@ -328,12 +328,12 @@ var getGoodList = (sort, sortType, pageNo, flag) => {
             fetch('/api/proxy?url=' + encodeURIComponent(generateUrlPathForSearch(searchKey, sort, sortType, pageNo)))
                 .then(response => response.json())
                 .then(data => parseSearchGoodList(data))
-                .catch(error => console.error(error));
+                .catch(error => {console.error(error);document.getElementsByClassName("spinner-container")[0].style.display = 'none';});
         } else {
             fetch('/api/proxy?url=' + encodeURIComponent(generateUrlPathForRecommend(pageNo)))
                 .then(response => response.json())
                 .then(data => parseRecommendGoodList(data))
-                .catch(error => console.error(error));
+                .catch(error => {console.error(error);document.getElementsByClassName("spinner-container")[0].style.display = 'none';});
         }
     } catch (error) {
         console.error(error);
@@ -762,7 +762,7 @@ var generatePromotion = (element, queryParam, clickFunction) => {
                     jumpToPurchasePage(data);
                 }
             })
-            .catch(error => console.error(error));
+            .catch(error => {console.error(error);document.getElementsByClassName("spinner-container")[0].style.display = 'none';});
     } catch (error) {
         document.getElementsByClassName("spinner-container")[0].style.display = 'none';
         console.error(error);
