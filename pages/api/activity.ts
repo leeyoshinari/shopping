@@ -66,6 +66,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           weAppUrl: "https://u.jd.com/r1sVR9U",
           expire: 1750262359000
         },{
+          desc: "京东话费券",
+          imgUrl: "https://img.haojingke.com/7baaf160b00d91c98db34331fd55eec26d422c7dda8e134d4zXg3OMpdB.jpg",
+          jumpUrl: "https://u.jd.com/Wa3cmY2",
+          weAppUrl: "https://u.jd.com/Wa3cmY2",
+          expire: 1767193783000
+        },{
           desc: "京东秒杀",
           imgUrl: "/img/jd_flash_sale.webp",
           jumpUrl: "https://union-click.jd.com/jdc?e=618%7Cpc%7C&p=JF8BAPUJK1olXDYDZBoCUBVIMzZNXhpXVhgcDwYCXhxDXHBTTkRHA1ocDBsJVEVTbT9aXjVUUUJdDAACFBtFRjdPQx5dSkJdDAACZgpHVTtmQw4ZXgcCV1ptT0oNaGdpWQx3CnwDSi1ZSi1eQhd1e1cZbQMCVV9fC0MXC2o4G1oUXgACV1xVCnsnA2w4UDUUbQQDVVxYC00SAGc4G10QWAQEVVZbC04fBl8PG1IlAF1QVFpdCkgQbTM4K2sWbQECXUpbegpFF2l6K2sWXTYBZG5fCUoTCl84xdalIgEFBlkvDxBfejJ7fBtvA9iP5E8veEsTBGsZK2slbQ",
@@ -213,21 +219,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           weAppUrl: "",
           expire: 1767193783000
       },{
+          title: "饿了么 淘宝闪购惊喜福利",
+          imgUrl: "https://img.haojingke.com/cb714c1db523d482f2c708fc41f80e2e8b7ef74ff8ff0c39Llf5NJPJO6.jpg",
+          jumpUrl: "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Ftb.ele.me%2Fapp%2FTBTakeout%2Fet-home%2Fhome%3Fafc_tms_weex%3Dtrue%26afc_weex_min_appver%3D10.49.5%26tms_force%3Dtrue%26_wx_statusbar_hidden%3Dtrue%26wx_navbar_hidden%3Dtrue%26disableNav%3DYES%26status_bar_transparent%3Dtrue%26isTab%3Dfalse%26from%3Dminiapp.taobao%26channelInfo%3D%257B%2522channel%2522%253A%2522miniapp%2522%252C%2522subChannel%2522%253A%2522miniapp.taobao%2522%252C%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%26wx_snapshot_key%3Dwx-etHome-notInTab-cache%26et_chnl_code%3Djulang%26forbidRefineType%3DgoOut%26alsc_exsrc%3DES0007944860%26mdFrom%3DES0007944860%26tfPos%3Dh5%26launchId%3DET_UNDERTAKE_RESTOR%26skw%3DUNION%26scene%3D40a29aeb137049cda184b3c0f5fdc72b%26o2i_1st_clk%3D__CLICK_ID_",
+          weAppUrl: "",
+          expire: 1767193783000
+      },{
           title: "饿了么天天领红包",
           imgUrl: "/img/ele_redpackage.png",
-          jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021004134685665%2Fpages%2Ftaoke-guide%2Findex%3Fscene%3D081e3131d0934040854434b14c747068",
+          jumpUrl: "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Fm.duanqu.com%2F%3F_ariver_appid%3D8251537%26page%3Dplugin-private%253A%252F%252F2021004134685665%252Fpages%252Ftaoke-guide%252Findex%253Ffrom%253Dminiapp.taobao%2526channelInfo%253D%257B%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%2526alsc_exsrc%253DES0006299852%2526scene%253D7dbacb392c2b465f8dbfcaf91c4a2c17",
           weAppUrl: "",
           expire: 1767193783000
       },{
           title: "饿了么 24城消费日专享",
           imgUrl: "/img/ele_city.jpg",
-          jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021003183669766%2Fpages%2Fwh-coupon-guide%2Findex%3Fscene%3D41933a79adf54a6b80267819e1560faf",
+          jumpUrl: "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Fm.duanqu.com%2F%3F_ariver_appid%3D8251537%26page%3Dplugin-private%253A%252F%252F2021003183669766%252Fpages%252Fwh-coupon-guide%252Findex%253Ffrom%253Dminiapp.taobao%2526channelInfo%253D%257B%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%2526alsc_exsrc%253DES0006299852%2526scene%253Dd14eb020525f45d19810b51986d16718",
           weAppUrl: "",
           expire: 1767193783000
       },{
           title: "饿了么 医药红包",
           imgUrl: "/img/ele_yao.jpg",
-          jumpUrl: "alipays://platformapi/startapp?appId=2021001110676437&page=plugin-private%3A%2F%2F2021003183669766%2Fpages%2Fwh-coupon-guide%2Findex%3Fscene%3D2ee1d21347554866a3de9c0f7bc2772c",
+          jumpUrl: "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Fm.duanqu.com%2F%3F_ariver_appid%3D8251537%26page%3Dplugin-private%253A%252F%252F2021003183669766%252Fpages%252Fwh-coupon-guide%252Findex%253Fscene%253Dbb4ce3b1a1ae48788ff3f219319e8f23",
           weAppUrl: "",
           expire: 1767193783000
       }],
