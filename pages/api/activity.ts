@@ -60,11 +60,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       ],
       jd: [{
-          desc: "618大促主会场",
-          imgUrl: "https://gw.alicdn.com/imgextra/i1/O1CN01U5E4pn1rMBGD1Now3_!!6000000005616-0-tps-800-450.jpg",
-          jumpUrl: "https://u.jd.com/r1sVR9U",
-          weAppUrl: "https://u.jd.com/r1sVR9U",
-          expire: 1750262359000
+          desc: "双12京享红包",
+          imgUrl: "https://img.haojingke.com/dbc778f44ef7b37647e97364cc211217d9832262ccd21bf0g4wMoMC3uO.png",
+          jumpUrl: "https://u.jd.com/ZrBRZ1T",
+          weAppUrl: "",
+          expire: 1765641600000
         },{
           desc: "京东话费券",
           imgUrl: "https://img.haojingke.com/7baaf160b00d91c98db34331fd55eec26d422c7dda8e134d4zXg3OMpdB.jpg",
@@ -124,36 +124,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       ],
       wph: [{
-          desc: "618抢先购主会场",
-          imgUrl: "http://ms.vpimg1.com/upload/actpics/cps/0/2025/05/09/39/1366ytxv8nxxn0x.jpg",
-          jumpUrl: "https://t.vip.com/zzXFmWjEg8A?chanTag=d619156f131a556c6640229727291160",
-          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252Fz-l3c3job26ZPWN2KkJvyA.php%253Fwapid%253Dmst_100150172%2526_src%253Dmst%2526extra_banner%253D0%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu060000fq3k3jxayiqlfl5x24&chl_type=wxk",
-          expire: 1750039159000
+          desc: "年度特卖大会超级红包",
+          imgUrl: "https://img.haojingke.com/d7188113a601a029e5f1eadd23525e1530e8db2aa3645127wvtceEzJso.jpg",
+          jumpUrl: "https://t.vip.com/mixuda",
+          weAppUrl: "",
+          expire: 1765811226000
         },
         {
           desc: "限时狂秒",
           imgUrl: "/img/wph_cjbt.png",
-          jumpUrl: "https://t.vip.com/CJdSptn1Bn7",
+          jumpUrl: "https://t.vip.com/pg4bpf",
           weAppUrl: "",
-          expire: 1751987383000
+          expire: 1786550400000
         },{
           desc: "每日超值低价",
           imgUrl: "/img/wph_low_price.webp",
-          jumpUrl: "https://t.vip.com/2FpMvccdl59?chanTag=d619156f131a556c6640229727291160",
-          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252FO-wSpmRJ3xdDUtB39vLuTg.php%253Fwapid%253Dmst_100126749%2526_src%253Dmst%2526extra_banner%253D115126749%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu060000wtlmziwzoe5ssiyuyd&chl_type=wxk",
-          expire: 1751987383000
+          jumpUrl: "https://t.vip.com/jQZ7re",
+          weAppUrl: "",
+          expire: 1767110400000
         },{
           desc: "3折疯抢",
           imgUrl: "/img/wph_qiang.jpg",
-          jumpUrl: "https://t.vip.com/U3bc5Ef2MP9?chanTag=d619156f131a556c6640229727291160",
-          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252FDAFYkbX9rT9ZrU-uW_ylnw.php%253Fwapid%253Dmst_100114375%2526_src%253Dmst%2526extra_banner%253D115114375%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu060000drv8r27o5z27ixbath&chl_type=wxk",
-          expire: 1764529783000
+          jumpUrl: "https://t.vip.com/BNbqiq",
+          weAppUrl: "",
+          expire: 1767110400000
         },{
-          desc: "唯品快抢",
-          imgUrl: "/img/wph_kq.png",
-          jumpUrl: "https://t.vip.com/N7CVJWu9sl9?chanTag=d619156f131a556c6640229727291160",
-          weAppUrl: "pages/index/index?$route=pages%2Fspecial%2Fspecial%3Furl%3Dhttps%253A%252F%252Fmst.vip.com%252F27Pzw99-SzJDKCFI8NooXQ.php%253Fwapid%253Dmst_100048881%2526_src%253Dmst%2526extra_banner%253D115048881%2526nova%253D1%2526nova_platform%253D1%2526mst_page_type%253Dguide%2526nmsns%253Dshop_iphone-7.60.1-link%2526nst%253Dsubject%2526nsbc%253D%2526nct%253Dlink%2526ncid%253Df931935d51a7563e78f29f518b607deb16c0ce17%2526nabtid%253D5bbc01d7a130404a6260dd533954b23d%2526nuid%253DNDkzOTIwODE3%2526nchl_param%253Dshare%253Af931935d51a7563e78f29f518b607deb16c0ce17%253A1640764250&tra_from=adp%3AC01V4mpu06pdygk0%3A%3Amig_code%3Ad619156f131a556c6640229727291160%3Aac014mpu0600009z6k9axv5rpdhxw5qb&chl_type=wxk",
-          expire: 1764529783000
+          desc: "超级补贴",
+          imgUrl: "https://img.haojingke.com/fa02b7bd9578f3f17f318acdce3b7778a559e5ed0c0cc8fcvgCjfkcd3D.jpg",
+          jumpUrl: "https://t.vip.com/p9rbn8",
+          weAppUrl: "",
+          expire: 1767110400000
         }
       ],
       mt: [{
