@@ -265,21 +265,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       cy: [{
           desc: "瑞幸咖啡",
           imgUrl: "/img/hjk_juhe.png",
-          jumpUrl: "https://myxq8.kuaizhan.com/79/63/p1099301769c693e?myxqpid=100001000946181",
+          jumpUrl: "http://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=qq555555&t=5&type=rx",
           weAppUrl: "",
           expire: 1767193783000
       },{
           desc: "瑞幸咖啡",
           imgUrl: "/img/hjk_ruixing.jpg",
-          jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=rx",
-          weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=rx",
-          expire: 1767193783000
+          jumpUrl: "http://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=qq555555&t=5&type=rx",
+          weAppUrl: "",
+          expire: 1798719620000
       },{
           desc: "奈雪的茶",
           imgUrl: "/img/hjk_naixue.jpg",
-          jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=5&type=nx",
-          weAppUrl: "plugin-private://wx869ff9f322c1d2f0/pages/welcome/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=nx",
-          expire: 1767193783000
+          jumpUrl: "http://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=qq555555&t=5&type=nx",
+          weAppUrl: "",
+          expire: 1798719620000
       },{
           desc: "喜茶",
           imgUrl: "/img/hjk_xicha.jpg",
@@ -345,26 +345,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           imgUrl: "/img/hjk_baiguoyuan.jpg",
           jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=8",
           weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=8",
-          expire: 1767193783000
+          expire: 1798719620000
       }],
       qt: [{
           desc: "折扣电影票",
           imgUrl: "/img/hjk_movie.jpg",
-          jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=1",
-          weAppUrl: "plugin-private://wx459759608c80cf98/pages/index?movieapikey=25ee321ae0f7f9be&movieuid=myxq_28931&moviekefu=/pages/service/service",
-          expire: 1767193783000
+          jumpUrl: "http://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=qq555555&t=1",
+          weAppUrl: "",
+          expire: 1798719620000
       },{
           desc: "特惠寄快递",
           imgUrl: "/img/hjk_kuaidi.jpg",
-          jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=15",
-          weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=15",
-          expire: 1767193783000
+          jumpUrl: "http://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=qq555555&t=4&type=15",
+          weAppUrl: "",
+          expire: 1798719620000
       },{
           desc: "鲜花配送",
           imgUrl: "/img/hjk_xianhua.jpg",
-          jumpUrl: "https://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=myxq_28931&t=4&type=2",
-          weAppUrl: "/pages/web/index?apikey=25ee321ae0f7f9be&uid=myxq_28931&type=2",
-          expire: 1767193783000
+          jumpUrl: "http://wx.91jdj.cn/?a=25ee321ae0f7f9be&u=qq555555&t=4&type=2",
+          weAppUrl: "",
+          expire: 1798719620000
       }]
     }
     res.status(200).json(activity);
