@@ -64,7 +64,6 @@ export function GoodsList({ goods, onScroll, onItemClick, listRef}: GoodsListPro
                             fill
                             className="object-cover rounded-xl"
                             sizes="144px"
-                            priority
                         />
                     </div>
                     <div className="flex-1 flex flex-col justify-between py-1">

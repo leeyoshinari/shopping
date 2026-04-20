@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import RegisterSW from "./components/ServiceWorkers";
 
 export const metadata: Metadata = {
   title: "优惠券",
@@ -30,6 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
+      <RegisterSW />
       <body className="antialiased">{children}</body>
     </html>
   );

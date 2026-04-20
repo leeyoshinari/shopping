@@ -95,7 +95,6 @@ export const ActivityList = forwardRef<HTMLDivElement, ActivityListProps>(functi
                             height={400}
                             className="object-contain w-full h-auto"
                             sizes="(max-width:768px) 100vw 600px"
-                            priority
                         />
                     </div>
                 </div>
