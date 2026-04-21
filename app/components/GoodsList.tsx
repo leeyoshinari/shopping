@@ -51,7 +51,7 @@ export function GoodsList({ goods, onScroll, onItemClick, listRef, hasMore = tru
             onScroll={onScroll}
             className="flex-1 overflow-y-auto pb-20 px-2"
         >
-            {goods.length === 0 && (
+            {goods.length === 0 && !hasMore && (
                 <div className="flex items-center justify-center h-40 text-gray-400 text-sm">暂无商品</div>
             )}
             {goods.map((item, index) => (

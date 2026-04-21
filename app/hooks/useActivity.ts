@@ -104,6 +104,7 @@ export function useActivity() {
                 url = `https://mobile.yangkeduo.com${url}`;
             }
             await copyText(url);
+            onSuccess();
         } catch (err) {
             onError('复制失败');
         }

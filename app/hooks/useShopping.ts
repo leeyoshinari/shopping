@@ -80,11 +80,11 @@ export function useShopping() {
                 settings.apikey = THIRD_CONFIG.apiKey;
                 settings.pageIndex = page;
                 settings.pageSize = PAGE_SIZE;
-                settings.sortname = 5;
-                settings.sort = 'desc';
-                // settings.eliteId = 1;
-                urlPath = `${THIRD_CONFIG.url}/jd/goodslist?${jsonToUrlParams(settings)}`;
-                // urlPath = `${THIRD_CONFIG.url}/jd/getjingfen?${jsonToUrlParams(settings)}`;
+                // settings.sortname = 5;
+                // settings.sort = 'desc';
+                settings.eliteId = 1;
+                // urlPath = `${THIRD_CONFIG.url}/jd/goodslist?${jsonToUrlParams(settings)}`;
+                urlPath = `${THIRD_CONFIG.url}/jd/getjingfen?${jsonToUrlParams(settings)}`;
                 break;
             case "pdd":
                 // settings.client_id = pddClientId;
@@ -638,9 +638,6 @@ export function useShopping() {
 
             if (isSafari()) {
                 setIsPromotionLoading(false);
-                if (platform === 'pdd') {
-                    await copyText(jumpUrl || webUrl);
-                }
                 onSuccess?.(jumpUrl);
                 onError('由于 Safari 浏览器限制, 您需要再点击一次');
                 return;
@@ -656,7 +653,7 @@ export function useShopping() {
         } catch (err) {
             setIsPromotionLoading(false);
             console.error(err);
-            onError('生成链接失败, 请重试');
+            onError('生成链接失败, 请重试: ' + err);
         }
     }, [platform]);
 
