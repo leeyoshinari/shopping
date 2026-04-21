@@ -111,11 +111,12 @@ export function useActivity() {
 
     // 处理活动项点击
     const handleActivityClick = useCallback((item: ActivityItem, onError: (msg: string) => void) => {
-        const deviceType = getDeviceType();
-
-        if (deviceType === 'IOS' && isSafari() && activityPlatform === 'pdd') {
+        if (activityPlatform === 'pdd') {
             copyActivityUrl(item,
-                () => onError('链接已复制，请手动粘贴到浏览器打开'),
+                () => {
+                    onError('链接已复制 ~');
+                    jumpToActivity(item);
+                },
                 () => jumpToActivity(item)
             );
         } else {

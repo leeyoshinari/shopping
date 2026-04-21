@@ -32,12 +32,6 @@ export function useShopping() {
         setPlatformState(initialPlatform);
         platformRef.current = initialPlatform;
         setIsHydrated(true);
-
-        if (initialPlatform !== 'wm') {
-            setTimeout(() => {
-                loadGoods(1, true);
-            }, 0);
-        }
     }, []);
 
     // 设置平台并保存到 localstorage
@@ -86,8 +80,11 @@ export function useShopping() {
                 settings.apikey = THIRD_CONFIG.apiKey;
                 settings.pageIndex = page;
                 settings.pageSize = PAGE_SIZE;
-                settings.eliteId = 1;
-                urlPath = `${THIRD_CONFIG.url}/jd/getjingfen?${jsonToUrlParams(settings)}`;
+                settings.sortname = 5;
+                settings.sort = 'desc';
+                // settings.eliteId = 1;
+                urlPath = `${THIRD_CONFIG.url}/jd/goodslist?${jsonToUrlParams(settings)}`;
+                // urlPath = `${THIRD_CONFIG.url}/jd/getjingfen?${jsonToUrlParams(settings)}`;
                 break;
             case "pdd":
                 // settings.client_id = pddClientId;
@@ -509,6 +506,11 @@ export function useShopping() {
         await loadGoodsWithPlatform(platformRef.current, page, isNewSearch);
     }, [loadGoodsWithPlatform]);
 
+    useEffect(() => {
+        if (!isHydrated || platform === 'wm') return;
+        loadGoods(1, true);
+    }, [isHydrated, platform, loadGoods]);
+
     //  处理搜索
     const handleSearch = useCallback((keyword: string) => {
         searchKeyRef.current = keyword;
@@ -537,7 +539,6 @@ export function useShopping() {
         setGoodsList([]);
         setPageNo(1);
         setHasMore(true);
-        setSortType('zh');
 
         if (newPlatform === 'wm') {
             setShowSortBar(false);
@@ -637,6 +638,9 @@ export function useShopping() {
 
             if (isSafari()) {
                 setIsPromotionLoading(false);
+                if (platform === 'pdd') {
+                    await copyText(jumpUrl || webUrl);
+                }
                 onSuccess?.(jumpUrl);
                 onError('由于 Safari 浏览器限制, 您需要再点击一次');
                 return;
@@ -676,6 +680,7 @@ export function useShopping() {
         isLoading,
         isPromotionLoading,
         showSortBar,
+        hasMore,
         goodsListRef,
         handleSearch,
         handleSortChange,

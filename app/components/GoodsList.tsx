@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { GoodItem } from "../types";
 import { isSafari } from "../utils";
@@ -14,28 +14,28 @@ interface GoodsListProps {
         onSuccess?: (jumpUrl: string) => void,
     ) => void;
     listRef: React.Ref<HTMLDivElement>;
+    hasMore?: boolean;
 }
 
-export function GoodsList({ goods, onScroll, onItemClick, listRef}: GoodsListProps) {
+export function GoodsList({ goods, onScroll, onItemClick, listRef, hasMore = true}: GoodsListProps) {
     const [pendingJumpUrls, setPendingJumpUrls] = useState<Record<string, string>>({});
+
+    useEffect(() => {
+        setPendingJumpUrls({});
+    }, [goods]);
 
     const handleClick = (item: GoodItem) => {
         const goodsId = item.goodsId;
 
         if (pendingJumpUrls[goodsId]) {
             window.location.href = pendingJumpUrls[goodsId];
-            setPendingJumpUrls(prev => {
-                const next = { ...prev };
-                delete next[goodsId];
-                return next;
-            });
             return;
         }
 
         onItemClick(
             item,
             (msg) => {
-                console.error(msg);
+                console.log(msg);
             },
             (jumpUrl: string) => {
                 if (isSafari()) {
@@ -51,6 +51,9 @@ export function GoodsList({ goods, onScroll, onItemClick, listRef}: GoodsListPro
             onScroll={onScroll}
             className="flex-1 overflow-y-auto pb-20 px-2"
         >
+            {goods.length === 0 && (
+                <div className="flex items-center justify-center h-40 text-gray-400 text-sm">暂无商品</div>
+            )}
             {goods.map((item, index) => (
                 <div
                     key={`${item.goodsId}-${index}`}
@@ -93,6 +96,9 @@ export function GoodsList({ goods, onScroll, onItemClick, listRef}: GoodsListPro
                     </div>
                 </div>
             ))}
+            {goods.length > 0 && !hasMore && (
+                <div className="flex items-center justify-center py-4 text-gray-400 text-sm">我是有底线的～</div>
+            )}
         </div>
     );
 }

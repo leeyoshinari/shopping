@@ -26,6 +26,7 @@ export default function Home() {
         isLoading,
         isPromotionLoading,
         showSortBar,
+        hasMore,
         goodsListRef,
         handleSearch,
         handleSortChange,
@@ -98,7 +99,7 @@ export default function Home() {
                 <ActivityNav ref={activityNavRef} currentPlatform={activityPlatform} onPlatformChange={handleActivityPlatformSwitch} />
             )}
             {!isActivityMode && (
-                <GoodsList goods={goodsList} onScroll={handleScroll} onItemClick={handleGoodClick} listRef={goodsListRef} />
+                <GoodsList goods={goodsList} onScroll={handleScroll} onItemClick={handleGoodClick} listRef={goodsListRef} hasMore={hasMore} />
             )}
             {isActivityMode && (
                 <ActivityList activities={currentActivities()} onActivityClick={handleActivityItemClick} onActivityLongPress={handleActivityLongPress} onSwipe={handleSwipe} />
