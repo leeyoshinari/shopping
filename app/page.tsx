@@ -52,7 +52,7 @@ export default function Home() {
     const handleGoodClick = async (
         item: Parameters<typeof generatePromotion>[0],
         onError: (msg: string) => void,
-        onSuccess?: (jumpUrl: string) => void
+        onSuccess?: (jumpUrl: string, webUrl?: string) => void
     ) => {
         await generatePromotion(item, (msg) => {
             setToastMessage(msg);
@@ -99,7 +99,7 @@ export default function Home() {
                 <ActivityNav ref={activityNavRef} currentPlatform={activityPlatform} onPlatformChange={handleActivityPlatformSwitch} />
             )}
             {!isActivityMode && (
-                <GoodsList goods={goodsList} onScroll={handleScroll} onItemClick={handleGoodClick} listRef={goodsListRef} hasMore={hasMore} />
+                <GoodsList goods={goodsList} onScroll={handleScroll} onItemClick={handleGoodClick} listRef={goodsListRef} hasMore={hasMore} platform={platform} />
             )}
             {isActivityMode && (
                 <ActivityList activities={currentActivities()} onActivityClick={handleActivityItemClick} onActivityLongPress={handleActivityLongPress} onSwipe={handleSwipe} />

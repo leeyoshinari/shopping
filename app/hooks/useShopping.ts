@@ -560,7 +560,7 @@ export function useShopping() {
     }, [pageNo, hasMore, loadGoods]);
 
     // 生成推广链接并跳转
-    const generatePromotion = useCallback(async (item: GoodItem, onError: (msg: string) => void, onSuccess?: (jumpUrl: string) => void) => {
+    const generatePromotion = useCallback(async (item: GoodItem, onError: (msg: string) => void, onSuccess?: (jumpUrl: string, webUrl?:string) => void) => {
         setIsPromotionLoading(true);
         try {
             let targetUrl: string = "";
@@ -575,7 +575,7 @@ export function useShopping() {
                     clickUrl(jumpUrl);
                     return;
                 case 'jd':
-                    settings.apiKey = THIRD_CONFIG.apiKey;
+                    settings.apikey = THIRD_CONFIG.apiKey;
                     settings.unionId = THIRD_CONFIG.jdUnionId;
                     settings.positionid = THIRD_CONFIG.jdPositionId;
                     settings.type = 1;
@@ -638,7 +638,7 @@ export function useShopping() {
 
             if (isSafari()) {
                 setIsPromotionLoading(false);
-                onSuccess?.(jumpUrl);
+                onSuccess?.(jumpUrl, webUrl);
                 onError('由于 Safari 浏览器限制, 您需要再点击一次');
                 return;
             }

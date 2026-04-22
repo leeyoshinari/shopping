@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { ActivityPlatform, ActivityItem, ActivityData } from "../types";
 import { ACTIVITY_PLATFORMS } from "../config/constants";
-import { getDeviceType, isSafari, clickUrl, copyText } from "../utils";
+import { getDeviceType, clickUrl, copyText } from "../utils";
 
 export function useActivity() {
     const [activityPlatform, setActivityPlatform] = useState<ActivityPlatform>('cy');

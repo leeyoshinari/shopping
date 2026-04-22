@@ -3,7 +3,6 @@
 import { useRef, useEffect, forwardRef, useImperativeHandle} from 'react';
 import { ActivityPlatform } from '../types';
 import { ACTIVITY_PLATFORMS, ACTIVITY_PLATFORM_NAMES } from '../config/constants';
-import { platform } from 'os';
 
 interface ActivityMavProps {
     currentPlatform: ActivityPlatform;

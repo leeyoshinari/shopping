@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { GoodItem } from "../types";
-import { isSafari } from "../utils";
+import { GoodItem, Platform } from "../types";
+import { isSafari, copyText } from "../utils";
 
 interface GoodsListProps {
     goods: GoodItem[];
@@ -11,14 +11,15 @@ interface GoodsListProps {
     onItemClick: (
         item: GoodItem,
         onError: (msg: string) => void,
-        onSuccess?: (jumpUrl: string) => void,
+        onSuccess?: (jumpUrl: string, webUrl?: string) => void,
     ) => void;
     listRef: React.Ref<HTMLDivElement>;
     hasMore?: boolean;
+    platform?: Platform;
 }
 
-export function GoodsList({ goods, onScroll, onItemClick, listRef, hasMore = true}: GoodsListProps) {
-    const [pendingJumpUrls, setPendingJumpUrls] = useState<Record<string, string>>({});
+export function GoodsList({ goods, onScroll, onItemClick, listRef, hasMore = true, platform}: GoodsListProps) {
+    const [pendingJumpUrls, setPendingJumpUrls] = useState<Record<string, { jumpUrl: string, webUrl?: string }>>({});
 
     useEffect(() => {
         setPendingJumpUrls({});
@@ -26,9 +27,12 @@ export function GoodsList({ goods, onScroll, onItemClick, listRef, hasMore = tru
 
     const handleClick = (item: GoodItem) => {
         const goodsId = item.goodsId;
-
-        if (pendingJumpUrls[goodsId]) {
-            window.location.href = pendingJumpUrls[goodsId];
+        const pending = pendingJumpUrls[goodsId];
+        if (pending) {
+            if (platform === 'pdd') {
+                copyText(pending.webUrl || pending.jumpUrl);
+            }
+            window.location.href = pending.jumpUrl;
             return;
         }
 
@@ -37,9 +41,9 @@ export function GoodsList({ goods, onScroll, onItemClick, listRef, hasMore = tru
             (msg) => {
                 console.log(msg);
             },
-            (jumpUrl: string) => {
+            (jumpUrl: string, webUrl?: string) => {
                 if (isSafari()) {
-                    setPendingJumpUrls(prev => ({ ...prev, [goodsId]: jumpUrl }));
+                    setPendingJumpUrls(prev => ({ ...prev, [goodsId]: { jumpUrl, webUrl } }));
                 }
             }
         );
