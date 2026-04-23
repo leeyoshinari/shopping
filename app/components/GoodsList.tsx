@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { GoodItem, Platform } from "../types";
-import { isSafari, copyText } from "../utils";
+import { copyText } from "../utils";
 
 interface GoodsListProps {
     goods: GoodItem[];
@@ -42,7 +42,7 @@ export function GoodsList({ goods, onScroll, onItemClick, listRef, hasMore = tru
                 console.log(msg);
             },
             (jumpUrl: string, webUrl?: string) => {
-                if (isSafari()) {
+                if (platform !== 'tb') {
                     setPendingJumpUrls(prev => ({ ...prev, [goodsId]: { jumpUrl, webUrl } }));
                 }
             }

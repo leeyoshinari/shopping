@@ -572,6 +572,7 @@ export function useShopping() {
                     const urlPath = couponUrl ? couponUrl.replace('https:', '').replace('http:', '') : item.item_url?.replace('https:', '').replace('http:', '') || '';
                     const jumpUrl = `taobao:${urlPath}`;
                     setIsPromotionLoading(false);
+                    onSuccess?.(jumpUrl);
                     clickUrl(jumpUrl);
                     return;
                 case 'jd':
@@ -644,6 +645,7 @@ export function useShopping() {
             }
 
             setIsPromotionLoading(false);
+            onSuccess?.(jumpUrl, webUrl);
             if (platform === 'pdd') {
                 await copyText(webUrl || jumpUrl);
                 setTimeout(() => clickUrl(jumpUrl), 50);
